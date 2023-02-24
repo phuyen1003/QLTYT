@@ -161,9 +161,13 @@
     <Content Include="image\book5.png" />
     <Content Include="image\book7.png" />
     <Content Include="image\deal-img.jpg" />
+    <Content Include="image\dinhduong.png" />
     <Content Include="image\dudu.jpg" />
     <Content Include="image\letter-bg.jpg" />
+    <Content Include="image\lichtiem.jpg" />
+    <Content Include="image\lichtiemtreem.jpg" />
     <Content Include="image\loader-img.gif" />
+    <Content Include="image\mebau..jpg" />
     <Content Include="image\mebau.jpg" />
     <Content Include="image\mebau1.jpg" />
     <Content Include="image\mebau3.jpg" />
@@ -174,6 +178,7 @@
     <Content Include="image\pic-5.png" />
     <Content Include="image\pic-6.png" />
     <Content Include="image\Pregnant.png" />
+    <Content Include="image\somebe.jpg" />
     <Content Include="image\stand.png" />
     <Content Include="image\syringe.png" />
     <Content Include="image\ultra.png" />
