@@ -161,8 +161,12 @@
     <Content Include="image\book5.png" />
     <Content Include="image\book7.png" />
     <Content Include="image\deal-img.jpg" />
+    <Content Include="image\dudu.jpg" />
     <Content Include="image\letter-bg.jpg" />
     <Content Include="image\loader-img.gif" />
+    <Content Include="image\mebau.jpg" />
+    <Content Include="image\mebau1.jpg" />
+    <Content Include="image\mebau3.jpg" />
     <Content Include="image\pic-1.png" />
     <Content Include="image\pic-2.png" />
     <Content Include="image\pic-3.png" />
