@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BenhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -494,6 +495,8 @@
       <LastGenOutput>QLTYT.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="css\.DS_Store" />
+    <Content Include="js\.DS_Store" />
     <Content Include="assets\.DS_Store" />
     <Content Include="assets\images\.DS_Store" />
     <Content Include="assets\images\big\Thumbs.db" />
@@ -600,8 +603,6 @@
     <Content Include="assets\node_modules\raphael\.bower.json" />
     <Content Include="assets\node_modules\raphael\bower.json" />
     <Content Include="assets\package.json" />
-    <Content Include="css\.DS_Store" />
-    <Content Include="js\.DS_Store" />
     <None Include="Models\QLTYT.dbml.layout">
       <DependentUpon>QLTYT.dbml</DependentUpon>
     </None>
@@ -755,6 +756,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Benh\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
