@@ -25,5 +25,11 @@ namespace QLTYT.Controllers
 
             return View();
         }
+        public ActionResult LogIn()
+        {
+
+            return View();
+        }
+
     }
 }

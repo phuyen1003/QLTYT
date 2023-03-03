@@ -437,6 +437,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\style.css" />
     <Content Include="css\animate.css" />
     <Content Include="css\colors\default.css" />
@@ -754,6 +755,7 @@
     <Content Include="scss\widgets\profile.scss" />
     <Content Include="scss\widgets\topbar-mail.scss" />
     <Content Include="scss\widgets\widgets.scss" />
+    <Content Include="Views\Home\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
