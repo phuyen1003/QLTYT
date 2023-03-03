@@ -30,12 +30,12 @@
       <Column Name="CCCD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="BHYT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="GioiTinh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="ChieuCao" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CanNang" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="BenhNhan_ChiSoDinhDuong" Member="ChiSoDinhDuongs" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="ChiSoDinhDuong" />
       <Association Name="BenhNhan_PhieuKham" Member="PhieuKhams" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="PhieuKham" />
       <Association Name="BenhNhan_PhieuTiemChung" Member="PhieuTiemChungs" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="PhieuTiemChung" />
       <Association Name="GiaDinh_BenhNhan" Member="GiaDinh" ThisKey="IdGiaDinh" OtherKey="IdGiaDinh" Type="GiaDinh" IsForeignKey="true" />
@@ -45,25 +45,22 @@
   <Table Name="dbo.ChiSoDinhDuong" Member="ChiSoDinhDuongs">
     <Type Name="ChiSoDinhDuong">
       <Column Name="IdChiSoDinhDuong" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="BMIMin" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="BMIMax" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CanhBao" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Association Name="BenhNhan_ChiSoDinhDuong" Member="BenhNhan" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="BenhNhan" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChiTietTiemChung" Member="ChiTietTiemChungs">
     <Type Name="ChiTietTiemChung">
       <Column Name="IdChiTietTiemChung" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IdSoPhieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdPhanUng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdChiTietTrieuChung" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdVacXin" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SoLo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DiaDiem" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="VacXin_ChiTietTiemChung" Member="VacXin" ThisKey="IdVacXin" OtherKey="IdVacXin" Type="VacXin" IsForeignKey="true" />
-      <Association Name="PhanUng_ChiTietTiemChung" Member="PhanUng" ThisKey="IdPhanUng" OtherKey="IdPhanUng" Type="PhanUng" IsForeignKey="true" />
       <Association Name="PhieuTiemChung_ChiTietTiemChung" Member="PhieuTiemChung" ThisKey="IdSoPhieu" OtherKey="IdSoPhieu" Type="PhieuTiemChung" IsForeignKey="true" />
     </Type>
   </Table>
@@ -72,7 +69,7 @@
       <Column Name="IdChiTietTrieuChung" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IdPhanUng" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdTrieuChung" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="PhanUng_ChiTietTrieuChung" Member="PhanUng" ThisKey="IdPhanUng" OtherKey="IdPhanUng" Type="PhanUng" IsForeignKey="true" />
+      <Association Name="PhanUng_ChiTietTrieuChung" Member="PhanUng" ThisKey="IdPhanUng" OtherKey="IdPhanUng" Type="PhanUng" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="TrieuChung_ChiTietTrieuChung" Member="TrieuChung" ThisKey="IdTrieuChung" OtherKey="IdTrieuChung" Type="TrieuChung" IsForeignKey="true" />
     </Type>
   </Table>
@@ -96,6 +93,8 @@
       <Column Name="TenChuHo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="CCCD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SoNguoi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="GiaDinh_BenhNhan" Member="BenhNhans" ThisKey="IdGiaDinh" OtherKey="IdGiaDinh" Type="BenhNhan" />
     </Type>
   </Table>
@@ -123,6 +122,7 @@
       <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="GioiTinh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CCCD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
@@ -160,7 +160,6 @@
       <Column Name="IdPhanUng" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenPhanUng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="MucDo" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="PhanUng_ChiTietTiemChung" Member="ChiTietTiemChungs" ThisKey="IdPhanUng" OtherKey="IdPhanUng" Type="ChiTietTiemChung" />
       <Association Name="PhanUng_ChiTietTrieuChung" Member="ChiTietTrieuChungs" ThisKey="IdPhanUng" OtherKey="IdPhanUng" Type="ChiTietTrieuChung" />
     </Type>
   </Table>

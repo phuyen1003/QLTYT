@@ -121,7 +121,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BenhController.cs" />
+    <Compile Include="Controllers\BenhNhanController.cs" />
+    <Compile Include="Controllers\ChiSoDDController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -134,8 +135,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\big\logo.jpg" />
-    <Content Include="assets\images\users\45.jpg" />
+    <Content Include="assets\images\users\1.jpg" />
     <Content Include="assets\node_modules\bootstrap\css\bootstrap-grid.css" />
     <Content Include="assets\node_modules\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="assets\node_modules\bootstrap\css\bootstrap-grid.rtl.css" />
@@ -433,6 +433,7 @@
     <Content Include="assets\node_modules\raphael\license.txt" />
     <Content Include="assets\node_modules\raphael\raphael-min.js" />
     <Content Include="assets\node_modules\raphael\raphael.js" />
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -756,6 +757,11 @@
     <Content Include="scss\widgets\topbar-mail.scss" />
     <Content Include="scss\widgets\widgets.scss" />
     <Content Include="Views\Home\LogIn.cshtml" />
+    <Content Include="Views\BenhNhan\Create.cshtml" />
+    <Content Include="Views\BenhNhan\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\BenhNhan\Edit.cshtml" />
+    <Content Include="Views\ChiSoDD\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

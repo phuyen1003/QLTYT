@@ -742,6 +742,8 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _GioiTinh;
 		
+		private System.Nullable<System.DateTime> _NgaySinh;
+		
 		private string _SDT;
 		
 		private string _Email;
@@ -751,8 +753,6 @@ namespace QLTYT.Models
 		private System.Nullable<double> _ChieuCao;
 		
 		private System.Nullable<double> _CanNang;
-		
-		private EntitySet<ChiSoDinhDuong> _ChiSoDinhDuongs;
 		
 		private EntitySet<PhieuKham> _PhieuKhams;
 		
@@ -780,6 +780,8 @@ namespace QLTYT.Models
     partial void OnBHYTChanged();
     partial void OnGioiTinhChanging(System.Nullable<int> value);
     partial void OnGioiTinhChanged();
+    partial void OnNgaySinhChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgaySinhChanged();
     partial void OnSDTChanging(string value);
     partial void OnSDTChanged();
     partial void OnEmailChanging(string value);
@@ -794,7 +796,6 @@ namespace QLTYT.Models
 		
 		public BenhNhan()
 		{
-			this._ChiSoDinhDuongs = new EntitySet<ChiSoDinhDuong>(new Action<ChiSoDinhDuong>(this.attach_ChiSoDinhDuongs), new Action<ChiSoDinhDuong>(this.detach_ChiSoDinhDuongs));
 			this._PhieuKhams = new EntitySet<PhieuKham>(new Action<PhieuKham>(this.attach_PhieuKhams), new Action<PhieuKham>(this.detach_PhieuKhams));
 			this._PhieuTiemChungs = new EntitySet<PhieuTiemChung>(new Action<PhieuTiemChung>(this.attach_PhieuTiemChungs), new Action<PhieuTiemChung>(this.detach_PhieuTiemChungs));
 			this._GiaDinh = default(EntityRef<GiaDinh>);
@@ -950,6 +951,26 @@ namespace QLTYT.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgaySinh
+		{
+			get
+			{
+				return this._NgaySinh;
+			}
+			set
+			{
+				if ((this._NgaySinh != value))
+				{
+					this.OnNgaySinhChanging(value);
+					this.SendPropertyChanging();
+					this._NgaySinh = value;
+					this.SendPropertyChanged("NgaySinh");
+					this.OnNgaySinhChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDT", DbType="NVarChar(100)")]
 		public string SDT
 		{
@@ -1047,19 +1068,6 @@ namespace QLTYT.Models
 					this.SendPropertyChanged("CanNang");
 					this.OnCanNangChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_ChiSoDinhDuong", Storage="_ChiSoDinhDuongs", ThisKey="IdBenhNhan", OtherKey="IdBenhNhan")]
-		public EntitySet<ChiSoDinhDuong> ChiSoDinhDuongs
-		{
-			get
-			{
-				return this._ChiSoDinhDuongs;
-			}
-			set
-			{
-				this._ChiSoDinhDuongs.Assign(value);
 			}
 		}
 		
@@ -1177,18 +1185,6 @@ namespace QLTYT.Models
 			}
 		}
 		
-		private void attach_ChiSoDinhDuongs(ChiSoDinhDuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = this;
-		}
-		
-		private void detach_ChiSoDinhDuongs(ChiSoDinhDuong entity)
-		{
-			this.SendPropertyChanging();
-			entity.BenhNhan = null;
-		}
-		
 		private void attach_PhieuKhams(PhieuKham entity)
 		{
 			this.SendPropertyChanging();
@@ -1222,15 +1218,11 @@ namespace QLTYT.Models
 		
 		private int _IdChiSoDinhDuong;
 		
-		private System.Nullable<int> _IdBenhNhan;
-		
 		private System.Nullable<double> _BMIMin;
 		
 		private System.Nullable<double> _BMIMax;
 		
 		private string _CanhBao;
-		
-		private EntityRef<BenhNhan> _BenhNhan;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1238,8 +1230,6 @@ namespace QLTYT.Models
     partial void OnCreated();
     partial void OnIdChiSoDinhDuongChanging(int value);
     partial void OnIdChiSoDinhDuongChanged();
-    partial void OnIdBenhNhanChanging(System.Nullable<int> value);
-    partial void OnIdBenhNhanChanged();
     partial void OnBMIMinChanging(System.Nullable<double> value);
     partial void OnBMIMinChanged();
     partial void OnBMIMaxChanging(System.Nullable<double> value);
@@ -1250,7 +1240,6 @@ namespace QLTYT.Models
 		
 		public ChiSoDinhDuong()
 		{
-			this._BenhNhan = default(EntityRef<BenhNhan>);
 			OnCreated();
 		}
 		
@@ -1270,30 +1259,6 @@ namespace QLTYT.Models
 					this._IdChiSoDinhDuong = value;
 					this.SendPropertyChanged("IdChiSoDinhDuong");
 					this.OnIdChiSoDinhDuongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", DbType="Int")]
-		public System.Nullable<int> IdBenhNhan
-		{
-			get
-			{
-				return this._IdBenhNhan;
-			}
-			set
-			{
-				if ((this._IdBenhNhan != value))
-				{
-					if (this._BenhNhan.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdBenhNhanChanging(value);
-					this.SendPropertyChanging();
-					this._IdBenhNhan = value;
-					this.SendPropertyChanged("IdBenhNhan");
-					this.OnIdBenhNhanChanged();
 				}
 			}
 		}
@@ -1358,40 +1323,6 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BenhNhan_ChiSoDinhDuong", Storage="_BenhNhan", ThisKey="IdBenhNhan", OtherKey="IdBenhNhan", IsForeignKey=true)]
-		public BenhNhan BenhNhan
-		{
-			get
-			{
-				return this._BenhNhan.Entity;
-			}
-			set
-			{
-				BenhNhan previousValue = this._BenhNhan.Entity;
-				if (((previousValue != value) 
-							|| (this._BenhNhan.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._BenhNhan.Entity = null;
-						previousValue.ChiSoDinhDuongs.Remove(this);
-					}
-					this._BenhNhan.Entity = value;
-					if ((value != null))
-					{
-						value.ChiSoDinhDuongs.Add(this);
-						this._IdBenhNhan = value.IdBenhNhan;
-					}
-					else
-					{
-						this._IdBenhNhan = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("BenhNhan");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1423,7 +1354,7 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _IdSoPhieu;
 		
-		private System.Nullable<int> _IdPhanUng;
+		private System.Nullable<int> _IdChiTietTrieuChung;
 		
 		private System.Nullable<int> _IdVacXin;
 		
@@ -1437,8 +1368,6 @@ namespace QLTYT.Models
 		
 		private EntityRef<VacXin> _VacXin;
 		
-		private EntityRef<PhanUng> _PhanUng;
-		
 		private EntityRef<PhieuTiemChung> _PhieuTiemChung;
 		
     #region Extensibility Method Definitions
@@ -1449,8 +1378,8 @@ namespace QLTYT.Models
     partial void OnIdChiTietTiemChungChanged();
     partial void OnIdSoPhieuChanging(System.Nullable<int> value);
     partial void OnIdSoPhieuChanged();
-    partial void OnIdPhanUngChanging(System.Nullable<int> value);
-    partial void OnIdPhanUngChanged();
+    partial void OnIdChiTietTrieuChungChanging(System.Nullable<int> value);
+    partial void OnIdChiTietTrieuChungChanged();
     partial void OnIdVacXinChanging(System.Nullable<int> value);
     partial void OnIdVacXinChanged();
     partial void OnSoLoChanging(string value);
@@ -1466,7 +1395,6 @@ namespace QLTYT.Models
 		public ChiTietTiemChung()
 		{
 			this._VacXin = default(EntityRef<VacXin>);
-			this._PhanUng = default(EntityRef<PhanUng>);
 			this._PhieuTiemChung = default(EntityRef<PhieuTiemChung>);
 			OnCreated();
 		}
@@ -1515,26 +1443,22 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPhanUng", DbType="Int")]
-		public System.Nullable<int> IdPhanUng
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdChiTietTrieuChung", DbType="Int")]
+		public System.Nullable<int> IdChiTietTrieuChung
 		{
 			get
 			{
-				return this._IdPhanUng;
+				return this._IdChiTietTrieuChung;
 			}
 			set
 			{
-				if ((this._IdPhanUng != value))
+				if ((this._IdChiTietTrieuChung != value))
 				{
-					if (this._PhanUng.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIdPhanUngChanging(value);
+					this.OnIdChiTietTrieuChungChanging(value);
 					this.SendPropertyChanging();
-					this._IdPhanUng = value;
-					this.SendPropertyChanged("IdPhanUng");
-					this.OnIdPhanUngChanged();
+					this._IdChiTietTrieuChung = value;
+					this.SendPropertyChanged("IdChiTietTrieuChung");
+					this.OnIdChiTietTrieuChungChanged();
 				}
 			}
 		}
@@ -1673,40 +1597,6 @@ namespace QLTYT.Models
 						this._IdVacXin = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("VacXin");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTiemChung", Storage="_PhanUng", ThisKey="IdPhanUng", OtherKey="IdPhanUng", IsForeignKey=true)]
-		public PhanUng PhanUng
-		{
-			get
-			{
-				return this._PhanUng.Entity;
-			}
-			set
-			{
-				PhanUng previousValue = this._PhanUng.Entity;
-				if (((previousValue != value) 
-							|| (this._PhanUng.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PhanUng.Entity = null;
-						previousValue.ChiTietTiemChungs.Remove(this);
-					}
-					this._PhanUng.Entity = value;
-					if ((value != null))
-					{
-						value.ChiTietTiemChungs.Add(this);
-						this._IdPhanUng = value.IdPhanUng;
-					}
-					else
-					{
-						this._IdPhanUng = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("PhanUng");
 				}
 			}
 		}
@@ -1869,7 +1759,7 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTrieuChung", Storage="_PhanUng", ThisKey="IdPhanUng", OtherKey="IdPhanUng", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTrieuChung", Storage="_PhanUng", ThisKey="IdPhanUng", OtherKey="IdPhanUng", IsForeignKey=true, DeleteRule="CASCADE")]
 		public PhanUng PhanUng
 		{
 			get
@@ -2267,6 +2157,10 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _SoNguoi;
 		
+		private string _SDT;
+		
+		private string _Email;
+		
 		private EntitySet<BenhNhan> _BenhNhans;
 		
     #region Extensibility Method Definitions
@@ -2281,6 +2175,10 @@ namespace QLTYT.Models
     partial void OnCCCDChanged();
     partial void OnSoNguoiChanging(System.Nullable<int> value);
     partial void OnSoNguoiChanged();
+    partial void OnSDTChanging(string value);
+    partial void OnSDTChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
     #endregion
 		
 		public GiaDinh()
@@ -2365,6 +2263,46 @@ namespace QLTYT.Models
 					this._SoNguoi = value;
 					this.SendPropertyChanged("SoNguoi");
 					this.OnSoNguoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDT", DbType="NVarChar(100)")]
+		public string SDT
+		{
+			get
+			{
+				return this._SDT;
+			}
+			set
+			{
+				if ((this._SDT != value))
+				{
+					this.OnSDTChanging(value);
+					this.SendPropertyChanging();
+					this._SDT = value;
+					this.SendPropertyChanged("SDT");
+					this.OnSDTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
 				}
 			}
 		}
@@ -2744,6 +2682,8 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _GioiTinh;
 		
+		private System.Nullable<System.DateTime> _NgaySinh;
+		
 		private string _CCCD;
 		
 		private string _Email;
@@ -2776,6 +2716,8 @@ namespace QLTYT.Models
     partial void OnSDTChanged();
     partial void OnGioiTinhChanging(System.Nullable<int> value);
     partial void OnGioiTinhChanged();
+    partial void OnNgaySinhChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgaySinhChanged();
     partial void OnCCCDChanging(string value);
     partial void OnCCCDChanged();
     partial void OnEmailChanging(string value);
@@ -2896,6 +2838,26 @@ namespace QLTYT.Models
 					this._GioiTinh = value;
 					this.SendPropertyChanged("GioiTinh");
 					this.OnGioiTinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgaySinh
+		{
+			get
+			{
+				return this._NgaySinh;
+			}
+			set
+			{
+				if ((this._NgaySinh != value))
+				{
+					this.OnNgaySinhChanging(value);
+					this.SendPropertyChanging();
+					this._NgaySinh = value;
+					this.SendPropertyChanged("NgaySinh");
+					this.OnNgaySinhChanged();
 				}
 			}
 		}
@@ -3489,8 +3451,6 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _MucDo;
 		
-		private EntitySet<ChiTietTiemChung> _ChiTietTiemChungs;
-		
 		private EntitySet<ChiTietTrieuChung> _ChiTietTrieuChungs;
 		
     #region Extensibility Method Definitions
@@ -3507,7 +3467,6 @@ namespace QLTYT.Models
 		
 		public PhanUng()
 		{
-			this._ChiTietTiemChungs = new EntitySet<ChiTietTiemChung>(new Action<ChiTietTiemChung>(this.attach_ChiTietTiemChungs), new Action<ChiTietTiemChung>(this.detach_ChiTietTiemChungs));
 			this._ChiTietTrieuChungs = new EntitySet<ChiTietTrieuChung>(new Action<ChiTietTrieuChung>(this.attach_ChiTietTrieuChungs), new Action<ChiTietTrieuChung>(this.detach_ChiTietTrieuChungs));
 			OnCreated();
 		}
@@ -3572,19 +3531,6 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTiemChung", Storage="_ChiTietTiemChungs", ThisKey="IdPhanUng", OtherKey="IdPhanUng")]
-		public EntitySet<ChiTietTiemChung> ChiTietTiemChungs
-		{
-			get
-			{
-				return this._ChiTietTiemChungs;
-			}
-			set
-			{
-				this._ChiTietTiemChungs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTrieuChung", Storage="_ChiTietTrieuChungs", ThisKey="IdPhanUng", OtherKey="IdPhanUng")]
 		public EntitySet<ChiTietTrieuChung> ChiTietTrieuChungs
 		{
@@ -3616,18 +3562,6 @@ namespace QLTYT.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ChiTietTiemChungs(ChiTietTiemChung entity)
-		{
-			this.SendPropertyChanging();
-			entity.PhanUng = this;
-		}
-		
-		private void detach_ChiTietTiemChungs(ChiTietTiemChung entity)
-		{
-			this.SendPropertyChanging();
-			entity.PhanUng = null;
 		}
 		
 		private void attach_ChiTietTrieuChungs(ChiTietTrieuChung entity)
