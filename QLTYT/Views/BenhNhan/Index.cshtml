@@ -12,6 +12,11 @@
 
     <h2> QUẢN LÝ THÔNG TIN BỆNH NHÂN</h2>
     <Br>
+    @using (Html.BeginForm("Upload", "BenhNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="submit" value="Thêm bằng file" />
+    }
     <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
             title="Thêm ">
 
@@ -20,6 +25,8 @@
         </span?>
 
     </button>
+
+
 
 
     <table class="table-responsive text-nowrap table-bordered" id="myTable">

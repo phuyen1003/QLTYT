@@ -1,6 +1,8 @@
-﻿using QLTYT.Models;
+﻿using OfficeOpenXml;
+using QLTYT.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -133,6 +135,53 @@ namespace QLTYT.Controllers
                 context.BenhNhans.DeleteOnSubmit(sp);
                 context.SubmitChanges();
             }
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                string fileName = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                file.SaveAs(path);
+
+                using (var package = new ExcelPackage(new FileInfo(path)))
+                {
+                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                    var workbook = package.Workbook;
+                    var worksheet = workbook.Worksheets[0];
+
+                    for (int row = 1; row <= worksheet.Dimension.End.Row; row++)
+                    {
+                        int idbn = int.Parse(worksheet.Cells[row, 1].Value.ToString());
+                        int idnbn = int.Parse(worksheet.Cells[row, 2].Value.ToString());
+                        int idgd = int.Parse(worksheet.Cells[row, 3].Value.ToString());
+                        string name = worksheet.Cells[row, 4].Value.ToString();
+                        string cccd = worksheet.Cells[row, 5].Value.ToString();
+                        string bhyt = worksheet.Cells[row, 6].Value.ToString();
+                        int gioitinh = int.Parse(worksheet.Cells[row, 7].Value.ToString());
+                        DateTime ngaysinh = DateTime.Parse(worksheet.Cells[row, 8].Value.ToString());
+                        string sdt = worksheet.Cells[row, 9].Value.ToString();
+                        string email = worksheet.Cells[row, 10].Value.ToString();
+                        string diachi = worksheet.Cells[row, 11].Value.ToString();
+                        float chieucao = float.Parse(worksheet.Cells[row, 12].Value.ToString());
+                        float cannang = float.Parse(worksheet.Cells[row, 13].Value.ToString());
+
+
+                        using (var context = new QLTYTDataContext())
+                        {
+                            var user = new BenhNhan { IdBenhNhan = idbn, IdNhomBenhNhan = idnbn,IdGiaDinh=idgd,HoTen=name,CCCD=cccd,BHYT=bhyt
+                                ,GioiTinh=gioitinh,NgaySinh=ngaysinh,SDT=sdt, Email = email,DiaChi=diachi,ChieuCao=chieucao,CanNang=cannang };
+                            context.BenhNhans.InsertOnSubmit(user);
+                            context.SubmitChanges();
+                        }
+                    }
+                }
+            }
+
             return RedirectToAction("Index");
         }
 
