@@ -15,15 +15,19 @@
             title="Xuất">
 
         <span?>
-            @Html.ActionLink("Xuất ", "XuatExcel")
+            @Html.ActionLink("Xuất file ", "ExportToExcel")
         </span?>
 
     </button>
+    <br />
 
     
         <table class="table-responsive text-nowrap table-bordered" id="myTable">
             <thead>
                 <tr class="ex">
+                    <th>
+                        @Html.DisplayName("ID")
+                    </th>
 
                     <th>
                         @Html.DisplayName("Họ & tên")
@@ -48,6 +52,9 @@
                 {
                     <tr>
                         <td>
+                            @Html.DisplayFor(modelItem => item.IdBenhNhan)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.HoTen)
                         </td>
                         <td>
@@ -62,12 +69,12 @@
                         </td>
 
                         @*<td>
-                                @Html.ActionLink(" ", "Edit", new { id = item.IdBenhNhan }, new { @class = "far fa-edit" })
-                            </td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IdBenhNhan }, new { @class = "far fa-edit" })
+        </td>
 
-                            <td>
-                                @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt" })
-                            </td>*@
+        <td>
+            @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt" })
+        </td>*@
                     </tr>
                 }
 

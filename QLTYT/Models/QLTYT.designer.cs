@@ -304,18 +304,18 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_BMI")]
-		public ISingleResult<SP_BMIResult> SP_BMI()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_BMIResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ALLBN")]
 		public ISingleResult<SP_ALLBNResult> SP_ALLBN()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_ALLBNResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_BMI")]
+		public ISingleResult<SP_BMIResult> SP_BMI()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_BMIResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -5268,86 +5268,6 @@ namespace QLTYT.Models
 		}
 	}
 	
-	public partial class SP_BMIResult
-	{
-		
-		private string _HoTen;
-		
-		private string _CanhBao;
-		
-		private System.Nullable<double> _BMI_của_trẻ_em;
-		
-		private System.Nullable<int> _Tuổi;
-		
-		public SP_BMIResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(100)")]
-		public string HoTen
-		{
-			get
-			{
-				return this._HoTen;
-			}
-			set
-			{
-				if ((this._HoTen != value))
-				{
-					this._HoTen = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanhBao", DbType="NVarChar(500)")]
-		public string CanhBao
-		{
-			get
-			{
-				return this._CanhBao;
-			}
-			set
-			{
-				if ((this._CanhBao != value))
-				{
-					this._CanhBao = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[BMI của trẻ em]", Storage="_BMI_của_trẻ_em", DbType="Float")]
-		public System.Nullable<double> BMI_của_trẻ_em
-		{
-			get
-			{
-				return this._BMI_của_trẻ_em;
-			}
-			set
-			{
-				if ((this._BMI_của_trẻ_em != value))
-				{
-					this._BMI_của_trẻ_em = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tuổi", DbType="Int")]
-		public System.Nullable<int> Tuổi
-		{
-			get
-			{
-				return this._Tuổi;
-			}
-			set
-			{
-				if ((this._Tuổi != value))
-				{
-					this._Tuổi = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_ALLBNResult
 	{
 		
@@ -5567,6 +5487,104 @@ namespace QLTYT.Models
 				if ((this._CanNang != value))
 				{
 					this._CanNang = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_BMIResult
+	{
+		
+		private int _IdBenhNhan;
+		
+		private string _HoTen;
+		
+		private string _CanhBao;
+		
+		private System.Nullable<double> _BMI_của_trẻ_em;
+		
+		private System.Nullable<int> _Tuổi;
+		
+		public SP_BMIResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", DbType="Int NOT NULL")]
+		public int IdBenhNhan
+		{
+			get
+			{
+				return this._IdBenhNhan;
+			}
+			set
+			{
+				if ((this._IdBenhNhan != value))
+				{
+					this._IdBenhNhan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(100)")]
+		public string HoTen
+		{
+			get
+			{
+				return this._HoTen;
+			}
+			set
+			{
+				if ((this._HoTen != value))
+				{
+					this._HoTen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanhBao", DbType="NVarChar(500)")]
+		public string CanhBao
+		{
+			get
+			{
+				return this._CanhBao;
+			}
+			set
+			{
+				if ((this._CanhBao != value))
+				{
+					this._CanhBao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[BMI của trẻ em]", Storage="_BMI_của_trẻ_em", DbType="Float")]
+		public System.Nullable<double> BMI_của_trẻ_em
+		{
+			get
+			{
+				return this._BMI_của_trẻ_em;
+			}
+			set
+			{
+				if ((this._BMI_của_trẻ_em != value))
+				{
+					this._BMI_của_trẻ_em = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tuổi", DbType="Int")]
+		public System.Nullable<int> Tuổi
+		{
+			get
+			{
+				return this._Tuổi;
+			}
+			set
+			{
+				if ((this._Tuổi != value))
+				{
+					this._Tuổi = value;
 				}
 			}
 		}

@@ -241,14 +241,6 @@
       <Association Name="TrieuChung_ChiTietTrieuChung" Member="ChiTietTrieuChungs" ThisKey="IdTrieuChung" OtherKey="IdTrieuChung" Type="ChiTietTrieuChung" />
     </Type>
   </Table>
-  <Function Name="dbo.SP_BMI" Method="SP_BMI">
-    <ElementType Name="SP_BMIResult">
-      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="CanhBao" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="[BMI của trẻ em]" Member="BMI_của_trẻ_em" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Tuổi" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_ALLBN" Method="SP_ALLBN">
     <ElementType Name="SP_ALLBNResult">
       <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -263,6 +255,15 @@
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="ChieuCao" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CanNang" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_BMI" Method="SP_BMI">
+    <ElementType Name="SP_BMIResult">
+      <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CanhBao" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="[BMI của trẻ em]" Member="BMI_của_trẻ_em" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Tuổi" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

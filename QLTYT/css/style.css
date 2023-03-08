@@ -6073,3 +6073,27 @@ File: scss
     overflow: hidden;
   }
 }
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+   
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+button {
+    background-color: #006bcf;
+    color: white;
+    padding: 11.3px 20px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
