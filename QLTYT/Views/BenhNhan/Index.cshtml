@@ -1,94 +1,14 @@
-﻿@model IEnumerable<QLTYT.Models.BenhNhan>
+﻿@model IEnumerable<QLTYT.Models.SP_ALLBNResult>
+
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/Admin.css" rel="stylesheet">
-    <!-- Boxicons CDN Link -->
-   
-    <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
-  
-
-   
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords"
-          content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, AdminWrap lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, AdminWrap lite design, AdminWrap lite dashboard bootstrap 5 dashboard template">
-    <meta name="description"
-          content="AdminWrap Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
-    <meta name="robots" content="noindex,nofollow">
-    <title>TRẠM Y TẾ</title>
-
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <!-- Bootstrap Core CSS -->
-    <link href="../assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
-    <!-- This page CSS -->
-    <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet">
-    <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    
-    <!-- Dashboard 1 Page CSS -->
-    <link href="css/pages/dashboard1.css" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="css/colors/default.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body class="fix-header fix-sidebar card-no-border">
-
-    <div class="preloader">
-        <div class="loader">
-            <div class="loader__figure"></div>
-
-        </div>
-    </div>
-
-    <div id="main-wrapper">
-
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-
-              
-
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
 
 
-                    <ul class="navbar-nav my-lg-0">
-
-                        <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="#"
-                               id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="~/assets/images/users/1.jpg" width="40" height="40" alt="user" class="" /> <span class="hidden-md-down">THẢO HUYỀN &nbsp;</span>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-        </header>
-    </div>
-
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
 
     <h2> QUẢN LÝ THÔNG TIN BỆNH NHÂN</h2>
     <Br>
@@ -96,7 +16,7 @@
             title="Thêm ">
 
         <span?>
-            @Html.ActionLink("Create ", "Create")
+            @Html.ActionLink("Thêm", "Create")
         </span?>
 
     </button>
@@ -113,8 +33,8 @@
                     @Html.DisplayName("Nhóm bệnh nhân")
                 </th>
                 @*<th>
-                    @Html.DisplayNameFor(model => model.IdGiaDinh)
-                </th>*@
+                        @Html.DisplayNameFor(model => model.IdGiaDinh)
+                    </th>*@
                 <th>
                     @Html.DisplayName("Họ & Tên")
                 </th>
@@ -148,6 +68,8 @@
                 <th></th>
                 <th></th>
 
+
+
             </tr>
 
             @foreach (var item in Model)
@@ -157,11 +79,11 @@
                         @Html.DisplayFor(modelItem => item.IdBenhNhan)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NhomBenhNhan.TenNhom)
+                        @Html.DisplayFor(modelItem => item.TenNhom)
                     </td>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.IdGiaDinh)
-                    </td>*@
+                            @Html.DisplayFor(modelItem => item.IdGiaDinh)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.HoTen)
                     </td>
@@ -203,38 +125,7 @@
             }
 
     </table>
-
-    <script src="../assets/node_modules/jquery/jquery.min.js"></script>
-    <!-- Bootstrap popper Core JavaScript -->
-    <script src="../assets/node_modules/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="js/perfect-scrollbar.jquery.min.js"></script>
-    <!--Wave Effects -->
-    <script src="js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugins -->
-    <!-- ============================================================== -->
-    <!--morris JavaScript -->
-    <script src="../assets/node_modules/raphael/raphael-min.js"></script>
-    <script src="../assets/node_modules/morrisjs/morris.min.js"></script>
-    <!--c3 JavaScript -->
-    <script src="../assets/node_modules/d3/d3.min.js"></script>
-    <script src="../assets/node_modules/c3-master/c3.min.js"></script>
-    <!-- Chart JS -->
-    <script src="js/dashboard1.js"></script>
-</body>
-
-</html>
-
-
-
-
-
-
+</div>
 
 
 

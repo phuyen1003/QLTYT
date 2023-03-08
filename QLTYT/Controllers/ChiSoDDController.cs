@@ -13,8 +13,10 @@ namespace QLTYT.Controllers
         public ActionResult Index()
         {
             QLTYTDataContext context = new QLTYTDataContext();
-            List<ChiSoDinhDuong> list = context.ChiSoDinhDuongs.ToList();
-            return View(list);
+            List<SP_BMIResult> bmi = context.SP_BMI().ToList();
+            return View(bmi);
         }
+
+        
     }
 }

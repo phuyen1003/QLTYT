@@ -15,8 +15,8 @@ namespace QLTYT.Controllers
         public ActionResult Index()
         {
             QLTYTDataContext context = new QLTYTDataContext();
-            List<BenhNhan> list = context.BenhNhans.ToList();
-            return View(list);
+            List <SP_ALLBNResult> bn = context.SP_ALLBN().ToList();
+            return View(bn);
         }
         public ActionResult Create()
         {

@@ -303,6 +303,20 @@ namespace QLTYT.Models
 				return this.GetTable<TrieuChung>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_BMI")]
+		public ISingleResult<SP_BMIResult> SP_BMI()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_BMIResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_ALLBN")]
+		public ISingleResult<SP_ALLBNResult> SP_ALLBN()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_ALLBNResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Benh")]
@@ -5251,6 +5265,310 @@ namespace QLTYT.Models
 		{
 			this.SendPropertyChanging();
 			entity.TrieuChung = null;
+		}
+	}
+	
+	public partial class SP_BMIResult
+	{
+		
+		private string _HoTen;
+		
+		private string _CanhBao;
+		
+		private System.Nullable<double> _BMI_của_trẻ_em;
+		
+		private System.Nullable<int> _Tuổi;
+		
+		public SP_BMIResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(100)")]
+		public string HoTen
+		{
+			get
+			{
+				return this._HoTen;
+			}
+			set
+			{
+				if ((this._HoTen != value))
+				{
+					this._HoTen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanhBao", DbType="NVarChar(500)")]
+		public string CanhBao
+		{
+			get
+			{
+				return this._CanhBao;
+			}
+			set
+			{
+				if ((this._CanhBao != value))
+				{
+					this._CanhBao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[BMI của trẻ em]", Storage="_BMI_của_trẻ_em", DbType="Float")]
+		public System.Nullable<double> BMI_của_trẻ_em
+		{
+			get
+			{
+				return this._BMI_của_trẻ_em;
+			}
+			set
+			{
+				if ((this._BMI_của_trẻ_em != value))
+				{
+					this._BMI_của_trẻ_em = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tuổi", DbType="Int")]
+		public System.Nullable<int> Tuổi
+		{
+			get
+			{
+				return this._Tuổi;
+			}
+			set
+			{
+				if ((this._Tuổi != value))
+				{
+					this._Tuổi = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_ALLBNResult
+	{
+		
+		private int _IdBenhNhan;
+		
+		private string _TenNhom;
+		
+		private string _HoTen;
+		
+		private string _CCCD;
+		
+		private string _BHYT;
+		
+		private string _GioiTinh;
+		
+		private System.Nullable<System.DateTime> _NgaySinh;
+		
+		private string _SDT;
+		
+		private string _Email;
+		
+		private string _DiaChi;
+		
+		private System.Nullable<double> _ChieuCao;
+		
+		private System.Nullable<double> _CanNang;
+		
+		public SP_ALLBNResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", DbType="Int NOT NULL")]
+		public int IdBenhNhan
+		{
+			get
+			{
+				return this._IdBenhNhan;
+			}
+			set
+			{
+				if ((this._IdBenhNhan != value))
+				{
+					this._IdBenhNhan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenNhom", DbType="NVarChar(100)")]
+		public string TenNhom
+		{
+			get
+			{
+				return this._TenNhom;
+			}
+			set
+			{
+				if ((this._TenNhom != value))
+				{
+					this._TenNhom = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(100)")]
+		public string HoTen
+		{
+			get
+			{
+				return this._HoTen;
+			}
+			set
+			{
+				if ((this._HoTen != value))
+				{
+					this._HoTen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCCD", DbType="NVarChar(50)")]
+		public string CCCD
+		{
+			get
+			{
+				return this._CCCD;
+			}
+			set
+			{
+				if ((this._CCCD != value))
+				{
+					this._CCCD = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BHYT", DbType="NVarChar(100)")]
+		public string BHYT
+		{
+			get
+			{
+				return this._BHYT;
+			}
+			set
+			{
+				if ((this._BHYT != value))
+				{
+					this._BHYT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GioiTinh", DbType="NVarChar(4)")]
+		public string GioiTinh
+		{
+			get
+			{
+				return this._GioiTinh;
+			}
+			set
+			{
+				if ((this._GioiTinh != value))
+				{
+					this._GioiTinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgaySinh
+		{
+			get
+			{
+				return this._NgaySinh;
+			}
+			set
+			{
+				if ((this._NgaySinh != value))
+				{
+					this._NgaySinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SDT", DbType="NVarChar(100)")]
+		public string SDT
+		{
+			get
+			{
+				return this._SDT;
+			}
+			set
+			{
+				if ((this._SDT != value))
+				{
+					this._SDT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(100)")]
+		public string DiaChi
+		{
+			get
+			{
+				return this._DiaChi;
+			}
+			set
+			{
+				if ((this._DiaChi != value))
+				{
+					this._DiaChi = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChieuCao", DbType="Float")]
+		public System.Nullable<double> ChieuCao
+		{
+			get
+			{
+				return this._ChieuCao;
+			}
+			set
+			{
+				if ((this._ChieuCao != value))
+				{
+					this._ChieuCao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanNang", DbType="Float")]
+		public System.Nullable<double> CanNang
+		{
+			get
+			{
+				return this._CanNang;
+			}
+			set
+			{
+				if ((this._CanNang != value))
+				{
+					this._CanNang = value;
+				}
+			}
 		}
 	}
 }

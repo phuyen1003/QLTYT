@@ -15,6 +15,7 @@
 
 .btn.nv.btn {
     border: 1px solid black;
+    padding:2px
 }
 
 .nv {
@@ -101,7 +102,7 @@ tbody tr td {
 
 #myTable {
     border-collapse: collapse;
-    width: 100%;
+    width: fit-content;
     border: 1px solid #ddd;
     font-size: 12px;
     padding: 0px !important;
@@ -110,7 +111,7 @@ tbody tr td {
     #myTable th,
     #myTable td {
         text-align: left;
-        padding: 10px;
+        padding: 24px;
         padding-bottom: 15px;
         padding-top: 15px;
     }
@@ -240,12 +241,16 @@ form input {
 .table-title {
     padding-bottom: 10px;
     margin: 0 0 10px;
+    position: inherit;
+    padding-left: 20%;
+    padding-top: 1px
 }
 
     .table-title h2 {
-        margin: 6px 0 0;
+        margin: 108px 11px -31px 6px;
         font-size: 22px;
     }
+       
 
     .table-title .add-new {
         float: right;
