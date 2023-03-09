@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,7 @@ namespace QLTYT.Controllers
   {
     // GET: NhanVien
     private QLTYTDataContext context = new QLTYTDataContext();
+
     public ActionResult Index()
     {
       List<NhanVien> list = context.NhanViens.OrderBy(x => x.HoTen).ToList();
@@ -26,31 +28,50 @@ namespace QLTYT.Controllers
       return View();
     }
 
+
+    //private string Upload(NhanVien model, HttpPostedFileBase file)
+    //{
+    //  string uniqueFileName = null;
+    //  if (file != null && file.ContentLength > 0)
+    //  {
+    //    var fileName = Path.GetFileName(file.FileName);
+    //    var uploadsFolder = Path.Combine(Server.MapPath("~"), "imagesNV");
+    //    uniqueFileName = model.IdNhanVien + ".png";
+    //    var path = Path.Combine(uploadsFolder, uniqueFileName);
+    //    using (var fileStream = new FileStream(path, FileMode.Create))
+    //    {
+    //      file.CopyTo(fileStream);
+    //    }
+    //    file.SaveAs(path);
+    //  }
+    //  return uniqueFileName;
+    //}
+
+
     [HttpPost]
-    public ActionResult Create()
+    public ActionResult Create(NhanVien nvv)
     {
       if (Request.Form.Count > 0)
       {
-        int IdNhomNhanVien = int.Parse(Request.Form["IdNhomNhanVien"]);
-        string HoTen = Request.Form["HoTen"];
-        string SDT = Request.Form["SDT"];
-        int GioiTinh = int.Parse(Request.Form["GioiTinh"]);
-        DateTime NgaySinh = DateTime.Parse(Request.Form["NgaySinh"]);
-        string CCCD = Request.Form["CCCD"];
-        string Email = Request.Form["Email"];
-        string DiaChi = Request.Form["DiaChi"];
+        //int IdNhomNhanVien = int.Parse(Request.Form["IdNhomNhanVien"]);
+        //string HoTen = Request.Form["HoTen"];
+        //string SDT = Request.Form["SDT"];
+        //int GioiTinh = int.Parse(Request.Form["GioiTinh"]);
+        //DateTime NgaySinh = DateTime.Parse(Request.Form["NgaySinh"]);
+        //string CCCD = Request.Form["CCCD"];
+        //string Email = Request.Form["Email"];
+        //string DiaChi = Request.Form["DiaChi"];
 
         NhanVien nv = new NhanVien();
-        nv.IdNhomNhanVien = IdNhomNhanVien;
-        nv.HoTen = HoTen;
-        nv.SDT = SDT;
-        nv.GioiTinh = GioiTinh;
-        nv.NgaySinh = NgaySinh;
-        nv.CCCD = CCCD;
-        nv.Email = Email;
-        nv.DiaChi = DiaChi;
+        nv.IdNhomNhanVien = nvv.IdNhomNhanVien;
+        nv.HoTen = nvv.HoTen;
+        nv.SDT = nvv.SDT;
+        nv.GioiTinh = nvv.GioiTinh;
+        nv.NgaySinh = nvv.NgaySinh;
+        nv.CCCD = nvv.CCCD;
+        nv.Email = nvv.Email;
+        nv.DiaChi = nvv.DiaChi;
         
-
         HttpPostedFileBase file = Request.Files["HinhAnh"];
         if (file != null)
         {

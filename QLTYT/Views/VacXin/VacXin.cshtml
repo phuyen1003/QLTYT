@@ -1,15 +1,13 @@
-﻿@model QLTYT.ViewModel.MutipleData2
+﻿@model QLTYT.ViewModel.MultipleData
 @{
-    ViewBag.Title = "ThongTinPhong";
+    ViewBag.Title = "VacXin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <link href="~/Content/Admin.css" rel="stylesheet">
 <link rel="stylesheet" href="~/css/themify-icons/themify-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <div class="table-title">
-
-  <h2> QUẢN LÝ THÔNG TIN PHÒNG</h2>
+  <h2> QUẢN LÝ THÔNG TIN VACXIN</h2>
   <br />
   <br />
   <br />
@@ -18,7 +16,7 @@
           title="Thêm ">
 
     <span?>
-      @Html.ActionLink("Thêm", "ThemPhong")
+      @Html.ActionLink("Thêm", "ThemVacXin")
     </span?>
 
   </button>
@@ -32,18 +30,26 @@
       <tr class="ex">
 
         <th>
-          @Html.DisplayName("Mã phòng")
+          @Html.DisplayName("Mã vắc xin")
         </th>
         <th>
-          @Html.DisplayName("Tên loại phòng")
+          @Html.DisplayName("Tên bệnh")
         </th>
         <th>
-          @Html.DisplayName("Tên phòng")
+          @Html.DisplayName("Tên vắc xin")
         </th>
         <th>
-          @Html.DisplayName("Tình trạng")
+          @Html.DisplayName("Liều lượng")
         </th>
-
+        <th>
+          @Html.DisplayName("Đơn vị")
+        </th>
+        <th>
+          @Html.DisplayName("Đơn giá")
+        </th>
+        <th>
+          @Html.DisplayName("Số lô")
+        </th>
 
         <th></th>
         <th></th>
@@ -52,31 +58,40 @@
 
       </tr>
 
-      @foreach (var item in Model.phongs)
+      @foreach (var item in Model.vacXins)
       {
-<tr class="Search" id="row_@item.IdPhong">
+<tr class="Search" id="row_@item.IdVacXin">
   <td>
-    @Html.DisplayFor(modelItem => item.IdPhong)
+    @Html.DisplayFor(modelItem => item.IdVacXin)
   </td>
   <td>
-    @Html.DisplayFor(modelItem => item.LoaiPhong.TenLoaiPhong)
+    @Html.DisplayFor(modelItem => item.Benh.TenBenh)
   </td>
   <td>
-    @Html.DisplayFor(modelItem => item.TenPhong)
+    @Html.DisplayFor(modelItem => item.TenVacXin)
   </td>
   <td>
-    @Html.DisplayFor(modelItem => item.TinhTrang)
+    @Html.DisplayFor(modelItem => item.LieuLuong)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.DonVi)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.DonGia)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.SoLo)
   </td>
 
   <td>
-    @Html.ActionLink(" ", "SuaDoiPhong", new { id = item.IdPhong }, new { @class = "far fa-edit" })
+    @Html.ActionLink(" ", "SuaDoiVacXin", new { id = item.IdVacXin }, new { @class = "far fa-edit" })
   </td>
 
   @*<td>
         @Html.ActionLink(" ", "Delete", new { id = item.IdVacXin }, new { @class = "fas fa-trash-alt" })
     </td>*@
   <td class="btn-delete js-delete">
-    <a class="delete-link" data-id="@item.IdPhong" data-name="@item.TenPhong">
+    <a class="delete-link" data-id="@item.IdVacXin" data-name="@item.TenVacXin">
       <i class="ti-trash"></i>
     </a>
   </td>
@@ -170,8 +185,8 @@
         var id = $(this).data('id');
         var name = $(this).data('name');
         var confirmationBoxHtml = '<div class="confirmation-box">' +
-          '<h3>Xóa phòng</h3>' +
-          '<p>Bạn có chắc chắn muốn xóa tên phòng <strong>' + name + '</strong>?</p>' +
+          '<h3>Xóa vắc xin</h3>' +
+          '<p>Bạn có chắc chắn muốn xóa vắc xin <strong>' + name + '</strong>?</p>' +
           '<div class="button-group">' +
           '<button class="yes" data-id="' + id + '">Có</button>' +
           '<button class="no">Không</button>' +
@@ -197,7 +212,7 @@
 
       // Xóa bệnh
       $.ajax({
-        url: '/Phong/XoaPhong/' + id,
+        url: '/VacXin/XoaVacXin/' + id,
         type: 'POST',
         success: function (result) {
           // Ẩn loader
@@ -208,7 +223,7 @@
         error: function () {
           // Ẩn loader
           $('#loader').hide();
-          alert('Đã xảy ra lỗi khi xóa phòng!');
+          alert('Đã xảy ra lỗi khi xóa vắc xin!');
         }
       });
 
@@ -220,7 +235,5 @@
 
 
 </div>
-
-
 
 

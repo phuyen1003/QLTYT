@@ -154,6 +154,7 @@
     <Compile Include="Controllers\ThongTinThaiKyController.cs" />
     <Compile Include="Controllers\TienIchController.cs" />
     <Compile Include="Controllers\TrieuChungController.cs" />
+    <Compile Include="Controllers\VacXinController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -823,6 +824,9 @@
     <Content Include="Views\LoaiPhong\LoaiPhong.cshtml" />
     <Content Include="Views\LoaiPhong\SuaDoiLoaiPhong.cshtml" />
     <Content Include="Views\LoaiPhong\ThemMoiLoaiPhong.cshtml" />
+    <Content Include="Views\VacXin\SuaDoiVacXin.cshtml" />
+    <Content Include="Views\VacXin\ThemVacXin.cshtml" />
+    <Content Include="Views\VacXin\VacXin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

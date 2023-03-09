@@ -17,25 +17,17 @@ namespace QLTYT.Controllers
     public ActionResult ThongTinPhong()
     {
       var list = new MutipleData2();
-      list.phongs = (IEnumerable<Phong>)(from phong in context.Phongs
-                     join loaiPhong in context.LoaiPhongs on phong.IdLoaiPhong equals loaiPhong.IdLoaiPhong
-                     select new
-                     {
-                       Phong = phong,
-                       LoaiPhong = loaiPhong
-                     });
+      list.phongs = from phong in context.Phongs
+                    join loaiPhong in context.LoaiPhongs on phong.IdLoaiPhong equals loaiPhong.IdLoaiPhong
+                    select phong;
       return View(list);
     }
     public ActionResult ThemPhong()
     {
       var list = new MutipleData2();
-      list.phongs = (IEnumerable<Phong>)(from phong in context.Phongs
-                     join loaiPhong in context.LoaiPhongs on phong.IdLoaiPhong equals loaiPhong.IdLoaiPhong
-                     select new
-                     {
-                       Phong = phong,
-                       LoaiPhong = loaiPhong
-                     }).AsEnumerable();
+      list.phongs = from phong in context.Phongs
+                    join loaiPhong in context.LoaiPhongs on phong.IdLoaiPhong equals loaiPhong.IdLoaiPhong
+                    select phong;
       return View(list);
     }
     [HttpPost]
@@ -58,7 +50,7 @@ namespace QLTYT.Controllers
     {
       Phong phong = context.Phongs.FirstOrDefault(x => x.IdPhong == p.IdPhong);
       phong.TenPhong = p.TenPhong;
-      phong.LoaiPhong = p.LoaiPhong;
+      phong.IdLoaiPhong = p.IdLoaiPhong;
       phong.TinhTrang = p.TinhTrang;
       context.SubmitChanges();
       return RedirectToAction("ThongTinPhong");

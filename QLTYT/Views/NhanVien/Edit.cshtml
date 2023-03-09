@@ -64,10 +64,26 @@
       <div class="form-group">
         Giới tính
         <div class="col-md-10">
-          <select name="GioiTinh" class="form-select">
-            <option value="0">Nữ</option>
-            <option value="1">Nam</option>
-            <option value="3">Khác</option>
+          <select name="GioiTinh" class="form-select" id="GioiTinh">
+            @if (@Model.GioiTinh == 0)
+            {
+              <option value="0" selected>Nữ</option>
+              <option value="1">Nam</option>
+              <option value="2">Khác</option>
+            }
+            @if (@Model.GioiTinh == 1)
+            {
+              <option value="0" >Nữ</option>
+              <option value="1" selected>Nam</option>
+              <option value="2">Khác</option>
+            }
+            @if (@Model.GioiTinh == 2)
+            {
+              <option value="0">Nữ</option>
+              <option value="1">Nam</option>
+              <option value="2" selected>Khác</option>
+            }
+
           </select>
         </div>
       </div>
