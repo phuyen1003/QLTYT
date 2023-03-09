@@ -151,6 +151,7 @@
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NhomBenhNhanController.cs" />
     <Compile Include="Controllers\PhongController.cs" />
+    <Compile Include="Controllers\TaoPhieuKhamController.cs" />
     <Compile Include="Controllers\ThongTinThaiKyController.cs" />
     <Compile Include="Controllers\TienIchController.cs" />
     <Compile Include="Controllers\TrieuChungController.cs" />
