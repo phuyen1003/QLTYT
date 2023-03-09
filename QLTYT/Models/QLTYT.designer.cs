@@ -20,9 +20,9 @@ namespace QLTYT.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-  using System.ComponentModel.DataAnnotations;
-
-  [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QuanLyTramYTe")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QuanLyTramYTe")]
 	public partial class QLTYTDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,12 +30,12 @@ namespace QLTYT.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertVacXin(VacXin instance);
-    partial void UpdateVacXin(VacXin instance);
-    partial void DeleteVacXin(VacXin instance);
     partial void InsertBenh(Benh instance);
     partial void UpdateBenh(Benh instance);
     partial void DeleteBenh(Benh instance);
+    partial void InsertVacXin(VacXin instance);
+    partial void UpdateVacXin(VacXin instance);
+    partial void DeleteVacXin(VacXin instance);
     partial void InsertBenhNhan(BenhNhan instance);
     partial void UpdateBenhNhan(BenhNhan instance);
     partial void DeleteBenhNhan(BenhNhan instance);
@@ -48,6 +48,9 @@ namespace QLTYT.Models
     partial void InsertChiTietTrieuChung(ChiTietTrieuChung instance);
     partial void UpdateChiTietTrieuChung(ChiTietTrieuChung instance);
     partial void DeleteChiTietTrieuChung(ChiTietTrieuChung instance);
+    partial void InsertChuanTiemChung(ChuanTiemChung instance);
+    partial void UpdateChuanTiemChung(ChuanTiemChung instance);
+    partial void DeleteChuanTiemChung(ChuanTiemChung instance);
     partial void InsertDangKySuKien(DangKySuKien instance);
     partial void UpdateDangKySuKien(DangKySuKien instance);
     partial void DeleteDangKySuKien(DangKySuKien instance);
@@ -131,19 +134,19 @@ namespace QLTYT.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<VacXin> VacXins
-		{
-			get
-			{
-				return this.GetTable<VacXin>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Benh> Benhs
 		{
 			get
 			{
 				return this.GetTable<Benh>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VacXin> VacXins
+		{
+			get
+			{
+				return this.GetTable<VacXin>();
 			}
 		}
 		
@@ -176,6 +179,14 @@ namespace QLTYT.Models
 			get
 			{
 				return this.GetTable<ChiTietTrieuChung>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChuanTiemChung> ChuanTiemChungs
+		{
+			get
+			{
+				return this.GetTable<ChuanTiemChung>();
 			}
 		}
 		
@@ -341,6 +352,148 @@ namespace QLTYT.Models
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_QHGDResult>)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Benh")]
+	public partial class Benh : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IdBenh;
+		
+		private string _TenBenh;
+		
+		private EntitySet<VacXin> _VacXins;
+		
+		private EntitySet<ChuanTiemChung> _ChuanTiemChungs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdBenhChanging(int value);
+    partial void OnIdBenhChanged();
+    partial void OnTenBenhChanging(string value);
+    partial void OnTenBenhChanged();
+    #endregion
+		
+		public Benh()
+		{
+			this._VacXins = new EntitySet<VacXin>(new Action<VacXin>(this.attach_VacXins), new Action<VacXin>(this.detach_VacXins));
+			this._ChuanTiemChungs = new EntitySet<ChuanTiemChung>(new Action<ChuanTiemChung>(this.attach_ChuanTiemChungs), new Action<ChuanTiemChung>(this.detach_ChuanTiemChungs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenh", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IdBenh
+		{
+			get
+			{
+				return this._IdBenh;
+			}
+			set
+			{
+				if ((this._IdBenh != value))
+				{
+					this.OnIdBenhChanging(value);
+					this.SendPropertyChanging();
+					this._IdBenh = value;
+					this.SendPropertyChanged("IdBenh");
+					this.OnIdBenhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenBenh", DbType="NVarChar(100)")]
+		public string TenBenh
+		{
+			get
+			{
+				return this._TenBenh;
+			}
+			set
+			{
+				if ((this._TenBenh != value))
+				{
+					this.OnTenBenhChanging(value);
+					this.SendPropertyChanging();
+					this._TenBenh = value;
+					this.SendPropertyChanged("TenBenh");
+					this.OnTenBenhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Benh_VacXin", Storage="_VacXins", ThisKey="IdBenh", OtherKey="IdBenh")]
+		public EntitySet<VacXin> VacXins
+		{
+			get
+			{
+				return this._VacXins;
+			}
+			set
+			{
+				this._VacXins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Benh_ChuanTiemChung", Storage="_ChuanTiemChungs", ThisKey="IdBenh", OtherKey="IdBenh")]
+		public EntitySet<ChuanTiemChung> ChuanTiemChungs
+		{
+			get
+			{
+				return this._ChuanTiemChungs;
+			}
+			set
+			{
+				this._ChuanTiemChungs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_VacXins(VacXin entity)
+		{
+			this.SendPropertyChanging();
+			entity.Benh = this;
+		}
+		
+		private void detach_VacXins(VacXin entity)
+		{
+			this.SendPropertyChanging();
+			entity.Benh = null;
+		}
+		
+		private void attach_ChuanTiemChungs(ChuanTiemChung entity)
+		{
+			this.SendPropertyChanging();
+			entity.Benh = this;
+		}
+		
+		private void detach_ChuanTiemChungs(ChuanTiemChung entity)
+		{
+			this.SendPropertyChanging();
+			entity.Benh = null;
 		}
 	}
 	
@@ -644,120 +797,6 @@ namespace QLTYT.Models
 		{
 			this.SendPropertyChanging();
 			entity.VacXin = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Benh")]
-	public partial class Benh : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _IdBenh;
-		
-		private string _TenBenh;
-		
-		private EntitySet<VacXin> _VacXins;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdBenhChanging(int value);
-    partial void OnIdBenhChanged();
-    partial void OnTenBenhChanging(string value);
-    partial void OnTenBenhChanged();
-    #endregion
-		
-		public Benh()
-		{
-			this._VacXins = new EntitySet<VacXin>(new Action<VacXin>(this.attach_VacXins), new Action<VacXin>(this.detach_VacXins));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenh", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int IdBenh
-		{
-			get
-			{
-				return this._IdBenh;
-			}
-			set
-			{
-				if ((this._IdBenh != value))
-				{
-					this.OnIdBenhChanging(value);
-					this.SendPropertyChanging();
-					this._IdBenh = value;
-					this.SendPropertyChanged("IdBenh");
-					this.OnIdBenhChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenBenh", DbType="NVarChar(100)")]
-		public string TenBenh
-		{
-			get
-			{
-				return this._TenBenh;
-			}
-			set
-			{
-				if ((this._TenBenh != value))
-				{
-					this.OnTenBenhChanging(value);
-					this.SendPropertyChanging();
-					this._TenBenh = value;
-					this.SendPropertyChanged("TenBenh");
-					this.OnTenBenhChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Benh_VacXin", Storage="_VacXins", ThisKey="IdBenh", OtherKey="IdBenh")]
-		public EntitySet<VacXin> VacXins
-		{
-			get
-			{
-				return this._VacXins;
-			}
-			set
-			{
-				this._VacXins.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_VacXins(VacXin entity)
-		{
-			this.SendPropertyChanging();
-			entity.Benh = this;
-		}
-		
-		private void detach_VacXins(VacXin entity)
-		{
-			this.SendPropertyChanging();
-			entity.Benh = null;
 		}
 	}
 	
@@ -1675,7 +1714,7 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChiTietTrieuChung_ChiTietTiemChung", Storage="_ChiTietTrieuChung", ThisKey="IdChiTietTrieuChung", OtherKey="IdChiTietTrieuChung", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChiTietTrieuChung_ChiTietTiemChung", Storage="_ChiTietTrieuChung", ThisKey="IdChiTietTrieuChung", OtherKey="IdChiTietTrieuChung", IsForeignKey=true, DeleteRule="CASCADE")]
 		public ChiTietTrieuChung ChiTietTrieuChung
 		{
 			get
@@ -1981,6 +2020,229 @@ namespace QLTYT.Models
 		{
 			this.SendPropertyChanging();
 			entity.ChiTietTrieuChung = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChuanTiemChung")]
+	public partial class ChuanTiemChung : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _IdBenh;
+		
+		private System.Nullable<int> _TuoiBD;
+		
+		private System.Nullable<int> _TuoiKT;
+		
+		private System.Nullable<int> _SoLan;
+		
+		private System.Nullable<int> _TGGiua;
+		
+		private EntityRef<Benh> _Benh;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnIdBenhChanging(System.Nullable<int> value);
+    partial void OnIdBenhChanged();
+    partial void OnTuoiBDChanging(System.Nullable<int> value);
+    partial void OnTuoiBDChanged();
+    partial void OnTuoiKTChanging(System.Nullable<int> value);
+    partial void OnTuoiKTChanged();
+    partial void OnSoLanChanging(System.Nullable<int> value);
+    partial void OnSoLanChanged();
+    partial void OnTGGiuaChanging(System.Nullable<int> value);
+    partial void OnTGGiuaChanged();
+    #endregion
+		
+		public ChuanTiemChung()
+		{
+			this._Benh = default(EntityRef<Benh>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenh", DbType="Int")]
+		public System.Nullable<int> IdBenh
+		{
+			get
+			{
+				return this._IdBenh;
+			}
+			set
+			{
+				if ((this._IdBenh != value))
+				{
+					if (this._Benh.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdBenhChanging(value);
+					this.SendPropertyChanging();
+					this._IdBenh = value;
+					this.SendPropertyChanged("IdBenh");
+					this.OnIdBenhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TuoiBD", DbType="Int")]
+		public System.Nullable<int> TuoiBD
+		{
+			get
+			{
+				return this._TuoiBD;
+			}
+			set
+			{
+				if ((this._TuoiBD != value))
+				{
+					this.OnTuoiBDChanging(value);
+					this.SendPropertyChanging();
+					this._TuoiBD = value;
+					this.SendPropertyChanged("TuoiBD");
+					this.OnTuoiBDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TuoiKT", DbType="Int")]
+		public System.Nullable<int> TuoiKT
+		{
+			get
+			{
+				return this._TuoiKT;
+			}
+			set
+			{
+				if ((this._TuoiKT != value))
+				{
+					this.OnTuoiKTChanging(value);
+					this.SendPropertyChanging();
+					this._TuoiKT = value;
+					this.SendPropertyChanged("TuoiKT");
+					this.OnTuoiKTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLan", DbType="Int")]
+		public System.Nullable<int> SoLan
+		{
+			get
+			{
+				return this._SoLan;
+			}
+			set
+			{
+				if ((this._SoLan != value))
+				{
+					this.OnSoLanChanging(value);
+					this.SendPropertyChanging();
+					this._SoLan = value;
+					this.SendPropertyChanged("SoLan");
+					this.OnSoLanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TGGiua", DbType="Int")]
+		public System.Nullable<int> TGGiua
+		{
+			get
+			{
+				return this._TGGiua;
+			}
+			set
+			{
+				if ((this._TGGiua != value))
+				{
+					this.OnTGGiuaChanging(value);
+					this.SendPropertyChanging();
+					this._TGGiua = value;
+					this.SendPropertyChanged("TGGiua");
+					this.OnTGGiuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Benh_ChuanTiemChung", Storage="_Benh", ThisKey="IdBenh", OtherKey="IdBenh", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Benh Benh
+		{
+			get
+			{
+				return this._Benh.Entity;
+			}
+			set
+			{
+				Benh previousValue = this._Benh.Entity;
+				if (((previousValue != value) 
+							|| (this._Benh.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Benh.Entity = null;
+						previousValue.ChuanTiemChungs.Remove(this);
+					}
+					this._Benh.Entity = value;
+					if ((value != null))
+					{
+						value.ChuanTiemChungs.Add(this);
+						this._IdBenh = value.IdBenh;
+					}
+					else
+					{
+						this._IdBenh = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Benh");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -2503,7 +2765,7 @@ namespace QLTYT.Models
 		
 		private string _GhiChu;
 		
-		private string _TrangThai;
+		private System.Nullable<bool> _TrangThai;
 		
 		private EntityRef<VacXin> _VacXin;
 		
@@ -2519,7 +2781,7 @@ namespace QLTYT.Models
     partial void OnNgayTiemChanged();
     partial void OnGhiChuChanging(string value);
     partial void OnGhiChuChanged();
-    partial void OnTrangThaiChanging(string value);
+    partial void OnTrangThaiChanging(System.Nullable<bool> value);
     partial void OnTrangThaiChanged();
     #endregion
 		
@@ -2613,8 +2875,8 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrangThai", DbType="NVarChar(100)")]
-		public string TrangThai
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrangThai", DbType="Bit")]
+		public System.Nullable<bool> TrangThai
 		{
 			get
 			{
@@ -2979,8 +3241,6 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
-		[Display(Name = "Ngày sinh")]
-		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get

@@ -86,7 +86,7 @@ namespace QLTYT.Controllers
     {
       FormsAuthentication.SignOut();
       Session.Clear();
-      return RedirectToAction("Index", "Home");
+      return RedirectToAction("LogIn", "Home");
     }
 
 
