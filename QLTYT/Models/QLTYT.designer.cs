@@ -20,9 +20,9 @@ namespace QLTYT.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QuanLyTramYTe")]
+  using System.ComponentModel.DataAnnotations;
+
+  [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QuanLyTramYTe")]
 	public partial class QLTYTDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -3241,6 +3241,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get

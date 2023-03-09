@@ -147,8 +147,10 @@
     <Compile Include="Controllers\GiaDinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LichTiemChungController.cs" />
+    <Compile Include="Controllers\LoaiPhongController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NhomBenhNhanController.cs" />
+    <Compile Include="Controllers\PhongController.cs" />
     <Compile Include="Controllers\ThongTinThaiKyController.cs" />
     <Compile Include="Controllers\TienIchController.cs" />
     <Compile Include="Controllers\TrieuChungController.cs" />
@@ -161,6 +163,8 @@
       <DependentUpon>QLTYT.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\MultipleData.cs" />
+    <Compile Include="ViewModel\MutipleData2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\images\big\logo.jpg" />
@@ -813,6 +817,12 @@
     <Content Include="Views\Benh\SuaDoiBenh.cshtml" />
     <Content Include="Views\Benh\ThemMoiBenh.cshtml" />
     <Content Include="Views\Home\ViewForgot.cshtml" />
+    <Content Include="Views\Phong\SuaDoiPhong.cshtml" />
+    <Content Include="Views\Phong\ThemPhong.cshtml" />
+    <Content Include="Views\Phong\ThongTinPhong.cshtml" />
+    <Content Include="Views\LoaiPhong\LoaiPhong.cshtml" />
+    <Content Include="Views\LoaiPhong\SuaDoiLoaiPhong.cshtml" />
+    <Content Include="Views\LoaiPhong\ThemMoiLoaiPhong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
