@@ -1,0 +1,34 @@
+﻿@model QLTYT.Model2.Benh
+@{
+    ViewBag.Title = "ThemMoiBenh";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Thêm thông tin bệnh</title>
+    <link href="~/css/asset/style1.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+            Thêm bệnh
+        </div>
+        <form method="post" action="ThemMoiBenh">
+            <div class="field">
+                <input type="text" name="TenBenh">
+                <label>Tên bệnh</label>
+            </div>
+            
+            <div class="field">
+                <input type="submit" value="Thêm">
+            </div>
+            <div class="signup-link">
+                <a href="ThongTinBenh">Quay về trang chủ</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+

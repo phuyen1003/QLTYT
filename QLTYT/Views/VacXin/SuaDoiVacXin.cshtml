@@ -1,0 +1,63 @@
+﻿@model QLTYT.ViewModel.MultipleData
+@{
+    ViewBag.Title = "SuaDoiVacXin";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sửa đổi vắc xin</title>
+    <link href="~/css/asset/style1.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+            Sửa đổi vắc xin
+        </div>
+        <form method="post" action="SuaDoiVacXin">
+            @foreach (var item in Model.vacXins)
+            {
+            <div class="field">
+                <input type="hidden" name="IdVacXin" value="@item.IdVacXin" readonly>
+               
+            </div>
+            <label>Tên bệnh</label>
+            <select id="disease-list" name="IdBenh">
+                @foreach (var item1 in Model.benhs)
+                {
+                    <option value="@item1.IdBenh" @(item1.IdBenh == item.IdBenh ? "selected" : "")>@item1.TenBenh</option>
+                }
+            </select>
+            <div class="field">
+                <input type="text" name="TenVacXin" value="@item.TenVacXin">
+                <label>Tên vắc xin</label>
+            </div>
+            <div class="field">
+                <input type="text" name="LieuLuong" value="@item.LieuLuong">
+                <label>Liều lượng</label>
+            </div>
+            <div class="field">
+                <input type="text" name="DonVi" value="@item.DonVi">
+                <label>Đơn vị</label>
+            </div>
+            <div class="field">
+                <input type="text" name="DonGia" value="@item.DonGia">
+                <label>Đơn giá</label>
+            </div>
+            <div class="field">
+                <input type="text" name="SoLo" value="@item.SoLo">
+                <label>Số lô</label>
+            </div>
+
+            <div class="field">
+                <input type="submit" value="Cập nhật">
+            </div>
+            <div class="signup-link">
+                <a href="/VacXin/VacXin">Quay về trang chủ</a>
+            </div>
+            }
+        </form>
+    </div>
+</body>
+</html>
+

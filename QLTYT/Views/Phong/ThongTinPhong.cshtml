@@ -1,0 +1,228 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{
+    ViewBag.Title = "ThongTinPhong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<link rel="stylesheet" href="~/css/themify-icons/themify-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<div class="table-title">
+
+    @using (Html.BeginForm("Upload", "BenhNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="text" name="file" />
+        <input type="submit" value="" />
+    }
+
+    <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+            title="Thêm ">
+
+        <span?>
+            @Html.ActionLink("Thêm", "ThemPhong")
+        </span?>
+
+    </button>
+    <div class="seach">
+        <form>
+            <input type="text" id="Search" placeholder="Search..." class="input"><a href=""><i class="icon ti-search"></i></a>
+        </form>
+    </div>
+    <table class="table-responsive text-nowrap table-bordered" id="myTable">
+        <thead>
+            <tr class="ex">
+
+                <th>
+                    @Html.DisplayName("Mã phòng")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên loại phòng")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên phòng")
+                </th>
+                <th>
+                    @Html.DisplayName("Tình trạng")
+                </th>
+
+
+                <th></th>
+                <th></th>
+
+
+
+            </tr>
+
+            @foreach (var item in Model.phongs)
+            {
+                <tr class="Search" id="row_@item.IdPhong">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiPhong.TenLoaiPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrang)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(" ", "SuaDoiPhong", new { id = item.IdPhong }, new { @class = "far fa-edit" })
+                    </td>
+
+                    @*<td>
+            @Html.ActionLink(" ", "Delete", new { id = item.IdVacXin }, new { @class = "fas fa-trash-alt" })
+        </td>*@
+                    <td class="btn-delete js-delete">
+                        <a class="delete-link" data-id="@item.IdPhong" data-name="@item.TenPhong">
+                            <i class="ti-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+    </table>
+
+
+
+
+
+
+
+
+    <style>
+        .confirmation-box {
+            position: fixed;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+            .confirmation-box h3 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .confirmation-box p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .confirmation-box .button-group {
+                display: flex;
+                justify-content: center;
+            }
+
+                .confirmation-box .button-group button {
+                    margin: 0 10px;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                }
+
+                    .confirmation-box .button-group button.yes {
+                        background-color: #e74c3c;
+                        color: #fff;
+                        border: none;
+                    }
+
+                    .confirmation-box .button-group button.no {
+                        background-color: #ccc;
+                        color: #333;
+                        border: none;
+                    }
+    </style>
+
+    <div id="loader" style="display:none;">
+        <img src="~/image/loader.gif" alt="Loading..." />
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.delete-link').click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                var confirmationBoxHtml = '<div class="confirmation-box">' +
+                    '<h3>Xóa phòng</h3>' +
+                    '<p>Bạn có chắc chắn muốn xóa tên phòng <strong>' + name + '</strong>?</p>' +
+                    '<div class="button-group">' +
+                    '<button class="yes" data-id="' + id + '">Có</button>' +
+                    '<button class="no">Không</button>' +
+                    '</div>' +
+                    '</div>';
+                $('body').append(confirmationBoxHtml);
+                $('.yes').click(function () {
+                    var id = $(this).data('id');
+                    deleteVacXin(id);
+                    $('.confirmation-box').remove();
+                    $('#loader').show();
+                });
+                $('.no').click(function () {
+                    $('.confirmation-box').remove();
+                });
+            });
+        });
+
+        function deleteVacXin(id) {
+
+            // Hiển thị loader
+            $('#loader').show();
+
+            // Xóa bệnh
+            $.ajax({
+                url: '/Phong/XoaPhong/' + id,
+                type: 'POST',
+                success: function (result) {
+                    // Ẩn loader
+                    $('#loader').hide();
+                    // Xóa dòng thông tin bệnh trong bảng
+                    $('#row_' + id).remove();
+                },
+                error: function () {
+                    // Ẩn loader
+                    $('#loader').hide();
+                    alert('Đã xảy ra lỗi khi xóa phòng!');
+                }
+            });
+
+        }
+    </script>
+
+
+
+
+
+</div>
+
+
+
+
