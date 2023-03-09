@@ -144,7 +144,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BenhNhanController.cs" />
     <Compile Include="Controllers\ChiSoDDController.cs" />
+    <Compile Include="Controllers\GiaDinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ThongTinThaiKyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -783,6 +785,8 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\BenhNhan\Edit.cshtml" />
     <Content Include="Views\ChiSoDD\Index.cshtml" />
+    <Content Include="Views\ThongTinThaiKy\Index.cshtml" />
+    <Content Include="Views\GiaDinh\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

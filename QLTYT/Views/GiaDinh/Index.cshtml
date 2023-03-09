@@ -1,0 +1,65 @@
+﻿@model IEnumerable<QLTYT.Models.SP_QHGDResult>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+    <h2> THÔNG TIN GIA ĐÌNH BỆNH NHÂN</h2>
+    <Br>
+    <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+            title="Xuất">
+
+        <span?>
+            @Html.ActionLink("Xuất file ", "ExportToExcel")
+        </span?>
+
+    </button>
+    <br />
+
+
+    <table class="table-responsive text-nowrap table-bordered" id="myTable">
+        <thead>
+            <tr class="ex">
+                <th>
+                    @Html.DisplayName("Họ & tên bệnh nhân")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên người giám hộ")
+                </th>
+                <th>
+                    @Html.DisplayName("Quan hệ với người giám hộ")
+                </th>
+
+
+
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Chủ_gia_đình__bố_)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quan_hệ)
+                    </td>
+
+
+                </tr>
+            }
+
+    </table>
+</div>
+
+
+
+
+

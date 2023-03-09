@@ -1011,13 +1011,15 @@ sidebar navigation
 .sidebar-nav > ul > li > a {
   border-left: 3px solid transparent;
 }
-.sidebar-nav > ul > li > a i {
-  width: 38px;
-  font-size: 24px;
-  display: inline-block;
-  vertical-align: middle;
-  color: #787f91;
-}
+
+   
+    .sidebar-nav > ul > li > a i {
+        width: 38px;
+        font-size: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        color: #787f91;
+    }
 .sidebar-nav > ul > li > a .label {
   float: right;
   margin-top: 2px;
@@ -1063,10 +1065,13 @@ When click on sidebar toggler and also for tablet
     display: none;
     padding-left: 1px;
   }
+    .mini-sidebar .sidebar-nav #sidebarnav > li > ul:hover {
+        display: none;
+    }
 
-  .mini-sidebar .user-profile .profile-img {
-    width: 45px;
-  }
+    .mini-sidebar .user-profile .profile-img {
+        width: 45px;
+    }
   .mini-sidebar .user-profile .profile-img .setpos {
     top: -35px;
   }

@@ -25,9 +25,9 @@
         <table class="table-responsive text-nowrap table-bordered" id="myTable">
             <thead>
                 <tr class="ex">
-                    <th>
+                    @*<th>
                         @Html.DisplayName("ID")
-                    </th>
+                    </th>*@
 
                     <th>
                         @Html.DisplayName("Họ & tên")
@@ -36,7 +36,7 @@
                         @Html.DisplayNameFor(model => model.Tuổi)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.BMI_của_trẻ_em)
+                        @Html.DisplayName("BMI của bé (kg/m2)")
                     </th>
 
                     <th>
@@ -51,9 +51,9 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        @*<td>
                             @Html.DisplayFor(modelItem => item.IdBenhNhan)
-                        </td>
+                        </td>*@
                         <td>
                             @Html.DisplayFor(modelItem => item.HoTen)
                         </td>
