@@ -1,55 +1,88 @@
 ﻿
 @{
-    Layout = null;
+  Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đăng nhập</title>
-    <link rel="stylesheet" href="~/Content/Login.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng nhập</title>
+  <link rel="stylesheet" href="~/Content/Login.css">
+  <style>
+    .btn-ql {
+      cursor: pointer;
+      width: 40%;
+      position: relative;
+      height: 40px;
+      top: 15px;
+      background-color: #e04d4d;
+      border-radius: 11px;
+    }
 
+    a {
+      text-decoration: none;
+      font-size: 15px;
+      color: #fff;
+      position: unset;
+    }
+
+      a:hover {
+        background: none;
+        color: #fff;
+        border-radius: 10px 10px 10px 10px;
+        box-shadow: 0 0 1px #df4747, 0 0 1px #df4747, 0 0 1px #df4747, 0 0 10px #df4747;
+      }
+  </style>
 </head>
 
 <body class="align">
+  @if (TempData["ThongBao"] != null)
+  {
+    <script type="text/javascript" charset="utf-8">
+          window.onload = function () {
+                            alert("@Html.Raw(@TempData["ThongBao"])");
+                    };
+    </script>
+  }
+
+  <div class="login-box">
+    <h2> ĐĂNG NHẬP</h2>
+    <form action="/Home/LogIn" method="POST" class="form login">
+
+      <div class="user-box">
+        <label for="login__username">
+
+        </label>
+
+        <input autocomplete="username" id="loginUsername" type="text" name="TenTK" class="form__input" placeholder="Tên đăng nhập" required>
+        <p class="helper helper1"></p>
+        @TempData["mess1"]
+      </div>
 
 
-    <div class="login-box">
-        <h2> ĐĂNG NHẬP</h2>
-        <form action="/Home/DangNhap" method="POST" class="form login">
+      <div class="user-box">
+        <label for="login__password">
 
-            <div class="user-box">
-                <label for="login__username">
+        </label>
 
-                </label>
-
-                <input autocomplete="username" id="loginUsername" type="text" name="Username" class="form__input" placeholder="Username" required>
-                <p class="helper helper1"></p>
-                @TempData["mess1"]
-            </div>
+        <input id="loginPassword" type="password" name="MatKhau" class="form__input" placeholder="Mật khẩu" required>
+        @TempData["mess2"]
+      </div>
 
 
-            <div class="user-box">
-                <label for="login__password">
+      <div class="form__field" style=" display: flex; justify-content: space-between">
 
-                </label>
+        <input type="submit" value="Đăng nhập">
+        <button class="btn-ql" type="button">
+          @Html.ActionLink("Quên mật khẩu", "ViewForgot")
+        </button>
+      </div>
 
-                <input id="loginPassword" type="password" name="Password" class="form__input" placeholder="Password" required>
-                @TempData["mess2"]
-            </div>
-            <div class="form__field">
-                <input type="submit" value="Đăng nhập">
-            </div>
 
-        </form>
 
-        <div class="text--center">
-
-            @Html.ActionLink("Quên mật khẩu", " ForgotPassword")
-
-        </div>
-    </div>
+    </form>
+  </div>
 
 </body>
 </html>

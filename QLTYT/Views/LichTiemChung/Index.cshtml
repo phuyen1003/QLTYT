@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QLTYT.Models.LichTiemChung>
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  string user = (string)TempData.Peek("User");
+  string imgnv = (string)TempData.Peek("UserIMG");
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2> QUẢN LÝ THÔNG TIN NHÂN VIÊN</h2>
+  <Br>
+  <p>
+    @Html.ActionLink("Create New", "Create")
+  </p>
+  <table class="table">
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.IdVacXin)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.NgayTiem)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.GhiChu)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.TrangThai)
+      </th>
+      <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.IdVacXin)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.NgayTiem)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.GhiChu)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+          @Html.ActionLink("Edit", "Edit", new { id = item.IdLichTiemChung }) |
+          @Html.ActionLink("Details", "Details", new { id = item.IdLichTiemChung }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.IdLichTiemChung })
+        </td>
+      </tr>
+    }
+
+  </table>
+  </div>

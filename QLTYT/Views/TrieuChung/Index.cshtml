@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QLTYT.Models.TrieuChung>
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2> QUẢN LÝ THÔNG TIN TRIỆU CHỨNG</h2>
+  <Br>
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Thêm ">
+    <span?>
+      @Html.ActionLink("Tạo mới", "Create")
+    </span?>
+
+  </button>
+
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
+        <th>
+          Mã triệu chứng
+        </th>
+        <th>
+          Tên triệu chứng
+        </th>
+        <th></th>
+      </tr>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.IdTrieuChung)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.TenTrieuChung)
+          </td>
+          <td>
+            @Html.ActionLink("Sửa", "Edit", new { id = item.IdTrieuChung }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.IdTrieuChung })
+          </td>
+        </tr>
+      }
+
+  </table>
+</div>

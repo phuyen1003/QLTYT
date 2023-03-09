@@ -1,0 +1,46 @@
+﻿@model QLTYT.Models.TrieuChung
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2> Chỉnh sửa thông tin triệu chứng</h2>
+  <Br>
+  @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+      <hr />
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      @Html.HiddenFor(model => model.IdTrieuChung)
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.TenTrieuChung, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          @Html.EditorFor(model => model.TenTrieuChung, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.TenTrieuChung, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group" style="justify-content:space-between">
+        <div class="col-md-offset-2 col-md-10">
+          <button class="btn btn-secondary">
+            @Html.ActionLink("Quay lại", "Index")
+          </button>
+          <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                  title="Lưu ">
+            Lưu
+          </button>
+        </div>
+
+      </div>
+    </div>
+  }
+
+ 
+</div>

@@ -60,6 +60,9 @@
     <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
@@ -134,19 +137,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="common\MailHelper.cs" />
+    <Compile Include="Controllers\BenhController.cs" />
     <Compile Include="Controllers\BenhNhanController.cs" />
     <Compile Include="Controllers\ChiSoDDController.cs" />
     <Compile Include="Controllers\GiaDinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LichTiemChungController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\NhomBenhNhanController.cs" />
     <Compile Include="Controllers\ThongTinThaiKyController.cs" />
+    <Compile Include="Controllers\TienIchController.cs" />
+    <Compile Include="Controllers\TrieuChungController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,7 +163,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\users\1.jpg" />
+    <Content Include="assets\images\big\logo.jpg" />
+    <Content Include="assets\images\users\45.jpg" />
     <Content Include="assets\node_modules\bootstrap\css\bootstrap-grid.css" />
     <Content Include="assets\node_modules\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="assets\node_modules\bootstrap\css\bootstrap-grid.rtl.css" />
@@ -463,6 +469,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\template\MailTemp.html" />
+    <Content Include="Content\template\TBChichNgua.html" />
     <Content Include="css\animate.css" />
     <Content Include="css\colors\default.css" />
     <Content Include="css\icons\font-awesome\css\font-awesome.css" />
@@ -506,6 +514,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="imagesNV\NV000001.jpg" />
+    <Content Include="imagesNV\NV000002.jpg" />
+    <Content Include="imagesNV\NV000003.jpg" />
+    <Content Include="imagesNV\NV000004.jpg" />
     <Content Include="js\custom.js" />
     <Content Include="js\custom.min.js" />
     <Content Include="js\dashboard1.js" />
@@ -787,10 +799,23 @@
     <Content Include="Views\ChiSoDD\Index.cshtml" />
     <Content Include="Views\ThongTinThaiKy\Index.cshtml" />
     <Content Include="Views\GiaDinh\Index.cshtml" />
+    <Content Include="Views\NhomBenhNhan\Create.cshtml" />
+    <Content Include="Views\NhomBenhNhan\Edit.cshtml" />
+    <Content Include="Views\NhomBenhNhan\Index.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\NhanVien\Index.cshtml" />
+    <Content Include="Views\NhanVien\ViewCreate.cshtml" />
+    <Content Include="Views\TrieuChung\Create.cshtml" />
+    <Content Include="Views\TrieuChung\Edit.cshtml" />
+    <Content Include="Views\TrieuChung\Index.cshtml" />
+    <Content Include="Views\LichTiemChung\Index.cshtml" />
+    <Content Include="Views\Benh\ThongTinBenh.cshtml" />
+    <Content Include="Views\Benh\SuaDoiBenh.cshtml" />
+    <Content Include="Views\Benh\ThemMoiBenh.cshtml" />
+    <Content Include="Views\Home\ViewForgot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
-    <Folder Include="Views\Benh\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
