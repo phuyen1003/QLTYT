@@ -1,0 +1,116 @@
+﻿@model QLTYT.Models.ChiTietTiemChung
+
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+  <style>
+    input[type="text"] {
+      width: 100%
+    }
+  </style>
+
+  <h2>Thêm chi tiết tiêm chủng</h2>
+  <br />
+  <br />
+  <br />
+
+  @using (Html.BeginForm("Create", "ChiTietPhieuTiem", FormMethod.Post, new { enctype = "multipart/form-data" }))
+  {
+      @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+          <div class="form-group">
+            Số phiếu
+            <div class="col-md-10">
+              <select name="IdSoPhieu" class="form-select">
+
+                @foreach (var item in ViewBag.phieutiem)
+                {
+          <option value="@item.IdSoPhieu">@item.IdSoPhieu</option>}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            Tên vacxin
+            <div class="col-md-10">
+              <select name="IdVacXin" class="form-select">
+
+                @foreach (var item in ViewBag.vacxin)
+                {
+                  <option value="@item.IdVacXin">@item.TenVacXin</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            Phản ứng
+            <div class="col-md-10">
+              <select name="IdPhanUng" class="form-select">
+
+                @foreach (var item in ViewBag.phanung)
+                {
+                    <option value="@item.IdPhanUng">@item.TenPhanUng</option>
+                }
+              </select>
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            Số lô
+            <div class="col-md-10">
+              @Html.EditorFor(model => model.SoLo, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.SoLo, "", new { @class = "text-danger" })
+            </div>
+          </div>
+
+          <div class="form-group">
+            Địa điểm
+            <div class="col-md-10">
+              @Html.EditorFor(model => model.DiaDiem, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.DiaDiem, "", new { @class = "text-danger" })
+            </div>
+          </div>
+
+          <div class="form-group">
+            Ghi chú
+            <div class="col-md-10">
+              @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+            </div>
+          </div>
+
+          <div class="form-group">
+            Hình ảnh
+            <div class="col-md-10">
+              <input title="Upload a product img" type="file" name="HinhAnh" class="img-input" width="80%" />
+
+              @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+            </div>
+          </div>
+          <div class="form-group" style="justify-content:space-between">
+            <div class="col-md-offset-2 col-md-10">
+              <button class="btn btn-secondary">
+                @Html.ActionLink("Quay lại", "Index")
+              </button>
+              <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                      title="Tạo mới">
+                Tạo mới
+              </button>
+            </div>
+
+          </div>
+        </div>}
+</div>
+

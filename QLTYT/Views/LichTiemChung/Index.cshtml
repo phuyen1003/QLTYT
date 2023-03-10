@@ -10,49 +10,67 @@
 <div class="table-title">
 
   <h2> QUẢN LÝ THÔNG TIN NHÂN VIÊN</h2>
-  <Br>
-  <p>
-    @Html.ActionLink("Create New", "Create")
-  </p>
-  <table class="table">
-    <tr>
-      <th>
-        Tên vacxin
-      </th>
-      <th>
-        Ngày tiêm
-      </th>
-      <th>
-        Ghi chú
-      </th>
-      <th>
-        Trạng thái
-      </th>
-      <th></th>
-    </tr>
+  <br />
+  <br />
+  <br />
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Thêm ">
 
-    @foreach (var item in Model)
-    {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.IdVacXin)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.NgayTiem)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.GhiChu)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.TrangThai)
-        </td>
-        <td>
-          @Html.ActionLink("Edit", "Edit", new { id = item.IdLichTiemChung }) |
-          @Html.ActionLink("Details", "Details", new { id = item.IdLichTiemChung }) |
-          @Html.ActionLink("Delete", "Delete", new { id = item.IdLichTiemChung })
-        </td>
+    <span?>
+      @Html.ActionLink("Tạo mới", "ViewCreate")
+    </span?>
+
+  </button>
+  <br />
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
+        <th>
+          Tên vacxin
+        </th>
+        <th>
+          Ngày tiêm
+        </th>
+        <th>
+          Ghi chú
+        </th>
+        <th>
+          Trạng thái
+        </th>
+        <th></th>
       </tr>
-    }
+    </thead>
+    <tbody>
 
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.VacXin.TenVacXin)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.NgayTiem)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.GhiChu)
+          </td>
+          <td>
+            @if (item.TrangThai == true)
+            {
+              <p> Đang diễn ra</p>
+            }
+            else
+            {
+              <p>Đã kết thúc</p>
+            }
+          </td>
+          <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdLichTiemChung }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdLichTiemChung }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdLichTiemChung })
+          </td>
+        </tr>
+      }
+    </tbody>
   </table>
-  </div>
+</div>

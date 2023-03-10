@@ -2839,6 +2839,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTiem", DbType="DateTime")]
+		[Display(Name = "Ngày tiêm")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgayTiem
 		{
 			get
