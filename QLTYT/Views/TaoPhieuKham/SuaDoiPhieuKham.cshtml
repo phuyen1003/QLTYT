@@ -1,0 +1,78 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+  input[type="text"] {
+    width: 100%
+  }
+</style>
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2>Chỉnh sửa thông tin phiếu khám</h2>
+  <br />
+  <br />
+  <br />
+  <form method="post" action="SuaDoiPhieuKham">
+    @foreach (var item in Model.phieuKhams)
+    {
+                 <br />
+                 <div class="select">
+                   <input name="IdSoPhieu" hidden>
+                   <label>Họ tên NV</label>
+                   <select name="IdNhanVien" id="IdNhanVien" class="form-select">
+                     @foreach (var item1 in Model.nhanViens)
+                     {
+                 <option value="@item1.IdNhanVien" @(item1.IdNhanVien == item.IdNhanVien ? "selected" : "")>@item1.HoTen</option>}
+                   </select>
+                 </div>
+               <br />
+               <div class="select">
+                 <label>Phòng khám</label>
+                 <select name="IdPhong" id="IdPhong" class="form-select">
+                   @foreach (var item1 in Model.phongs)
+                   {
+               <option value="@item1.IdPhong" @(item1.IdPhong == item.IdPhong ? "selected" : "")>@item1.TenPhong</option>}
+                 </select>
+               </div>
+           <br />
+           <div class="select">
+             <label>Họ tên BN</label>
+             <select name="IdBenhNhan" id="IdBenhNhan" class="form-select">
+               @foreach (var item1 in Model.benhNhans)
+               {
+           <option value="@item1.IdBenhNhan" @(item1.IdBenhNhan == item.IdBenhNhan ? "selected" : "")>@item1.HoTen</option>}
+             </select>
+           </div>
+                  <br />
+                  <div class="select">
+                    <label>Tuần tuổi</label>
+                    <select name="IdThongTinThaiKy" id="IdThongTinThaiKy" class="form-select">
+                      @foreach (var item1 in Model.thongTinThaiKies)
+                      {
+                  <option value="@item1.IdThongTinThaiKy" @(item1.IdThongTinThaiKy == item.IdThongTinThaiKy ? "selected" : "")>@item1.TuanTuoi</option>}
+                    </select>
+                  </div>
+                <br />
+
+      <div class="form-group" style="justify-content:space-between">
+        <div class="col-md-offset-2 col-md-10">
+          <button class="btn btn-secondary">
+            @Html.ActionLink("Quay lại", "Index")
+          </button>
+          <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                  title="Lưu ">
+            Lưu
+          </button>
+        </div>
+
+      </div>
+      }
+  </form>
+</div>
+

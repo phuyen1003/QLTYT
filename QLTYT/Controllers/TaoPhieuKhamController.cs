@@ -81,18 +81,21 @@ namespace QLTYT.Controllers
     [HttpPost]
     public ActionResult SuaDoiPhieuKham(PhieuKham pk)
     {
-      //pk.NgayTao = DateTime.Now;
-      //context.PhieuKhams.Add(pk);
-      //context.Entry(pk).State = System.Data.Entity.EntityState.Modified;
-      //context.SaveChanges();
+      PhieuKham phieu = context.PhieuKhams.FirstOrDefault(x => x.IdSoPhieu == pk.IdSoPhieu);
+      phieu.IdNhanVien = pk.IdNhanVien;
+      phieu.IdPhong = pk.IdPhong;
+      phieu.IdBenhNhan = pk.IdBenhNhan;
+      phieu.IdThongTinThaiKy = pk.IdThongTinThaiKy;      
+      context.SubmitChanges();
+
       return RedirectToAction("PhieuKham");
     }
     [HttpPost]
     public ActionResult XoaPhieuKham(int id)
     {
-      //PhieuKham pk = context.PhieuKhams.Find(id);
-      //context.PhieuKhams.Remove(pk);
-      //context.SaveChanges();
+      PhieuKham phieu = context.PhieuKhams.FirstOrDefault(x => x.IdSoPhieu == id);
+      context.PhieuKhams.DeleteOnSubmit(phieu);
+      context.SubmitChanges();
       return RedirectToAction("PhieuKham");
     }
   }

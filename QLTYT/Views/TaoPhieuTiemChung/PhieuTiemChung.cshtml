@@ -1,6 +1,6 @@
 ﻿@model QLTYT.ViewModel.MutipleData2
 @{
-    ViewBag.Title = "ThongTinPhong";
+    ViewBag.Title = "PhieuTiemChung";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <div class="table-title">
 
-  <h2> QUẢN LÝ THÔNG TIN PHÒNG</h2>
+  <h2>Quản lý thông tin phiếu tiêm chủng</h2>
   <br />
   <br />
   <br />
@@ -18,7 +18,7 @@
           title="Thêm ">
 
     <span?>
-      @Html.ActionLink("Thêm", "ThemPhong")
+      @Html.ActionLink("Thêm", "TaoPhieuTiemChung")
     </span?>
 
   </button>
@@ -32,18 +32,26 @@
       <tr class="ex">
 
         <th>
-          @Html.DisplayName("Mã phòng")
+          @Html.DisplayName("Mã số phiếu")
         </th>
         <th>
-          @Html.DisplayName("Tên loại phòng")
+          @Html.DisplayName("Tên nhân viên")
         </th>
         <th>
           @Html.DisplayName("Tên phòng")
         </th>
         <th>
-          @Html.DisplayName("Tình trạng")
+          @Html.DisplayName("Loại phòng")
         </th>
-
+        <th>
+          @Html.DisplayName("Tên bệnh nhân")
+        </th>
+        <th>
+          @Html.DisplayName("Nhóm bệnh nhân")
+        </th>
+        <th>
+          @Html.DisplayName("Ngày tạo")
+        </th>
 
         <th></th>
         <th></th>
@@ -52,34 +60,46 @@
 
       </tr>
 
-      @foreach (var item in Model.phongs)
+      @foreach (var item in Model.phieuTiemChungs)
       {
-<tr class="Search" id="row_@item.IdPhong">
+<tr class="Search" id="row_@item.IdSoPhieu">
   <td>
-    @Html.DisplayFor(modelItem => item.IdPhong)
+    @Html.DisplayFor(modelItem => item.IdSoPhieu)
   </td>
   <td>
-    @Html.DisplayFor(modelItem => item.LoaiPhong.TenLoaiPhong)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.TenPhong)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.TinhTrang)
+    @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
   </td>
 
   <td>
-    @Html.ActionLink(" ", "SuaDoiPhong", new { id = item.IdPhong }, new { @class = "far fa-edit" })
+    @Html.DisplayFor(modelItem => item.Phong.TenPhong)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.Phong.LoaiPhong.TenLoaiPhong)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.BenhNhan.HoTen)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.BenhNhan.NhomBenhNhan.TenNhom)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.NgayTao)
   </td>
 
+
+  <td>
+    @Html.ActionLink(" ", "SuaDoiPhieuTiemChung", new { id = item.IdSoPhieu }, new { @class = "far fa-edit" })
+  </td>
+
+  @*<td>
+        @Html.ActionLink(" ", "Delete", new { id = item.IdVacXin }, new { @class = "fas fa-trash-alt" })
+    </td>*@
   <td class="btn-delete js-delete">
-    <a class="delete-link" data-id="@item.IdPhong" data-name="@item.TenPhong">
-      <i class="fas fa-trash-alt"></i>
+    <a class="delete-link" data-id="@item.IdSoPhieu" data-name="@item.BenhNhan.HoTen">
+      <i class="ti-trash"></i>
     </a>
   </td>
-</tr>
-      
-      }
+</tr>}
 
   </table>
 
@@ -169,8 +189,8 @@
         var id = $(this).data('id');
         var name = $(this).data('name');
         var confirmationBoxHtml = '<div class="confirmation-box">' +
-          '<h3>Xóa phòng</h3>' +
-          '<p>Bạn có chắc chắn muốn xóa tên phòng <strong>' + name + '</strong>?</p>' +
+          '<h3>Xóa phiếu tiêm chủng</h3>' +
+          '<p>Bạn có chắc chắn muốn xóa phiếu tiêm chủng của <strong>' + name + '</strong>?</p>' +
           '<div class="button-group">' +
           '<button class="yes" data-id="' + id + '">Có</button>' +
           '<button class="no">Không</button>' +
@@ -196,7 +216,7 @@
 
       // Xóa bệnh
       $.ajax({
-        url: '/Phong/XoaPhong/' + id,
+        url: '/TaoPhieuTiemChung/XoaPhieuTiemChung/' + id,
         type: 'POST',
         success: function (result) {
           // Ẩn loader
@@ -207,7 +227,7 @@
         error: function () {
           // Ẩn loader
           $('#loader').hide();
-          alert('Đã xảy ra lỗi khi xóa phòng!');
+          alert('Đã xảy ra lỗi khi xóa phiếu tiêm chủng!');
         }
       });
 

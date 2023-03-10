@@ -885,6 +885,7 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		
 		public int IdBenhNhan
 		{
 			get
@@ -1033,6 +1034,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
@@ -4147,6 +4150,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTao", DbType="SmallDateTime")]
+		[Display(Name = "Ngày tạo")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgayTao
 		{
 			get
@@ -4465,6 +4470,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTao", DbType="SmallDateTime")]
+		[Display(Name = "Ngày tạo")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgayTao
 		{
 			get
@@ -5981,6 +5988,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get

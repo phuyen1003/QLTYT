@@ -1,15 +1,13 @@
 ﻿@model QLTYT.ViewModel.MutipleData2
 @{
-    ViewBag.Title = "ThongTinPhong";
+    ViewBag.Title = "PhieuKham";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <link href="~/Content/Admin.css" rel="stylesheet">
 <link rel="stylesheet" href="~/css/themify-icons/themify-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <div class="table-title">
-
-  <h2> QUẢN LÝ THÔNG TIN PHÒNG</h2>
+  <h2>Quản lý thông tin phiếu khám</h2>
   <br />
   <br />
   <br />
@@ -18,13 +16,13 @@
           title="Thêm ">
 
     <span?>
-      @Html.ActionLink("Thêm", "ThemPhong")
+      @Html.ActionLink("Thêm", "TaoPhieuKham")
     </span?>
 
   </button>
   <div class="seach">
     <form>
-      <input type="text" id="Search" placeholder="Tìm kiếm..." class="input"><a href=""><i class="icon ti-search"></i></a>
+      <input type="text" id="Search" placeholder="Search..." class="input"><a href=""><i class="icon ti-search"></i></a>
     </form>
   </div>
   <table class="table-responsive text-nowrap table-bordered" id="myTable">
@@ -32,18 +30,29 @@
       <tr class="ex">
 
         <th>
-          @Html.DisplayName("Mã phòng")
+          @Html.DisplayName("Mã số phiếu")
         </th>
         <th>
-          @Html.DisplayName("Tên loại phòng")
+          @Html.DisplayName("Tên nhân viên")
         </th>
         <th>
           @Html.DisplayName("Tên phòng")
         </th>
         <th>
-          @Html.DisplayName("Tình trạng")
+          @Html.DisplayName("Loại phòng")
         </th>
-
+        <th>
+          @Html.DisplayName("Tên bệnh nhân")
+        </th>
+        <th>
+          @Html.DisplayName("Nhóm bệnh nhân")
+        </th>
+        <th>
+          @Html.DisplayName("Tuần tuổi")
+        </th>
+        <th>
+          @Html.DisplayName("Ngày tạo")
+        </th>
 
         <th></th>
         <th></th>
@@ -52,34 +61,49 @@
 
       </tr>
 
-      @foreach (var item in Model.phongs)
+      @foreach (var item in Model.phieuKhams)
       {
-<tr class="Search" id="row_@item.IdPhong">
+<tr class="Search" id="row_@item.IdSoPhieu">
   <td>
-    @Html.DisplayFor(modelItem => item.IdPhong)
+    @Html.DisplayFor(modelItem => item.IdSoPhieu)
   </td>
   <td>
-    @Html.DisplayFor(modelItem => item.LoaiPhong.TenLoaiPhong)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.TenPhong)
-  </td>
-  <td>
-    @Html.DisplayFor(modelItem => item.TinhTrang)
+    @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
   </td>
 
   <td>
-    @Html.ActionLink(" ", "SuaDoiPhong", new { id = item.IdPhong }, new { @class = "far fa-edit" })
+    @Html.DisplayFor(modelItem => item.Phong.TenPhong)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.Phong.LoaiPhong.TenLoaiPhong)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.BenhNhan.HoTen)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.BenhNhan.NhomBenhNhan.TenNhom)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.ThongTinThaiKy.TuanTuoi)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.NgayTao)
   </td>
 
+
+  <td>
+    @Html.ActionLink(" ", "SuaDoiPhieuKham", new { id = item.IdSoPhieu }, new { @class = "far fa-edit" })
+  </td>
+
+  @*<td>
+        @Html.ActionLink(" ", "Delete", new { id = item.IdVacXin }, new { @class = "fas fa-trash-alt" })
+    </td>*@
   <td class="btn-delete js-delete">
-    <a class="delete-link" data-id="@item.IdPhong" data-name="@item.TenPhong">
-      <i class="fas fa-trash-alt"></i>
+    <a class="delete-link" data-id="@item.IdSoPhieu" data-name="@item.BenhNhan.HoTen">
+      <i class="ti-trash"></i>
     </a>
   </td>
-</tr>
-      
-      }
+</tr>}
 
   </table>
 
@@ -169,8 +193,8 @@
         var id = $(this).data('id');
         var name = $(this).data('name');
         var confirmationBoxHtml = '<div class="confirmation-box">' +
-          '<h3>Xóa phòng</h3>' +
-          '<p>Bạn có chắc chắn muốn xóa tên phòng <strong>' + name + '</strong>?</p>' +
+          '<h3>Xóa phiếu khám</h3>' +
+          '<p>Bạn có chắc chắn muốn xóa phiếu khám của <strong>' + name + '</strong>?</p>' +
           '<div class="button-group">' +
           '<button class="yes" data-id="' + id + '">Có</button>' +
           '<button class="no">Không</button>' +
@@ -196,7 +220,7 @@
 
       // Xóa bệnh
       $.ajax({
-        url: '/Phong/XoaPhong/' + id,
+        url: '/TaoPhieuKham/XoaPhieuKham/' + id,
         type: 'POST',
         success: function (result) {
           // Ẩn loader
@@ -207,7 +231,7 @@
         error: function () {
           // Ẩn loader
           $('#loader').hide();
-          alert('Đã xảy ra lỗi khi xóa phòng!');
+          alert('Đã xảy ra lỗi khi xóa phiếu khám!');
         }
       });
 
@@ -219,6 +243,9 @@
 
 
 </div>
+
+
+
 
 
 

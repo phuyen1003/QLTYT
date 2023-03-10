@@ -152,6 +152,7 @@
     <Compile Include="Controllers\NhomBenhNhanController.cs" />
     <Compile Include="Controllers\PhongController.cs" />
     <Compile Include="Controllers\TaoPhieuKhamController.cs" />
+    <Compile Include="Controllers\TaoPhieuTiemChungController.cs" />
     <Compile Include="Controllers\ThongTinThaiKyController.cs" />
     <Compile Include="Controllers\TienIchController.cs" />
     <Compile Include="Controllers\TrieuChungController.cs" />
@@ -828,6 +829,12 @@
     <Content Include="Views\VacXin\SuaDoiVacXin.cshtml" />
     <Content Include="Views\VacXin\ThemVacXin.cshtml" />
     <Content Include="Views\VacXin\VacXin.cshtml" />
+    <Content Include="Views\TaoPhieuKham\PhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\SuaDoiPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\TaoPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\PhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\SuaDoiPhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\TaoPhieuTiemChung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
