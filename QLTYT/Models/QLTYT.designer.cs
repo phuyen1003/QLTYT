@@ -340,18 +340,18 @@ namespace QLTYT.Models
 			return ((ISingleResult<SP_BMIResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_thaiky")]
-		public ISingleResult<SP_thaikyResult> SP_thaiky()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<SP_thaikyResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_QHGD")]
 		public ISingleResult<SP_QHGDResult> SP_QHGD()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<SP_QHGDResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_thaiky")]
+		public ISingleResult<SP_thaikyResult> SP_thaiky()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SP_thaikyResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1033,6 +1033,9 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
@@ -2810,6 +2813,7 @@ namespace QLTYT.Models
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTiem", DbType="DateTime")]
 		[Display(Name = "Ngày tiêm")]
 		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgayTiem
 		{
 			get
@@ -3215,6 +3219,9 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
@@ -4149,6 +4156,7 @@ namespace QLTYT.Models
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTao", DbType="SmallDateTime")]
 		[Display(Name = "Ngày tạo")]
 		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgayTao
 		{
 			get
@@ -4469,6 +4477,7 @@ namespace QLTYT.Models
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTao", DbType="SmallDateTime")]
 		[Display(Name = "Ngày tạo")]
 		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgayTao
 		{
 			get
@@ -4977,6 +4986,7 @@ namespace QLTYT.Models
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTao", DbType="DateTime")]
 		[Display(Name = "Ngày tạo")]
 		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgayTao
 		{
 			get
@@ -5989,6 +5999,7 @@ namespace QLTYT.Models
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
 		[Display(Name = "Ngày sinh")]
 		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
@@ -6183,196 +6194,6 @@ namespace QLTYT.Models
 		}
 	}
 	
-	public partial class SP_thaikyResult
-	{
-		
-		private int _IdBenhNhan;
-		
-		private string _HoTen;
-		
-		private System.Nullable<System.DateTime> _NgaySinh;
-		
-		private System.Nullable<double> _CanNang;
-		
-		private System.Nullable<double> _ChieuCao;
-		
-		private System.Nullable<int> _IdGiaDinh;
-		
-		private System.Nullable<double> _TuanTuoi;
-		
-		private string _GhiChu;
-		
-		private System.Nullable<double> _CanNangThaiNhi;
-		
-		private System.Nullable<double> _ChieuDaiThaiNhi;
-		
-		public SP_thaikyResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", DbType="Int NOT NULL")]
-		public int IdBenhNhan
-		{
-			get
-			{
-				return this._IdBenhNhan;
-			}
-			set
-			{
-				if ((this._IdBenhNhan != value))
-				{
-					this._IdBenhNhan = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(100)")]
-		public string HoTen
-		{
-			get
-			{
-				return this._HoTen;
-			}
-			set
-			{
-				if ((this._HoTen != value))
-				{
-					this._HoTen = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
-		[Display(Name = "Ngày sinh")]
-		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-		public System.Nullable<System.DateTime> NgaySinh
-		{
-			get
-			{
-				return this._NgaySinh;
-			}
-			set
-			{
-				if ((this._NgaySinh != value))
-				{
-					this._NgaySinh = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanNang", DbType="Float")]
-		public System.Nullable<double> CanNang
-		{
-			get
-			{
-				return this._CanNang;
-			}
-			set
-			{
-				if ((this._CanNang != value))
-				{
-					this._CanNang = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChieuCao", DbType="Float")]
-		public System.Nullable<double> ChieuCao
-		{
-			get
-			{
-				return this._ChieuCao;
-			}
-			set
-			{
-				if ((this._ChieuCao != value))
-				{
-					this._ChieuCao = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdGiaDinh", DbType="Int")]
-		public System.Nullable<int> IdGiaDinh
-		{
-			get
-			{
-				return this._IdGiaDinh;
-			}
-			set
-			{
-				if ((this._IdGiaDinh != value))
-				{
-					this._IdGiaDinh = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TuanTuoi", DbType="Float")]
-		public System.Nullable<double> TuanTuoi
-		{
-			get
-			{
-				return this._TuanTuoi;
-			}
-			set
-			{
-				if ((this._TuanTuoi != value))
-				{
-					this._TuanTuoi = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(MAX)")]
-		public string GhiChu
-		{
-			get
-			{
-				return this._GhiChu;
-			}
-			set
-			{
-				if ((this._GhiChu != value))
-				{
-					this._GhiChu = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CanNangThaiNhi", DbType="Float")]
-		public System.Nullable<double> CanNangThaiNhi
-		{
-			get
-			{
-				return this._CanNangThaiNhi;
-			}
-			set
-			{
-				if ((this._CanNangThaiNhi != value))
-				{
-					this._CanNangThaiNhi = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChieuDaiThaiNhi", DbType="Float")]
-		public System.Nullable<double> ChieuDaiThaiNhi
-		{
-			get
-			{
-				return this._ChieuDaiThaiNhi;
-			}
-			set
-			{
-				if ((this._ChieuDaiThaiNhi != value))
-				{
-					this._ChieuDaiThaiNhi = value;
-				}
-			}
-		}
-	}
-	
 	public partial class SP_QHGDResult
 	{
 		
@@ -6430,6 +6251,143 @@ namespace QLTYT.Models
 				if ((this._Quan_hệ != value))
 				{
 					this._Quan_hệ = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SP_thaikyResult
+	{
+		
+		private int _IdBenhNhan;
+		
+		private string _HoTen;
+		
+		private System.Nullable<System.DateTime> _NgaySinh;
+		
+		private System.Nullable<double> _TuanTuoi;
+		
+		private string _GhiChu;
+		
+		private System.Nullable<double> _Cân_nặng_thai_nhi;
+		
+		private System.Nullable<double> _Chiều_dài_thai_nhi;
+		
+		public SP_thaikyResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", DbType="Int NOT NULL")]
+		public int IdBenhNhan
+		{
+			get
+			{
+				return this._IdBenhNhan;
+			}
+			set
+			{
+				if ((this._IdBenhNhan != value))
+				{
+					this._IdBenhNhan = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoTen", DbType="NVarChar(100)")]
+		public string HoTen
+		{
+			get
+			{
+				return this._HoTen;
+			}
+			set
+			{
+				if ((this._HoTen != value))
+				{
+					this._HoTen = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
+		public System.Nullable<System.DateTime> NgaySinh
+		{
+			get
+			{
+				return this._NgaySinh;
+			}
+			set
+			{
+				if ((this._NgaySinh != value))
+				{
+					this._NgaySinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TuanTuoi", DbType="Float")]
+		public System.Nullable<double> TuanTuoi
+		{
+			get
+			{
+				return this._TuanTuoi;
+			}
+			set
+			{
+				if ((this._TuanTuoi != value))
+				{
+					this._TuanTuoi = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(MAX)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this._GhiChu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Cân nặng thai nhi]", Storage="_Cân_nặng_thai_nhi", DbType="Float")]
+		public System.Nullable<double> Cân_nặng_thai_nhi
+		{
+			get
+			{
+				return this._Cân_nặng_thai_nhi;
+			}
+			set
+			{
+				if ((this._Cân_nặng_thai_nhi != value))
+				{
+					this._Cân_nặng_thai_nhi = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Chiều dài thai nhi]", Storage="_Chiều_dài_thai_nhi", DbType="Float")]
+		public System.Nullable<double> Chiều_dài_thai_nhi
+		{
+			get
+			{
+				return this._Chiều_dài_thai_nhi;
+			}
+			set
+			{
+				if ((this._Chiều_dài_thai_nhi != value))
+				{
+					this._Chiều_dài_thai_nhi = value;
 				}
 			}
 		}

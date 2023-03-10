@@ -837,6 +837,9 @@
     <Content Include="Views\TaoPhieuTiemChung\SuaDoiPhieuTiemChung.cshtml" />
     <Content Include="Views\TaoPhieuTiemChung\TaoPhieuTiemChung.cshtml" />
     <Content Include="Views\ChiTietPhieuTiem\Create.cshtml" />
+    <Content Include="Views\LichTiemChung\Edit.cshtml" />
+    <Content Include="Views\ThongTinThaiKy\Create.cshtml" />
+    <Content Include="Views\LichTiemChung\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

@@ -9,7 +9,8 @@ using System.Web.Mvc;
 
 namespace QLTYT.Controllers
 {
-    public class ChiSoDDController : Controller
+  [Authorize]
+  public class ChiSoDDController : Controller
     {
         // GET: ChiSoDD
         public ActionResult Index()

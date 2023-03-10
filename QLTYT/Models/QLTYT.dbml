@@ -291,25 +291,22 @@
       <Column Name="Tuổi" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.SP_thaiky" Method="SP_thaiky">
-    <ElementType Name="SP_thaikyResult">
-      <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CanNang" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ChieuCao" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="IdGiaDinh" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TuanTuoi" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CanNangThaiNhi" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ChieuDaiThaiNhi" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_QHGD" Method="SP_QHGD">
     <ElementType Name="SP_QHGDResult">
       <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="[Chủ gia đình (bố)]" Member="Chủ_gia_đình__bố_" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="[Quan hệ]" Member="Quan_hệ" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_thaiky" Method="SP_thaiky">
+    <ElementType Name="SP_thaikyResult">
+      <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TuanTuoi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Cân nặng thai nhi]" Member="Cân_nặng_thai_nhi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Chiều dài thai nhi]" Member="Chiều_dài_thai_nhi" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

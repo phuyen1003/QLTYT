@@ -22,7 +22,7 @@ namespace QLTYT.Controllers
     }
 
 
-    public ActionResult ViewCreate()
+    public ActionResult Create()
     {
       ViewBag.ListNNV = context.NhomNhanViens.ToList();
       return View();

@@ -1,137 +1,67 @@
 ﻿@model QLTYT.ViewModel.MutipleData2
-@{
-    ViewBag.Title = "SuaDoiPhieuTiemChung";
-    Layout = null;
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<style>
+  input[type="text"] {
+    width: 100%
+  }
+</style>
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2>Chỉnh sửa thông tin phiếu tiêm chủng</h2>
+  <br />
+  <br />
+  <br />
+
+  <form method="post" action="SuaDoiPhieuTiemChung">
+    @foreach (var item in Model.phieuTiemChungs)
+    {
+        <br />
+                <div class="select">
+                  <input hidden name="IdSoPhieu" value="@item.IdSoPhieu" />
+                  <label>Nhân viên</label>
+                  <select name="IdNhanVien" id="IdNhanVien"  class="form-select">
+                    @foreach (var item1 in Model.nhanViens)
+                    {
+            <option value="@item1.IdNhanVien" @(item1.IdNhanVien == item.IdNhanVien ? "selected" : "")>@item1.HoTen</option>}
+                  </select>
+                </div>
+                        <br />
+                        <div class="select">
+                          <label>Phòng Tiêm</label>
+                          <select name="IdPhong" id="IdPhong" class="form-select">
+                            @foreach (var item1 in Model.phongs)
+                            {
+                        <option value="@item1.IdPhong" @(item1.IdPhong == item.IdPhong ? "selected" : "")>@item1.TenPhong</option>
 }
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Sửa đổi phiếu tiêm chủng</title>
-    <link href="~/css/asset/style1.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="title">
-            Sửa đổi phiếu tiêm chủng
-        </div>
-        <form method="post" action="SuaDoiPhieuTiemChung">
-            @foreach (var item in Model.phieuTiemChungs)
-            {
-                <div class="select">
-                    <select name="IdSoPhieu" id="format">
-                        @*<option selected disabled>Tên nhân viên</option>*@
-                        <option value="@item.IdSoPhieu">@item.IdSoPhieu</option>
-                    </select>
-                </div>
-                <br />
-                <div class="select">
-                    <select name="IdNhanVien" id="format">
-                        @foreach (var item1 in Model.nhanViens)
-                        {
-                            <option value="@item1.IdNhanVien" @(item1.IdNhanVien == item.IdNhanVien ? "selected" : "")>@item1.HoTen</option>
-                        }
-                    </select>
-                </div>
-                <br />
-                <div class="select">
-                    <select name="IdPhong" id="format">
-                        @foreach (var item1 in Model.phongs)
-                        {
-                            <option value="@item1.IdPhong" @(item1.IdPhong == item.IdPhong ? "selected" : "")>@item1.TenPhong</option>
-                        }
-                    </select>
-                </div>
-                <br />
-                <div class="select">
-                    <select name="IdBenhNhan" id="format">
-                        @foreach (var item1 in Model.benhNhans)
-                        {
-                            <option value="@item1.IdBenhNhan" @(item1.IdBenhNhan == item.IdBenhNhan ? "selected" : "")>@item1.HoTen</option>
-                        }
-                    </select>
-                </div>               
-                <br />
-                <p>Thời gian: <span id="time"></span></p>
-                <input type="hidden" id="NgayTao" name="NgayTao" value="">
-                <div class="field">
-                    <input type="submit" value="Cập nhật">
-                </div>
-                <div class="signup-link">
-                    <a href="/TaoPhieuTiemChung/PhieuTiemChung">Quay lại</a>
-                </div>
-            }
-        </form>
-    </div>
-    <script>
-        $(document).ready(function () {
-            var today = new Date();
-            var dateTime = today.toISOString().slice(0, 16);
-            $('#time').text(dateTime);
-            $('#NgayTao').val(dateTime);
-        });
-    </script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: #fff;
-            font-family: 'Open Sans', sans-serif;
-            color: #fff;
-        }
+                          </select>
+                        </div>
+                                        <br />
+                                        <div class="select">
+                                          <label>Bệnh nhân</label>
+                                          <select name="IdBenhNhan" id="IdBenhNhan" class="form-select">
+                                            @foreach (var item1 in Model.benhNhans)
+                                            {
+                                        <option value="@item1.IdBenhNhan" @(item1.IdBenhNhan == item.IdBenhNhan ? "selected" : "")>@item1.HoTen</option>
+}
+                                          </select>
+                                        </div>
+                                                        <br />
+                                                                <div class="form-group" style="justify-content:space-between">
+                                                                  <div class="col-md-offset-2 col-md-10">
+                                                                    <button class="btn btn-secondary">
+                                                                      @Html.ActionLink("Quay lại", "PhieuTiemChung")
+                                                                    </button>
+                                                                    <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                                                                            title="Lưu ">
+                                                                      Lưu
+                                                                    </button>
+                                                                  </div>
 
-        select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            -ms-appearance: none;
-            appearance: none;
-            outline: 0;
-            box-shadow: none;
-            border: 0 !important;
-            background: #5c6664;
-            background-image: none;
-            flex: 1;
-            padding: 0 .5em;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1em;
-            font-family: 'Open Sans', sans-serif;
-        }
+                                                                </div>}
+  </form>
+</div>
 
-            select::-ms-expand {
-                display: none;
-            }
-
-        .select {
-            position: relative;
-            display: flex;
-            width: 20em;
-            height: 3em;
-            line-height: 3;
-            background: #5c6664;
-            overflow: hidden;
-            border-radius: .25em;
-        }
-
-            .select::after {
-                content: '\25BC';
-                position: absolute;
-                top: 0;
-                right: 0;
-                padding: 0 1em;
-                background: #2b2e2e;
-                cursor: pointer;
-                pointer-events: none;
-                transition: .25s all ease;
-            }
-
-            .select:hover::after {
-                color: #23b499;
-            }
-    </style>
-</body>
-</html>
 

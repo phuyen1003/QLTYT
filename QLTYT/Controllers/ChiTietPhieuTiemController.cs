@@ -10,6 +10,7 @@ namespace QLTYT.Controllers
   public class ChiTietPhieuTiemController : Controller
   {
     // GET: ChiTietPhieuKham
+    [Authorize]
     public ActionResult Index()
     {
       return View();

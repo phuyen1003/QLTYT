@@ -13,7 +13,7 @@ namespace QLTYT.Controllers
   public class BenhNhanController : Controller
   {
     // GET: Benh
-
+    [Authorize]
     public ActionResult Index()
     {
       QLTYTDataContext context = new QLTYTDataContext();

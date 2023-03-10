@@ -22,7 +22,7 @@
   </button>
   <div class="seach">
     <form>
-      <input type="text" id="Search" placeholder="Search..." class="input"><a href=""><i class="icon ti-search"></i></a>
+      <input type="text" id="Search" placeholder="Tìm kiếm..." class="input"><a href=""><i class="icon ti-search"></i></a>
     </form>
   </div>
   <table class="table-responsive text-nowrap table-bordered" id="myTable">
@@ -30,7 +30,7 @@
       <tr class="ex">
 
         <th>
-          @Html.DisplayName("Mã số phiếu")
+          @Html.DisplayName("Số phiếu")
         </th>
         <th>
           @Html.DisplayName("Tên nhân viên")
@@ -100,7 +100,7 @@
     </td>*@
   <td class="btn-delete js-delete">
     <a class="delete-link" data-id="@item.IdSoPhieu" data-name="@item.BenhNhan.HoTen">
-      <i class="ti-trash"></i>
+      <i class="fas fa-trash-alt"></i>
     </a>
   </td>
 </tr>}

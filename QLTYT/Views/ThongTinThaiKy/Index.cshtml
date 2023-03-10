@@ -9,12 +9,14 @@
 <div class="table-title">
 
     <h2>THÔNG TIN THAI KỲ CỦA MẸ BẦU CỦA TRẠM </h2>
-    <Br>
+    <br/>
+    <br/>
+    <br/>
     <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
             title="Xuất">
 
         <span?>
-            @Html.ActionLink("Xuất file ", "ExportToExcel")
+            @Html.ActionLink("Thêm", "Create")
         </span?>
 
     </button>
@@ -76,10 +78,10 @@
                         @Html.DisplayFor(modelItem => item.TuanTuoi)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ChieuDaiThaiNhi)
+                        @Html.DisplayFor(modelItem => item.Chiều_dài_thai_nhi)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.CanNangThaiNhi)
+                        @Html.DisplayFor(modelItem => item.Cân_nặng_thai_nhi)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.GhiChu)

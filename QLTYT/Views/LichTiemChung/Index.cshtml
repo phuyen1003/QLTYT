@@ -9,7 +9,7 @@
 <link href="~/Content/Admin.css" rel="stylesheet">
 <div class="table-title">
 
-  <h2> QUẢN LÝ THÔNG TIN NHÂN VIÊN</h2>
+  <h2> QUẢN LÝ LỊCH TIÊM CHỦNG</h2>
   <br />
   <br />
   <br />
@@ -17,7 +17,7 @@
           title="Thêm ">
 
     <span?>
-      @Html.ActionLink("Tạo mới", "ViewCreate")
+      @Html.ActionLink("Tạo mới", "Create")
     </span?>
 
   </button>
@@ -66,7 +66,6 @@
           </td>
           <td>
             @Html.ActionLink(" ", "Edit", new { id = item.IdLichTiemChung }, new { @class = "far fa-edit" }) |
-            @Html.ActionLink(" ", "Details", new { id = item.IdLichTiemChung }, new { @class = "fas fa-eye" }) |
             @Html.ActionLink(" ", "Delete", new { id = item.IdLichTiemChung }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
           </td>
         </tr>
