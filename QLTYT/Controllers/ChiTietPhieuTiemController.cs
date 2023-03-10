@@ -24,12 +24,12 @@ namespace QLTYT.Controllers
       List<ChiTietTrieuChung> listc = context.ChiTietTrieuChungs.ToList();
       List<VacXin> listvc = context.VacXins.ToList();
 
-      ViewBag.phanung = context.PhanUngs.ToList();
+      
 
       ViewBag.phieutiem = listpt;
       ViewBag.trieuchung = listc;
       ViewBag.vacxin = listvc;
-
+      ViewBag.phanung = context.PhanUngs.ToList();
 
       if (Request.Form.Count > 0)
       {
@@ -37,7 +37,7 @@ namespace QLTYT.Controllers
         string diadiem = Request.Form["DiaDiem"].ToString();
         string ghichu = Request.Form["GhiChu"].ToString();
         int idptc = int.Parse(Request.Form["IdSoPhieu"]);
-        int idcttc = int.Parse(Request.Form["IdChiTietTrieuChung"]);
+        int idcttc = int.Parse(Request.Form["IdPhanUng"]);
         int idvc = int.Parse(Request.Form["IdVacXin"]);
 
         ChiTietTiemChung sp = new ChiTietTiemChung();
@@ -46,7 +46,7 @@ namespace QLTYT.Controllers
         sp.DiaDiem = diadiem;
         sp.GhiChu = ghichu;
         sp.IdSoPhieu = idptc;
-        sp.IdChiTietTrieuChung = idcttc;
+        sp.IdPhanUng = idcttc;
         sp.IdVacXin = idvc;
 
 

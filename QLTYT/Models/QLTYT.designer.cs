@@ -885,7 +885,6 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdBenhNhan", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		
 		public int IdBenhNhan
 		{
 			get
@@ -1034,8 +1033,6 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
-		[Display(Name = "Ngày sinh")]
-		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
@@ -1463,7 +1460,7 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _IdSoPhieu;
 		
-		private System.Nullable<int> _IdChiTietTrieuChung;
+		private System.Nullable<int> _IdPhanUng;
 		
 		private System.Nullable<int> _IdVacXin;
 		
@@ -1477,7 +1474,7 @@ namespace QLTYT.Models
 		
 		private EntityRef<VacXin> _VacXin;
 		
-		private EntityRef<ChiTietTrieuChung> _ChiTietTrieuChung;
+		private EntityRef<PhanUng> _PhanUng;
 		
 		private EntityRef<PhieuTiemChung> _PhieuTiemChung;
 		
@@ -1489,8 +1486,8 @@ namespace QLTYT.Models
     partial void OnIdChiTietTiemChungChanged();
     partial void OnIdSoPhieuChanging(System.Nullable<int> value);
     partial void OnIdSoPhieuChanged();
-    partial void OnIdChiTietTrieuChungChanging(System.Nullable<int> value);
-    partial void OnIdChiTietTrieuChungChanged();
+    partial void OnIdPhanUngChanging(System.Nullable<int> value);
+    partial void OnIdPhanUngChanged();
     partial void OnIdVacXinChanging(System.Nullable<int> value);
     partial void OnIdVacXinChanged();
     partial void OnSoLoChanging(string value);
@@ -1506,7 +1503,7 @@ namespace QLTYT.Models
 		public ChiTietTiemChung()
 		{
 			this._VacXin = default(EntityRef<VacXin>);
-			this._ChiTietTrieuChung = default(EntityRef<ChiTietTrieuChung>);
+			this._PhanUng = default(EntityRef<PhanUng>);
 			this._PhieuTiemChung = default(EntityRef<PhieuTiemChung>);
 			OnCreated();
 		}
@@ -1555,26 +1552,26 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdChiTietTrieuChung", DbType="Int")]
-		public System.Nullable<int> IdChiTietTrieuChung
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdPhanUng", DbType="Int")]
+		public System.Nullable<int> IdPhanUng
 		{
 			get
 			{
-				return this._IdChiTietTrieuChung;
+				return this._IdPhanUng;
 			}
 			set
 			{
-				if ((this._IdChiTietTrieuChung != value))
+				if ((this._IdPhanUng != value))
 				{
-					if (this._ChiTietTrieuChung.HasLoadedOrAssignedValue)
+					if (this._PhanUng.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnIdChiTietTrieuChungChanging(value);
+					this.OnIdPhanUngChanging(value);
 					this.SendPropertyChanging();
-					this._IdChiTietTrieuChung = value;
-					this.SendPropertyChanged("IdChiTietTrieuChung");
-					this.OnIdChiTietTrieuChungChanged();
+					this._IdPhanUng = value;
+					this.SendPropertyChanged("IdPhanUng");
+					this.OnIdPhanUngChanged();
 				}
 			}
 		}
@@ -1717,36 +1714,36 @@ namespace QLTYT.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChiTietTrieuChung_ChiTietTiemChung", Storage="_ChiTietTrieuChung", ThisKey="IdChiTietTrieuChung", OtherKey="IdChiTietTrieuChung", IsForeignKey=true, DeleteRule="CASCADE")]
-		public ChiTietTrieuChung ChiTietTrieuChung
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTiemChung", Storage="_PhanUng", ThisKey="IdPhanUng", OtherKey="IdPhanUng", IsForeignKey=true, DeleteRule="CASCADE")]
+		public PhanUng PhanUng
 		{
 			get
 			{
-				return this._ChiTietTrieuChung.Entity;
+				return this._PhanUng.Entity;
 			}
 			set
 			{
-				ChiTietTrieuChung previousValue = this._ChiTietTrieuChung.Entity;
+				PhanUng previousValue = this._PhanUng.Entity;
 				if (((previousValue != value) 
-							|| (this._ChiTietTrieuChung.HasLoadedOrAssignedValue == false)))
+							|| (this._PhanUng.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._ChiTietTrieuChung.Entity = null;
+						this._PhanUng.Entity = null;
 						previousValue.ChiTietTiemChungs.Remove(this);
 					}
-					this._ChiTietTrieuChung.Entity = value;
+					this._PhanUng.Entity = value;
 					if ((value != null))
 					{
 						value.ChiTietTiemChungs.Add(this);
-						this._IdChiTietTrieuChung = value.IdChiTietTrieuChung;
+						this._IdPhanUng = value.IdPhanUng;
 					}
 					else
 					{
-						this._IdChiTietTrieuChung = default(Nullable<int>);
+						this._IdPhanUng = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("ChiTietTrieuChung");
+					this.SendPropertyChanged("PhanUng");
 				}
 			}
 		}
@@ -1818,8 +1815,6 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _IdTrieuChung;
 		
-		private EntitySet<ChiTietTiemChung> _ChiTietTiemChungs;
-		
 		private EntityRef<PhanUng> _PhanUng;
 		
 		private EntityRef<TrieuChung> _TrieuChung;
@@ -1838,7 +1833,6 @@ namespace QLTYT.Models
 		
 		public ChiTietTrieuChung()
 		{
-			this._ChiTietTiemChungs = new EntitySet<ChiTietTiemChung>(new Action<ChiTietTiemChung>(this.attach_ChiTietTiemChungs), new Action<ChiTietTiemChung>(this.detach_ChiTietTiemChungs));
 			this._PhanUng = default(EntityRef<PhanUng>);
 			this._TrieuChung = default(EntityRef<TrieuChung>);
 			OnCreated();
@@ -1909,19 +1903,6 @@ namespace QLTYT.Models
 					this.SendPropertyChanged("IdTrieuChung");
 					this.OnIdTrieuChungChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ChiTietTrieuChung_ChiTietTiemChung", Storage="_ChiTietTiemChungs", ThisKey="IdChiTietTrieuChung", OtherKey="IdChiTietTrieuChung")]
-		public EntitySet<ChiTietTiemChung> ChiTietTiemChungs
-		{
-			get
-			{
-				return this._ChiTietTiemChungs;
-			}
-			set
-			{
-				this._ChiTietTiemChungs.Assign(value);
 			}
 		}
 		
@@ -2011,18 +1992,6 @@ namespace QLTYT.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ChiTietTiemChungs(ChiTietTiemChung entity)
-		{
-			this.SendPropertyChanging();
-			entity.ChiTietTrieuChung = this;
-		}
-		
-		private void detach_ChiTietTiemChungs(ChiTietTiemChung entity)
-		{
-			this.SendPropertyChanging();
-			entity.ChiTietTrieuChung = null;
 		}
 	}
 	
@@ -3246,8 +3215,6 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
-		[Display(Name = "Ngày sinh")]
-		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
@@ -3856,6 +3823,8 @@ namespace QLTYT.Models
 		
 		private System.Nullable<int> _MucDo;
 		
+		private EntitySet<ChiTietTiemChung> _ChiTietTiemChungs;
+		
 		private EntitySet<ChiTietTrieuChung> _ChiTietTrieuChungs;
 		
     #region Extensibility Method Definitions
@@ -3872,6 +3841,7 @@ namespace QLTYT.Models
 		
 		public PhanUng()
 		{
+			this._ChiTietTiemChungs = new EntitySet<ChiTietTiemChung>(new Action<ChiTietTiemChung>(this.attach_ChiTietTiemChungs), new Action<ChiTietTiemChung>(this.detach_ChiTietTiemChungs));
 			this._ChiTietTrieuChungs = new EntitySet<ChiTietTrieuChung>(new Action<ChiTietTrieuChung>(this.attach_ChiTietTrieuChungs), new Action<ChiTietTrieuChung>(this.detach_ChiTietTrieuChungs));
 			OnCreated();
 		}
@@ -3936,6 +3906,19 @@ namespace QLTYT.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTiemChung", Storage="_ChiTietTiemChungs", ThisKey="IdPhanUng", OtherKey="IdPhanUng")]
+		public EntitySet<ChiTietTiemChung> ChiTietTiemChungs
+		{
+			get
+			{
+				return this._ChiTietTiemChungs;
+			}
+			set
+			{
+				this._ChiTietTiemChungs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PhanUng_ChiTietTrieuChung", Storage="_ChiTietTrieuChungs", ThisKey="IdPhanUng", OtherKey="IdPhanUng")]
 		public EntitySet<ChiTietTrieuChung> ChiTietTrieuChungs
 		{
@@ -3967,6 +3950,18 @@ namespace QLTYT.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_ChiTietTiemChungs(ChiTietTiemChung entity)
+		{
+			this.SendPropertyChanging();
+			entity.PhanUng = this;
+		}
+		
+		private void detach_ChiTietTiemChungs(ChiTietTiemChung entity)
+		{
+			this.SendPropertyChanging();
+			entity.PhanUng = null;
 		}
 		
 		private void attach_ChiTietTrieuChungs(ChiTietTrieuChung entity)
@@ -4980,6 +4975,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayTao", DbType="DateTime")]
+		[Display(Name = "Ngày tạo")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgayTao
 		{
 			get
@@ -6246,6 +6243,8 @@ namespace QLTYT.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgaySinh", DbType="DateTime")]
+		[Display(Name = "Ngày sinh")]
+		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 		public System.Nullable<System.DateTime> NgaySinh
 		{
 			get
