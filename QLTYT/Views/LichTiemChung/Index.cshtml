@@ -65,9 +65,9 @@
             }
           </td>
           <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.IdLichTiemChung }) |
-            @Html.ActionLink("Details", "Details", new { id = item.IdLichTiemChung }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IdLichTiemChung })
+            @Html.ActionLink(" ", "Edit", new { id = item.IdLichTiemChung }, new { @class = "far fa-edit" }) |
+            @Html.ActionLink(" ", "Details", new { id = item.IdLichTiemChung }, new { @class = "fas fa-eye" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.IdLichTiemChung }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
           </td>
         </tr>
       }
