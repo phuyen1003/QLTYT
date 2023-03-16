@@ -1,0 +1,116 @@
+﻿@model IEnumerable<QLTYT.Models.NhanVien>
+
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2> QUẢN LÝ THÔNG TIN NHÂN VIÊN</h2>
+  <br />
+  <br />
+  <br />
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Thêm ">
+
+    <span?>
+      @Html.ActionLink("Tạo mới", "ViewCreate")
+    </span?>
+
+  </button>
+  <br />
+
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
+        <th>
+          Nhóm NV
+        </th>
+        <th>
+          Họ tên
+        </th>
+        <th>
+          Hình ảnh
+        </th>
+        <th>
+          SĐT
+        </th>
+        <th>
+          Giới tính
+        </th>
+        <th>
+          Ngày sinh
+        </th>
+        <th>
+          CCCD
+        </th>
+        <th>
+          Mail
+        </th>
+        <th>
+          Địa chỉ
+        </th>
+
+        <th>Tùy chọn</th>
+      </tr>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @foreach (var nnv in ViewBag.ListNNV)
+            {
+              if (item.IdNhomNhanVien == nnv.IdNhomNhanVien)
+              {
+                @nnv.TenNhomNhanVien
+              }
+            }
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+          </td>
+          <td>
+            <img src="~/imagesNV/@item.HinhAnh" alt="@item.HinhAnh" height="60" width="60" style="border-radius: 5px;" id="zoom_01" class="img-fluid">
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+          </td>
+          <td>
+            @*@Html.DisplayFor(modelItem => item.GioiTinh)*@
+            @if (item.GioiTinh == 1)
+            {
+              <p>Nam</p>
+            }
+            else if (item.GioiTinh == 0)
+            {
+              <p>Nữ</p>
+            }
+            else
+            {
+              <p>Khác</p>
+            }
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CCCD)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Email)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+          </td>
+
+          <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IdNhanVien }, new { @class = "far fa-edit" }) |
+            @Html.ActionLink(" ", "Details", new { id = item.IdNhanVien }, new { @class = "fas fa-eye" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.IdNhanVien }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
+          </td>
+        </tr>
+      }
+  </table>
+</div>

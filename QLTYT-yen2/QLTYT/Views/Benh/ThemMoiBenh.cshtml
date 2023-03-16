@@ -1,0 +1,41 @@
+﻿@model QLTYT.Models.Benh
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+  input[type="text"] {
+    width: 100%
+  }
+</style>
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2>Thêm bệnh mới</h2>
+  <br />
+  <br />
+  <br />
+
+  <form method="post" action="ThemMoiBenh">
+    <div class="field">
+      <label>Tên bệnh</label>
+      <input type="text" name="TenBenh">
+
+    </div>
+
+    <div class="form-group" style="justify-content:space-between">
+      <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-secondary">
+          @Html.ActionLink("Quay lại", "Index")
+        </button>
+        <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                title="Tạo mới ">
+          Tạo mới
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>

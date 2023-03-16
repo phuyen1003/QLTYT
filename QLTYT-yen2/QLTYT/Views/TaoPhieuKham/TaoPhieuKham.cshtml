@@ -1,0 +1,74 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<style>
+  input[type="text"] {
+    width: 100%
+  }
+</style>
+<div class="table-title">
+
+  <h2>Tạo phiếu khám</h2>
+  <br />
+  <br />
+  <br />
+  <form method="post" action="TaoPhieuKham">
+    <div class="select">
+      <label>Nhân viên</label>
+      <select name="IdNhanVien" id="IdNhanVien" class="form-select">
+        <option selected disabled>Chọn nhân viên</option>
+        @foreach (var item in Model.nhanViens)
+        {
+
+      <option value="@item.IdNhanVien">@item.HoTen</option>}
+      </select>
+    </div>
+    <br />
+    <div class="select">
+      <label>Phòng</label>
+      <select name="IdPhong" id="IdPhong" class="form-select">
+        <option selected disabled>Chọn phòng siêu âm</option>
+        @foreach (var item in Model.phongs)
+        {
+
+      <option value="@item.IdPhong">@item.TenPhong</option>}
+      </select>
+    </div>
+    <br />
+    <div class="select">
+      <label>Bệnh nhân</label>
+      <select name="IdBenhNhan" id="IdBenhNhan" class="form-select">
+        <option selected disabled>Chọn bệnh nhân</option>
+        @foreach (var item in Model.benhNhans)
+        {
+      <option value="@item.IdBenhNhan">@item.HoTen</option>}
+      </select>
+    </div>
+    <br />
+    <div class="select">
+      <label>Tuần tuổi</label>
+      <select name="IdThongTinThaiKy" id="IdThongTinThaiKy" class="form-select">
+        <option selected disabled>Chọn tuần tuổi</option>
+        @foreach (var item in Model.thongTinThaiKies)
+        {
+          <option value="@item.IdThongTinThaiKy">@item.TuanTuoi</option>}
+      </select>
+    </div>
+    <br />
+    <div class="form-group" style="justify-content:space-between">
+      <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-secondary">
+          @Html.ActionLink("Quay lại", "PhieuKham")
+        </button>
+        <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                title="Tạo mới">
+          Tạo mới
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+

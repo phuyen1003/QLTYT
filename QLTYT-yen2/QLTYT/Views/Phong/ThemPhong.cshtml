@@ -1,0 +1,112 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{
+    ViewBag.Title = "ThemPhong";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Thêm phòng</title>
+    <link href="~/css/asset/style1.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+            Thêm phòng
+        </div>
+        <form method="post" action="ThemPhong">
+            <div class="select">
+                <select name="IdLoaiPhong" id="format">
+                    @foreach (var item in Model.loaiPhongs)
+                    {
+                        <option selected disabled>Tên loại phòng</option>
+                        <option value="@item.IdLoaiPhong">@item.TenLoaiPhong</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="field">
+                <input type="number" name="TenPhong">
+                <label>Tên phòng</label>
+            </div>
+            <br />
+            <div class="select">
+                <select name="TinhTrang" id="format">                    
+                        <option selected disabled>Tình trạng phòng</option>
+                        <option value="Hoạt động">Hoạt động</option>
+                        <option value="Tạm ngưng">Tạm ngưng</option>
+                </select>
+            </div>
+            <br />
+            <div class="field">
+                <input type="submit" value="Thêm">
+            </div>
+            <div class="signup-link">
+                <a href="/Phong/ThongTinPhong">Quay lại</a>
+            </div>
+        </form>
+    </div>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #fff;
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            border: 0 !important;
+            background: #5c6664;
+            background-image: none;
+            flex: 1;
+            padding: 0 .5em;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+            select::-ms-expand {
+                display: none;
+            }
+
+        .select {
+            position: relative;
+            display: flex;
+            width: 20em;
+            height: 3em;
+            line-height: 3;
+            background: #5c6664;
+            overflow: hidden;
+            border-radius: .25em;
+        }
+
+            .select::after {
+                content: '\25BC';
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 0 1em;
+                background: #2b2e2e;
+                cursor: pointer;
+                pointer-events: none;
+                transition: .25s all ease;
+            }
+
+            .select:hover::after {
+                color: #23b499;
+            }
+    </style>
+</body>
+</html>
+

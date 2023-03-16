@@ -1,0 +1,54 @@
+﻿@model IEnumerable<QLTYT.Models.NhomBenhNhan>
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  string user = (string)TempData.Peek("User");
+  string imgnv = (string)TempData.Peek("UserIMG");
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2> QUẢN LÝ THÔNG TIN NHÓM BỆNH NHÂN</h2>
+  <Br>
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Thêm ">
+
+    <span?>
+      @Html.ActionLink("Tạo mới", "Create")
+    </span?>
+
+  </button>
+
+
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
+        <th>
+          Mã Nhóm BN
+        </th>
+        <th>
+          Tên Nhóm BN
+        </th>
+        <th></th>
+      </tr>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.IdNhomBenhNhan)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.TenNhom)
+          </td>
+          <td>
+            @Html.ActionLink("Sửa", "Edit", new { id = item.IdNhomBenhNhan }) |
+            @Html.ActionLink("Xóa", "Delete", new { id = item.IdNhomBenhNhan })
+          </td>
+        </tr>
+      }
+
+  </table>
+</div>
+

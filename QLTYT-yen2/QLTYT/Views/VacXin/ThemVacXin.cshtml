@@ -1,0 +1,64 @@
+﻿@model QLTYT.ViewModel.MultipleData
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<style>
+  input[type="text"] {
+    width: 100%
+  }
+</style>
+<div class="table-title">
+
+  <h2> Chỉnh sửa thông tin Vacxin</h2>
+  <br />
+  <br />
+  <br />
+  <form method="post" action="ThemVacXin">
+    <label>Tên bệnh</label>
+    <select id="disease-list" name="IdBenh" class="form-select">
+      @foreach (var item in Model.benhs)
+      {
+  <option value="@item.IdBenh">@item.TenBenh</option>
+}
+    </select>
+    <div class="field">
+      <label>Tên vắc xin</label>
+      <input type="text" name="TenVacXin">
+
+    </div>
+    <div class="field">
+      <label>Liều lượng</label>
+      <input type="text" name="LieuLuong">
+
+    </div>
+    <div class="field">
+      <label>Đơn vị</label>
+      <input type="text" name="DonVi">
+
+    </div>
+    <div class="field">
+      <label>Đơn giá</label>
+      <input type="text" name="DonGia">
+
+    </div>
+    <div class="field">
+      <label>Số lô</label>
+      <input type="text" name="SoLo">
+
+    </div>
+
+    <div class="form-group" style="justify-content:space-between">
+      <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-secondary">
+          @Html.ActionLink("Quay lại", "VacXin")
+        </button>
+        <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                title="Tạo mới ">
+          Tạo mới
+        </button>
+      </div>
+
+    </div>
+  </form>
+</div>
+

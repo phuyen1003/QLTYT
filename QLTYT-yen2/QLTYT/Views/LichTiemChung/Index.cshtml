@@ -1,0 +1,75 @@
+﻿@model IEnumerable<QLTYT.Models.LichTiemChung>
+
+@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+  string user = (string)TempData.Peek("User");
+  string imgnv = (string)TempData.Peek("UserIMG");
+}
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<div class="table-title">
+
+  <h2> QUẢN LÝ LỊCH TIÊM CHỦNG</h2>
+  <br />
+  <br />
+  <br />
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Thêm ">
+
+    <span?>
+      @Html.ActionLink("Tạo mới", "Create")
+    </span?>
+
+  </button>
+  <br />
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
+        <th>
+          Tên vacxin
+        </th>
+        <th>
+          Ngày tiêm
+        </th>
+        <th>
+          Ghi chú
+        </th>
+        <th>
+          Trạng thái
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.VacXin.TenVacXin)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.NgayTiem)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.GhiChu)
+          </td>
+          <td>
+            @if (item.TrangThai == true)
+            {
+              <p> Đang diễn ra</p>
+            }
+            else
+            {
+              <p>Đã kết thúc</p>
+            }
+          </td>
+          <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IdLichTiemChung }, new { @class = "far fa-edit" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.IdLichTiemChung }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

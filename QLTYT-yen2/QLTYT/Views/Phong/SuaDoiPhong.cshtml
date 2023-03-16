@@ -1,0 +1,70 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<link href="~/Content/Admin.css" rel="stylesheet">
+<style>
+  input[type="text"] {
+    width: 100%
+  }
+</style>
+<div class="table-title">
+
+  <h2> Chỉnh sửa thông tin phòng</h2>
+  <br />
+  <br />
+  <br />
+  <form method="post" action="SuaDoiVacXin">
+    @foreach (var item in Model.phongs)
+    {
+      <div class="field">
+        <input type="hidden" name="IdPhong" value="@item.IdPhong" readonly>
+      </div>
+       <br />
+       <div class="select">
+         <label>Loại phòng</label>
+         <select name="IdLoaiPhong" id="IdLoaiPhong" class="form-select">
+           @foreach (var item1 in Model.loaiPhongs)
+           {
+       <option value="@item1.IdLoaiPhong" @(item1.IdLoaiPhong == item.IdLoaiPhong ? "selected" : "")>@item1.TenLoaiPhong</option>}
+         </select>
+       </div>
+      <br />
+      <div class="field">
+        <label>Tên phòng</label>
+        <input type="text" name="TenPhong" value="@item.TenPhong">
+      </div>
+      <br />
+      <div class="select">
+        <select name="TinhTrang" id="TinhTrang" class="form-select">
+          <option value="@item.TinhTrang" @(item.TinhTrang == item.TinhTrang ? "selected" : "")>@item.TinhTrang</option>
+          @if (@item.TinhTrang == "Hoạt động")
+          {
+            <option value="Tạm ngưng">Tạm ngưng</option>
+          }
+          @if(@item.TinhTrang == "Tạm ngưng")
+          {
+            <option value="Hoạt động">Hoạt động</option>
+          }
+
+
+        </select>
+      </div>
+      <br />
+      <div class="form-group" style="justify-content:space-between">
+        <div class="col-md-offset-2 col-md-10">
+          <button class="btn btn-secondary">
+            @Html.ActionLink("Quay lại", "ThongTinPhong")
+          </button>
+          <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                  title="Lưu ">
+            Lưu
+          </button>
+        </div>
+
+      </div>
+      }
+  </form>
+</div>
+
+
+

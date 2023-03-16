@@ -1,0 +1,395 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{
+    ViewBag.Title = "ChiTietPhieuTiemChung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Admin.css" rel="stylesheet">
+<link href="~/css/ChiTietPhieu.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/themify-icons/themify-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<div class="table-title">
+
+    @using (Html.BeginForm("Upload", "BenhNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="text" name="file" />
+        <input type="submit" value="" />
+    }
+
+    <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+                title="Thêm ">
+
+            <span?>
+                @Html.ActionLink("Thêm", "TaoChiTietPhieuTiemChung")
+            </span?>
+
+        </button>
+
+    <div class="seach">
+        <center><p><strong>Phiếu tiêm chủng</strong></p></center>
+    </div>
+    <table class="table-responsive text-nowrap table-bordered" id="myTable">
+        <thead>
+            <tr class="ex">
+
+                <th>
+                    @Html.DisplayName("Mã số phiếu")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên nhân viên")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên phòng")
+                </th>
+                <th>
+                    @Html.DisplayName("Loại phòng")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên bệnh nhân")
+                </th>
+                <th>
+                    @Html.DisplayName("Nhóm bệnh nhân")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên chủ hộ")
+                </th>
+                <th>
+                    @Html.DisplayName("CCCD")
+                </th>
+                <th>
+                    @Html.DisplayName("Số người")
+                </th>
+                <th>
+                    @Html.DisplayName("Số điện thoại")
+                </th>
+                <th>
+                    @Html.DisplayName("Email")
+                </th>
+                <th>
+                    @Html.DisplayName("Ngày tạo")
+                </th>
+
+                @*<th></th>
+                    <th></th>
+                    <th></th>*@
+
+
+
+            </tr>
+
+            @foreach (var item in Model.phieuTiemChungs)
+            {
+                <tr @*class="Search"*@ id="row_@item.IdSoPhieu">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdSoPhieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanVien.HoTen)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phong.TenPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phong.LoaiPhong.TenLoaiPhong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.HoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.NhomBenhNhan.TenNhom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.GiaDinh.TenChuHo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.GiaDinh.CCCD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.GiaDinh.SoNguoi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.GiaDinh.SDT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BenhNhan.GiaDinh.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayTao)
+                    </td>
+                    
+                    @*<td>
+            @Html.ActionLink(" ", "ChiTietPhieuTiemChung", new { id = item.IdSoPhieu }, new { @class = "far fa-eye" })
+        </td>
+        <td>
+            @Html.ActionLink(" ", "SuaDoiPhieuTiemChung", new { id = item.IdSoPhieu }, new { @class = "far fa-edit" })
+        </td>*@
+
+                    @*<td>
+            @Html.ActionLink(" ", "Delete", new { id = item.IdVacXin }, new { @class = "fas fa-trash-alt" })
+        </td>*@
+                    @*<td class="btn-delete js-delete">
+            <a class="delete-link" data-id="@item.IdSoPhieu" data-name="@item.BenhNhan.HoTen">
+                <i class="ti-trash"></i>
+            </a>
+        </td>*@
+                </tr>
+            }
+
+    </table>
+    <div class="seach">
+        <center><p><strong>Chi tiết phiếu tiêm chủng</strong></p></center>
+    </div>
+    <table class="table-responsive text-nowrap table-bordered" id="myTable">
+        <thead>
+            <tr class="ex">
+
+                <th>
+                    @Html.DisplayName("Mã chi tiết")
+                </th>
+                <th>
+                    @Html.DisplayName("Mã số phiếu")
+                </th>
+                <th>
+                    @Html.DisplayName("Tên phản ứng")
+                </th>
+                <th>
+                    @Html.DisplayName("Mức độ")
+                </th>
+                @*<th>
+                        @Html.DisplayName("Tên triệu chứng")
+                    </th>*@
+                <th>
+                    @Html.DisplayName("Tên vắc xin")
+                </th>
+                <th>
+                    @Html.DisplayName("Liều lượng")
+                </th>
+                <th>
+                    @Html.DisplayName("Đơn vị")
+                </th>
+                <th>
+                    @Html.DisplayName("Đơn giá")
+                </th>
+                <th>
+                    @Html.DisplayName("Số lô")
+                </th>
+                <th>
+                    @Html.DisplayName("Địa điểm")
+                </th>
+                <th>
+                    @Html.DisplayName("Ghi chú")
+                </th>
+                <th>
+                    @Html.DisplayName("Hình ảnh")
+                </th>
+
+                <th></th>
+                    <th></th>
+                    <th></th>
+
+
+
+            </tr>
+
+            @foreach (var item in Model.chiTietTiemChungs)
+            {
+                <tr @*class="Search"*@ id="row_@item.IdChiTietTiemChung">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdChiTietTiemChung)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdSoPhieu)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhanUng.TenPhanUng)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhanUng.MucDo)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.PhanUng.ChiTietTrieuChungs)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VacXin.TenVacXin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VacXin.LieuLuong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VacXin.DonVi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VacXin.DonGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VacXin.SoLo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaDiem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GhiChu)
+                    </td>
+                    <td>
+                        <img src="@Url.Content("~/image/" + item.HinhAnh)" alt="Hình ảnh" width="50" height="50" />
+                    </td>
+
+                    @*<td>
+                            @Html.ActionLink(" ", "ChiTietPhieuTiemChung", new { id = item.IdSoPhieu }, new { @class = "far fa-eye" })
+                        </td>*@
+                        <td>
+                            @Html.ActionLink(" ", "SuaDoiChiTietPhieuTiemChung", new { id = item.IdChiTietTiemChung }, new { @class = "far fa-edit" })
+                        </td>
+
+                    @*<td>
+                            @Html.ActionLink(" ", "Delete", new { id = item.IdVacXin }, new { @class = "fas fa-trash-alt" })
+                        </td>*@
+                    <td class="btn-delete js-delete">
+                            <a class="delete-link" data-id="@item.IdChiTietTiemChung" data-name="@item.PhieuTiemChung.IdSoPhieu">
+                                <i class="ti-trash"></i>
+                            </a>
+                        </td>
+                </tr>
+            }
+
+    </table>
+    <button id="add-detail-btn">Thêm chi tiết</button>
+    <div id="details-container"></div>
+    <script src="~/js/ChiTietPhieu.js"></script>
+
+
+
+
+
+
+    <style>
+        .confirmation-box {
+            position: fixed;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+            .confirmation-box h3 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .confirmation-box p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .confirmation-box .button-group {
+                display: flex;
+                justify-content: center;
+            }
+
+                .confirmation-box .button-group button {
+                    margin: 0 10px;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                }
+
+                    .confirmation-box .button-group button.yes {
+                        background-color: #e74c3c;
+                        color: #fff;
+                        border: none;
+                    }
+
+                    .confirmation-box .button-group button.no {
+                        background-color: #ccc;
+                        color: #333;
+                        border: none;
+                    }
+    </style>
+
+    <div id="loader" style="display:none;">
+        <img src="~/image/loader.gif" alt="Loading..." />
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.delete-link').click(function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                var confirmationBoxHtml = '<div class="confirmation-box">' +
+                    '<h3>Xóa chi tiết phiếu tiêm chủng</h3>' +
+                    '<p>Bạn có chắc chắn muốn xóa chi tiết phiếu tiêm chủng của số phiếu <strong>' + name + '</strong>?</p>' +
+                    '<div class="button-group">' +
+                    '<button class="yes" data-id="' + id + '">Có</button>' +
+                    '<button class="no">Không</button>' +
+                    '</div>' +
+                    '</div>';
+                $('body').append(confirmationBoxHtml);
+                $('.yes').click(function () {
+                    var id = $(this).data('id');
+                    deleteVacXin(id);
+                    $('.confirmation-box').remove();
+                    $('#loader').show();
+                });
+                $('.no').click(function () {
+                    $('.confirmation-box').remove();
+                });
+            });
+        });
+
+        function deleteVacXin(id) {
+
+            // Hiển thị loader
+            $('#loader').show();
+
+            // Xóa bệnh
+            $.ajax({
+                url: '/TaoPhieuTiemChung/XoaChiTietPhieuTiemChung/' + id,
+                type: 'POST',
+                success: function (result) {
+                    // Ẩn loader
+                    $('#loader').hide();
+                    // Xóa dòng thông tin bệnh trong bảng
+                    $('#row_' + id).remove();
+                },
+                error: function () {
+                    // Ẩn loader
+                    $('#loader').hide();
+                    alert('Đã xảy ra lỗi khi xóa chi tiết phiếu tiêm chủng!');
+                }
+            });
+
+        }
+    </script>
+
+
+
+
+
+</div>
+

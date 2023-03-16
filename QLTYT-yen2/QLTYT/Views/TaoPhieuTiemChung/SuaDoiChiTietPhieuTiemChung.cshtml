@@ -1,0 +1,89 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{
+    ViewBag.Title = "SuaDoiChiTietPhieuTiemChung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Admin.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<div class="table-title">
+
+    <h2>Sửa Đổi Chi Tiết Phiếu Tiêm Chủng</h2>
+    <br />
+    <br />
+    <br />
+    <form method="post" action="SuaDoiChiTietPhieuTiemChung" enctype="multipart/form-data">
+        @foreach (var item in Model.chiTietTiemChungs)
+        {
+            <div class="select">
+                <label>Mã chi tiết</label>
+                <input type="text" name="IdchiTietTiemChung" value="@item.IdChiTietTiemChung" readonly/>
+            </div>
+            <div class="select">
+                <label>Mã số phiếu</label>
+                <input type="text" name="IdSoPhieu" value="@item.IdSoPhieu" readonly/>
+            </div>
+            <br />
+            <div class="select">
+                <label>Mã phản ứng</label>
+                <select name="IdPhanUng" id="IdPhanUng" class="form-select">
+                    <option selected disabled>Chọn tên phản ứng - mức độ</option>
+                    @foreach (var item1 in Model.phanUngs)
+                    {
+                        <option value="@item.IdPhanUng" @(item1.IdPhanUng == item.IdPhanUng ? "selected" : "")>@item1.TenPhanUng - @item1.MucDo</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="select">
+                <label>Tên vắc xin</label>
+                <select name="IdVacXin" id="IdVacXin" class="form-select">
+                    <option selected disabled>Chọn vắc xin</option>
+                    @foreach (var item1 in Model.vacXins)
+                    {
+
+                        <option value="@item1.IdVacXin" @(item1.IdVacXin == item.IdVacXin ? "selected" : "")>@item1.TenVacXin</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="select">
+                <label>Địa điểm</label>
+                <input type="text" name="DiaDiem" value="@item.DiaDiem" />
+            </div>
+            <br />
+            <div class="select">
+                <label>Ghi chú</label>
+                <input type="text" name="GhiChu" value="@item.GhiChu" />
+            </div>
+            <br />
+            <div class="select">
+                <label>Hình ảnh</label>
+                <img src="~/image/@item.HinhAnh" alt="Hình ảnh" width="200" height="200" />
+                <input type="file" name="HinhAnhUpload" accept="image/*" />
+            </div>
+            <br />
+            <div class="form-group" style="justify-content:space-between">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-secondary">
+                        @Html.ActionLink("Quay lại", "PhieuTiemChung")
+                    </button>
+                    <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                            title="Cập nhật">
+                        Cập nhật
+                    </button>
+                </div>
+
+            </div>
+        }
+    </form>
+    @*<script>
+        $(document).ready(function () {
+            $('#themPhieu').click(function () {
+                var idSoPhieu = $(this).closest('tr').find('td:eq(0)').text();
+                $('input[name="IdSoPhieu"]').val(idSoPhieu);
+            });
+        });
+        </script>*@
+
+</div>
+

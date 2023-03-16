@@ -1,0 +1,82 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{
+    ViewBag.Title = "TaoChiTietPhieuTiemChung";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Admin.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<div class="table-title">
+
+    <h2>Tạo Chi Tiết Phiếu Tiêm Chủng</h2>
+    <br />
+    <br />
+    <br />
+    <form method="post" action="TaoChiTietPhieuTiemChung" enctype="multipart/form-data">
+        <div class="select">
+            <label>Mã số phiếu</label>
+            <input type="text" name="IdSoPhieu"  />
+        </div>
+        <br />
+        <div class="select">
+            <label>Mã phản ứng</label>
+            <select name="IdPhanUng" id="IdPhanUng" class="form-select">
+                <option selected disabled>Chọn tên phản ứng - mức độ</option>
+                @foreach (var item in Model.phanUngs)
+                {
+                    <option value="@item.IdPhanUng">@item.TenPhanUng - @item.MucDo</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="select">
+            <label>Tên vắc xin</label>
+            <select name="IdVacXin" id="IdVacXin" class="form-select">
+                <option selected disabled>Chọn vắc xin</option>
+                @foreach (var item in Model.vacXins)
+                {
+
+                    <option value="@item.IdVacXin">@item.TenVacXin</option>
+                }
+            </select>
+        </div>
+        <br />
+        <div class="select">
+            <label>Địa điểm</label>
+            <input type="text" name="DiaDiem" />
+        </div>
+        <br />
+        <div class="select">
+            <label>Ghi chú</label>
+            <input type="text" name="GhiChu" />
+        </div>
+        <br />
+        <div class="select">
+            <label>Hình ảnh</label>
+            <input type="file" name="HinhAnhUpload" accept="image/*" />
+        </div>
+        <br />
+        <div class="form-group" style="justify-content:space-between">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-secondary">
+                    @Html.ActionLink("Quay lại", "PhieuTiemChung")
+                </button>
+                <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                        title="Tạo mới ">
+                    Tạo mới
+                </button>
+            </div>
+
+        </div>
+    </form>
+    @*<script>
+    $(document).ready(function () {
+        $('#themPhieu').click(function () {
+            var idSoPhieu = $(this).closest('tr').find('td:eq(0)').text();
+            $('input[name="IdSoPhieu"]').val(idSoPhieu);
+        });
+    });
+    </script>*@
+
+</div>
+
+
