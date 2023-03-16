@@ -15,6 +15,8 @@ namespace QLTYT.Controllers
     public ActionResult Index()
     {
       List<LichTiemChung> list = context.LichTiemChungs.ToList();
+      ViewBag.CTC = context.ChuanTiemChungs.ToList();
+
       return View(list);
     }
 

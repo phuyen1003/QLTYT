@@ -7,69 +7,415 @@
 }
 
 <link href="~/Content/Admin.css" rel="stylesheet">
-<div class="table-title">
+<style>
+  /* Tab styling (optional) */
 
-  <h2> QUẢN LÝ LỊCH TIÊM CHỦNG</h2>
-  <br />
-  <br />
-  <br />
-  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
-          title="Thêm ">
+  .tl_container {
+    margin: 4.5rem 0rem 0rem 16.3rem;
+  }
 
-    <span?>
-      @Html.ActionLink("Tạo mới", "Create")
-    </span?>
+  .tl_list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    list-style: none;
+    justify-content: space-between;
+  }
 
-  </button>
-  <br />
-  <table class="table-responsive text-nowrap table-bordered" id="myTable">
-    <thead>
-      <tr class="ex">
-        <th>
-          Tên vacxin
-        </th>
-        <th>
-          Ngày tiêm
-        </th>
-        <th>
-          Ghi chú
-        </th>
-        <th>
-          Trạng thái
-        </th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
 
-      @foreach (var item in Model)
-      {
-        <tr>
-          <td>
-            @Html.DisplayFor(modelItem => item.VacXin.TenVacXin)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.NgayTiem)
-          </td>
-          <td>
-            @Html.DisplayFor(modelItem => item.GhiChu)
-          </td>
-          <td>
-            @if (item.TrangThai == true)
-            {
-              <p> Đang diễn ra</p>
-            }
-            else
-            {
-              <p>Đã kết thúc</p>
-            }
-          </td>
-          <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.IdLichTiemChung }, new { @class = "far fa-edit" }) |
-            @Html.ActionLink(" ", "Delete", new { id = item.IdLichTiemChung }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
-          </td>
-        </tr>
+
+    .tl_list li {
+      margin: 0;
+      width: 50%;
+      text-align: center;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tl_list a {
+      
+      color: #0d6efd;
+      padding: 1rem 0.5rem;
+      display: block;
+      font-size: 1.1rem;
+      width: 100%;
+      /*border: none;*/
+      text-decoration: none;
+      /*text-shadow: none;*/
+    }
+
+
+      /*color: #0d6efd;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 17px;
+        border: #09439880 solid 0.1rem;
+        padding: 1rem 0.5rem;
+        display: block;
+        text-decoration: none;
+        text-shadow: none;
+        */
+      [aria-selected="true"]{
+        border: #09439880 solid 0.1rem;
+        border-radius: 10px;
+        text-shadow: 0 2px 4px #278dea;
       }
-    </tbody>
-  </table>
+
+
+      .tl_list a:hover,
+      .tl_list a:active,
+      .tl_list a:focus {
+        text-shadow: 0 2px 4px #278dea;
+      }
+
+
+  /* White focus ring - so you can see when it's focussed (not required) */
+  .tl_section h2:focus {
+    outline: 1px solid currentcolor;
+  }
+
+
+  /* Section styling (optional) */
+
+  .tl_section {
+    padding: 1rem 1.5rem;
+    min-height: 8rem;
+    border-radius: 0 0 4px 4px;
+    text-shadow: none;
+  }
+
+    .tl_section h2 {
+      margin-top: 1rem;
+    }
+
+
+
+  [role="tabpanel"][aria-hidden="true"] {
+    display: none;
+  }
+</style>
+<div class=tl_container>
+
+  <!-- A plain set of anchor links in HTML -->
+
+  <ul class="tl_list">
+    <li><a href="#A" class=a>Lịch tiêm chủng</a></li>
+    <li><a href="#B" class="b ON">Chuẩn tiêm chủng</a></li>
+
+  </ul>
+
+  <section id=A class="tl_section a">
+    <div class="table-title" style="padding-left: 0;">
+
+      <h2> QUẢN LÝ LỊCH TIÊM CHỦNG</h2>
+      <br />
+      <br />
+      <br />
+      <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+              title="Thêm ">
+
+        <span?>
+          @Html.ActionLink("Tạo mới", "Create")
+        </span?>
+
+      </button>
+      <br />
+      <table class=" text-nowrap table-bordered" id="myTable">
+        <thead>
+          <tr class="ex">
+            <th>
+              Tên vacxin
+            </th>
+            <th>
+              Ngày tiêm
+            </th>
+            <th>
+              Ghi chú
+            </th>
+            <th>
+              Trạng thái
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @foreach (var item in Model)
+          {
+            <tr>
+              <td>
+                @Html.DisplayFor(modelItem => item.VacXin.TenVacXin)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.NgayTiem)
+              </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+              </td>
+              <td>
+                @if (item.TrangThai == true)
+                {
+                  <p> Đang diễn ra</p> }
+                else
+                {
+                  <p>Đã kết thúc</p>}
+              </td>
+              <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.IdLichTiemChung }, new { @class = "far fa-edit" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.IdLichTiemChung }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
+              </td>
+            </tr>
+}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id=B class="tl_section b">
+    <div class="table-title" style="padding-left: 0;">
+
+      <h2> QUẢN LÝ CHUẨN TIÊM CHỦNG</h2>
+      <br />
+      <br />
+      <br />
+      <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+              title="Thêm ">
+
+        <span?>
+          @Html.ActionLink("Tạo mới", "CreateCTC")
+        </span?>
+
+      </button>
+      <br />
+      <table class="  text-nowrap table-bordered" id="myTable">
+        <thead>
+          <tr class="ex">
+            <th>
+              Tên bệnh
+            </th>
+            <th>
+              Tuổi bắt đầu
+            </th>
+            <th>
+              Tuổi kết thúc
+            </th>
+            <th>
+              Tổng số lần
+            </th>
+            <th>
+              Thời gian giữa 
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          @foreach (var abc in ViewBag.CTC)
+          {
+          <tr>
+            <td>
+              @abc.Benh.TenBenh
+            </td>
+            <td>
+              @abc.TuoiBD
+            </td>
+            <td>
+              @abc.TuoiKT
+            </td>
+            <td>
+              @abc.SoLan
+            </td>
+            <td>
+              @abc.TGGiua
+            </td>
+            <td>
+              @Html.ActionLink(" ", "Edit", new { id = abc.Id }, new { @class = "far fa-edit" }) |
+              @Html.ActionLink(" ", "Delete", new { id = abc.Id }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
+            </td>
+          </tr>
+}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
 </div>
+<script>
+  /*
+
+  */
+
+  var accessibleTabs6 = (function () {
+
+    "use strict";
+
+    var d = document;
+    var tabListClass;
+    var onClass;
+    var hoverableClass;
+
+    var setTabsOff = function (tabList) {
+      var i = tabList.tabs.length;
+      while (i--) {
+        setTab(tabList.tabs[i], false);
+      }
+    };
+
+    var setTab = function (tab, switchOn) {
+      if (tab && tab.panelId) {
+        d.getElementById(tab.panelId).setAttribute("aria-hidden", !switchOn);
+        tab.setAttribute("aria-selected", switchOn);
+        tab.setAttribute("tabindex", switchOn ? "0" : "-1");
+      }
+    };
+
+    var _activateTab = function (e) {
+      var tab = e.target;
+      if (e.preventDefault) {
+        e.preventDefault();
+        setTabsOff(tab.tabList);
+        setTab(tab, true);
+        d.getElementById(tab.panelId).children[0].focus();
+      }
+    };
+
+    var _keypressed = function (e) {
+
+      var tab = e.target;
+      var newNo = -1;
+      var tabs = tab.tabList.tabs;
+      var maxNo = tabs.length - 1;
+
+      if (e.keyCode === 37 || e.keyCode === 38) { // left / up arrow
+        newNo = (tab.no === 0) ? maxNo : tab.no - 1;
+      }
+      if (e.keyCode === 39 || e.keyCode === 40) { // right arrow / down arrow
+        newNo = (tab.no === maxNo) ? 0 : tab.no + 1;
+      }
+
+      if (newNo > -1) {
+        setTabsOff(tab.tabList);
+        setTab(tabs[newNo], true);
+        tabs[newNo].focus();
+      }
+    };
+
+    var _tabHovered = function (e) {
+      var a = e.target;
+      var useHover = a.tabList.classList.contains(hoverableClass);
+      if (useHover) {
+        _activateTab(e);
+      }
+    };
+
+    var _events = function (tab) {
+      tab.addEventListener("click", _activateTab, false);
+      tab.addEventListener("keydown", _keypressed, false);
+      tab.addEventListener("mouseover", _tabHovered, false);
+    };
+
+    var _initialiseAriaAttributes = function (tab) {
+
+      var tabPanel = d.getElementById(tab.panelId);
+
+      tab.parentNode.setAttribute("role", "presentation");
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", tab.panelId);
+
+      tabPanel.setAttribute("role", "tabpanel");
+      tabPanel.setAttribute("aria-labelledby", tab.id);
+
+      // Make first <section> object keyboard focussable
+      // Preferably a heading
+      // Tabindex=0 to work both forwards and backwards through the keychain
+      tabPanel.children[0].setAttribute("tabindex", "0");
+
+    };
+
+    var _setUpConfig = function (cfg) {
+      tabListClass = cfg.tabListClass || "tl_list";
+      onClass = cfg.onClass || "ON";
+      hoverableClass = cfg.hoverableClass || "tl-hoverable";
+    };
+
+    var _setUpTab = function (tab, panelId, count) {
+      tab.no = count;
+      tab.id = "tab-" + panelId;
+      tab.panelId = panelId;
+      _initialiseAriaAttributes(tab);
+      _events(tab);
+    };
+
+
+    var _initialiseTabList = function (tabList) {
+
+      var defaultTab = 0;
+      var panelId;
+      var tabPanel;
+      var i;
+
+      if (tabList) {
+
+        tabList.setAttribute("role", "tablist");
+        tabList.tabs = tabList.getElementsByTagName("a");
+        i = tabList.tabs.length;
+
+        while (i--) {
+
+          tabList.tabs[i].tabList = tabList;
+          panelId = tabList.tabs[i].href.slice(tabList.tabs[i].href.lastIndexOf("#") + 1);
+          tabPanel = d.getElementById(panelId);
+
+          if (tabPanel) {
+            _setUpTab(tabList.tabs[i], panelId, i);
+            if (tabList.tabs[i].classList.contains(onClass)) {
+              defaultTab = i;
+
+              // onClass only used to declare intial state, so remove from DOM
+              tabList.tabs[i].classList.remove(onClass);
+              d.getElementById(panelId).classList.remove(onClass);
+            }
+          }
+        }
+        setTabsOff(tabList);
+        if (tabList.tabs[defaultTab] && tabList.tabs[defaultTab].panelId) {
+          setTab(tabList.tabs[defaultTab], true);
+        }
+      }
+    };
+
+    var _isMustardCut = function (e) {
+      // check browser feature support (IE10+)
+      return (
+        (typeof d.querySelectorAll === "function") &&
+        d.addEventListener &&
+        !!d.documentElement.classList // IE10+
+      );
+    };
+
+    var init = function (cfg) {
+      var tabLists;
+      var i;
+
+      if (_isMustardCut()) {
+        _setUpConfig(cfg);
+        tabLists = d.getElementsByClassName(tabListClass);
+        i = tabLists.length;
+        while (i--) {
+          _initialiseTabList(tabLists[i]);
+        }
+      }
+    };
+
+    return {
+      init: init
+    };
+
+  }());
+
+
+  accessibleTabs6.init({
+    tabListClass: "tl_list",   // default, may omit
+    onClass: "ON",               // default, may omit
+    hoverableClass: "tl-hoverable"  // default, may omit
+  });</script>

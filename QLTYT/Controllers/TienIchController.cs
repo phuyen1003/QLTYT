@@ -17,36 +17,62 @@ namespace QLTYT.Controllers
     }
 
     //chưa test
-    public ActionResult TBChichNgua()
+    public string TBChichNgua()
     {
-      if (ModelState.IsValid)
+      QLTYTDataContext context = new QLTYTDataContext();
+      List<BenhNhan> listbn = context.BenhNhans.ToList();
+
+
+      if (listbn != null)
       {
-        if (Request.Form.Count > 0)
+        foreach (var bn in listbn)
         {
-          QLTYTDataContext context = new QLTYTDataContext();
-          List<BenhNhan> listtre = context.BenhNhans.Where(x => x.IdNhomBenhNhan == 2).ToList();
-          if(listtre != null)
+          var listIdCTC = context.SP_ListIdCTC(bn.IdBenhNhan).ToList();
+          if (listIdCTC != null && listIdCTC.Count() > 0)
           {
-            foreach (var tre in listtre)
+            var gd = context.GiaDinhs.FirstOrDefault(s => s.IdGiaDinh.Equals(bn.IdGiaDinh));
+            foreach (var ctc in listIdCTC)
             {
-              var gd = context.GiaDinhs.FirstOrDefault(s => s.IdGiaDinh.Equals(tre.IdGiaDinh));
-
-              string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/TBChichNgua.html"));
-
-              content = content.Replace("{{TenPH}}", gd.TenChuHo);
-              content = content.Replace("{{TenTre}}", tre.HoTen);
-              //content = content.Replace("{{TenKyTiem}}", nv.HoTen);
-              //content = content.Replace("{{NgayTiem}}", nv.HoTen);
-
-              var toGmail = gd.Email;
-              new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm chủng", content);
+              var listDaTiem = context.SP_ListDaTiem(bn.IdBenhNhan, ctc.Id).ToList();
+              if (listDaTiem != null)
+              {
+                foreach (var datiem in listDaTiem)
+                {
+                  if (datiem.slg <= ctc.SoLan)
+                  {
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/TBChichNgua.html"));
+                    var benh = context.Benhs.FirstOrDefault(bb => bb.IdBenh == ctc.IdBenh);
+                    content = content.Replace("{{TenPH}}", gd.TenChuHo);
+                    content = content.Replace("{{TenTre}}", bn.HoTen);
+                    content = content.Replace("{{TenKyTiem}}", benh.TenBenh);
+                    content = content.Replace("{{NgayTiem}}", "Các ngày trong tuần");
+                    var toGmail = gd.Email;
+                    new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm chủng", content);
+                  }
+                }
+              }
+              else
+              {
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/TBChichNgua.html"));
+                var benh = context.Benhs.FirstOrDefault(bb => bb.IdBenh == ctc.IdBenh);
+                content = content.Replace("{{TenPH}}", gd.TenChuHo);
+                content = content.Replace("{{TenTre}}", bn.HoTen);
+                content = content.Replace("{{TenKyTiem}}", benh.TenBenh);
+                content = content.Replace("{{NgayTiem}}", "Các ngày trong tuần");
+                var toGmail = gd.Email;
+                new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm chủng", content);
+              }
             }
-          }
-        
-        }
 
+          }
+
+
+
+
+        }
       }
-      return View("ViewFogot");
+      return "Thành công!";
+
     }
 
 

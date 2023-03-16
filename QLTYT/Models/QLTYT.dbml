@@ -309,4 +309,21 @@
       <Column Name="[Chiều dài thai nhi]" Member="Chiều_dài_thai_nhi" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ListDaTiem" Method="SP_ListDaTiem">
+    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_ListDaTiemResult">
+      <Column Name="IdChiTietTiemChung" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="slg" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ListIdCTC" Method="SP_ListIdCTC">
+    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_ListIdCTCResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdBenh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
