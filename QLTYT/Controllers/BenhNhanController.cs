@@ -2,6 +2,7 @@
 using QLTYT.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -38,9 +39,11 @@ namespace QLTYT.Controllers
         String cccd = Request.Form["CCCD"];
         String bhyt = Request.Form["BHYT"];
         int gioitinh = int.Parse(Request.Form["GioiTinh"]);
+        DateTime ngaysinh = DateTime.Parse(Request.Form["NgaySinh"]);
         String sdt = Request.Form["SDT"];
         String email = Request.Form["Email"];
         String diachi = Request.Form["DiaChi"];
+        String benhnen = Request.Form["BenhNen"];
         float chieucao = float.Parse(Request.Form["ChieuCao"]);
         float cannang = float.Parse(Request.Form["CanNang"]);
         int idnbn = int.Parse(Request.Form["IdNhomBenhNhan"]);
@@ -53,10 +56,12 @@ namespace QLTYT.Controllers
         sp.CCCD = cccd;
         sp.BHYT = bhyt;
         sp.GioiTinh = gioitinh;
+        sp.NgaySinh = ngaysinh;
         sp.SDT = sdt;
         sp.Email = email;
         sp.ChieuCao = chieucao;
         sp.CanNang = cannang;
+        sp.BenhNen = benhnen;
         sp.IdNhomBenhNhan = idnbn;
         sp.IdGiaDinh = idgd;
 
@@ -103,6 +108,7 @@ namespace QLTYT.Controllers
         String diachi = Request.Form["DiaChi"];
         float chieucao = float.Parse(Request.Form["ChieuCao"]);
         float cannang = float.Parse(Request.Form["CanNang"]);
+        String benhnen = Request.Form["BenhNen"];
         int idnbn = int.Parse(Request.Form["IdNhomBenhNhan"]);
         int idgd = int.Parse(Request.Form["IdGiaDinh"]);
 
@@ -116,6 +122,7 @@ namespace QLTYT.Controllers
         sp.Email = email;
         sp.ChieuCao = chieucao;
         sp.CanNang = cannang;
+        sp.BenhNen = benhnen;
         sp.IdNhomBenhNhan = idnbn;
         sp.IdGiaDinh = idgd;
 
@@ -173,6 +180,7 @@ namespace QLTYT.Controllers
             string diachi = worksheet.Cells[row, 11].Value.ToString();
             float chieucao = float.Parse(worksheet.Cells[row, 12].Value.ToString());
             float cannang = float.Parse(worksheet.Cells[row, 13].Value.ToString());
+            string benhnen = worksheet.Cells[row, 14].Value.ToString();
 
 
             using (var context = new QLTYTDataContext())
@@ -184,15 +192,15 @@ namespace QLTYT.Controllers
                 IdGiaDinh = idgd,
                 HoTen = name,
                 CCCD = cccd,
-                BHYT = bhyt
-                  ,
+                BHYT = bhyt,
                 GioiTinh = gioitinh,
                 NgaySinh = ngaysinh,
                 SDT = sdt,
                 Email = email,
                 DiaChi = diachi,
                 ChieuCao = chieucao,
-                CanNang = cannang
+                CanNang = cannang,
+                BenhNen = benhnen
               };
               context.BenhNhans.InsertOnSubmit(user);
               context.SubmitChanges();

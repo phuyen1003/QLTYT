@@ -1,0 +1,79 @@
+﻿@model QLTYT.ViewModel.MutipleData2
+@{
+    ViewBag.Title = "TaoChiTietPhieuKham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Admin.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<div class="table-title">
+
+    <h2>Tạo Chi Tiết Phiếu Khám</h2>
+    <br />
+    <br />
+    <br />
+    <form method="post" action="TaoChiTietPhieuKham">
+        <div class="select">
+            <label>Mã số phiếu</label>
+            <input type="text" name="IdSoPhieu" />
+        </div>
+        <br />
+        <div class="select">
+            <label>Chuẩn đoán</label>
+            <select name="ChuanDoan" id="ChuanDoan" class="form-select">
+                <option selected disabled>Chọn loại chuẩn đoán</option>
+                <option value="Theo dõi sức khỏe của mẹ bầu và sự phát triển của thai nhi">Theo dõi sức khỏe của mẹ bầu và sự phát triển của thai nhi</option>
+                <option value="Kiểm tra vấn đề sức khỏe của thai nhi">Kiểm tra vấn đề sức khỏe của thai nhi</option>
+                <option value="Đánh giá sức khỏe chuyên sâu và theo dõi các vấn đề liên quan đến thai kỳ">Đánh giá sức khỏe chuyên sâu và theo dõi các vấn đề liên quan đến thai kỳ</option>
+                <option value="Đánh giá sức khỏe tổng quát của mẹ bầu trước khi có thai hoặc ở những giai đoạn đầu thai kỳ">Đánh giá sức khỏe tổng quát của mẹ bầu trước khi có thai hoặc ở những giai đoạn đầu thai kỳ</option>
+                <option value="Theo dõi sức khỏe của mẹ bầu và sự phát triển của thai nhi">Theo dõi sức khỏe của mẹ bầu và sự phát triển của thai nhi</option>
+                <option value="Kiểm tra vấn đề sức khỏe của thai nhi">Kiểm tra vấn đề sức khỏe của thai nhi</option>
+            </select>
+        </div>
+        <br />
+        <div class="select">
+            <label>Phương pháp</label>
+            <select name="PhuongPhap" id="PhuongPhap" class="form-select">
+                <option selected disabled>Chọn loại phương pháp</option>
+                <option value="Khám chữa bệnh định kỳ">Khám chữa bệnh định kỳ</option>
+                <option value="Siêu âm thai kỳ">Siêu âm thai kỳ</option>
+                <option value="Khám chuyên khoa">Khám chuyên khoa</option>
+                <option value="Xét nghiệm tiền sản khoa">Xét nghiệm tiền sản khoa</option>
+                <option value="Khám chữa bệnh định kỳ">Khám chữa bệnh định kỳ</option>
+                <option value="Siêu âm thai kỳ">Siêu âm thai kỳ</option>
+            </select>
+        </div>
+        <br />
+        <div class="select">
+            <label>Số lần</label>
+            <input type="number" name="SoLan" />
+        </div>
+        <br />
+        <div class="select">
+            <label>Ghi chú</label>
+            <input type="text" name="GhiChu" />
+        </div>
+        <br />
+        <div class="form-group" style="justify-content:space-between">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-secondary">
+                    @Html.ActionLink("Quay lại", "PhieuKham")
+                </button>
+                <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top"
+                        title="Tạo mới ">
+                    Tạo mới
+                </button>
+            </div>
+
+        </div>
+    </form>
+    @*<script>
+        $(document).ready(function () {
+            $('#themPhieu').click(function () {
+                var idSoPhieu = $(this).closest('tr').find('td:eq(0)').text();
+                $('input[name="IdSoPhieu"]').val(idSoPhieu);
+            });
+        });
+        </script>*@
+
+</div>
+

@@ -43,7 +43,7 @@ namespace QLTYT.Controllers
 
         ChiTietTiemChung sp = new ChiTietTiemChung();
 
-        sp.SoLo = solo;
+        
         sp.DiaDiem = diadiem;
         sp.GhiChu = ghichu;
         sp.IdSoPhieu = idptc;

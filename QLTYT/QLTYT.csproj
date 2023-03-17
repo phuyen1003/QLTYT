@@ -147,7 +147,6 @@
     <Compile Include="Controllers\ChiTietPhieuTiemController.cs" />
     <Compile Include="Controllers\GiaDinhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LichTiemChungController.cs" />
     <Compile Include="Controllers\LoaiPhongController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NhomBenhNhanController.cs" />
@@ -526,6 +525,11 @@
     <Content Include="imagesNV\NV000002.jpg" />
     <Content Include="imagesNV\NV000003.jpg" />
     <Content Include="imagesNV\NV000004.jpg" />
+    <Content Include="image\45745266book3.png" />
+    <Content Include="image\covid.png" />
+    <Content Include="image\hpv.png" />
+    <Content Include="image\kh11.png" />
+    <Content Include="image\loader.gif" />
     <Content Include="js\custom.js" />
     <Content Include="js\custom.min.js" />
     <Content Include="js\dashboard1.js" />
@@ -812,11 +816,10 @@
     <Content Include="Views\NhomBenhNhan\Index.cshtml" />
     <Content Include="Views\NhanVien\Edit.cshtml" />
     <Content Include="Views\NhanVien\Index.cshtml" />
-    <Content Include="Views\NhanVien\ViewCreate.cshtml" />
+    <Content Include="Views\NhanVien\Create.cshtml" />
     <Content Include="Views\TrieuChung\Create.cshtml" />
     <Content Include="Views\TrieuChung\Edit.cshtml" />
     <Content Include="Views\TrieuChung\Index.cshtml" />
-    <Content Include="Views\LichTiemChung\Index.cshtml" />
     <Content Include="Views\Benh\ThongTinBenh.cshtml" />
     <Content Include="Views\Benh\SuaDoiBenh.cshtml" />
     <Content Include="Views\Benh\ThemMoiBenh.cshtml" />
@@ -830,16 +833,20 @@
     <Content Include="Views\VacXin\SuaDoiVacXin.cshtml" />
     <Content Include="Views\VacXin\ThemVacXin.cshtml" />
     <Content Include="Views\VacXin\VacXin.cshtml" />
-    <Content Include="Views\TaoPhieuKham\PhieuKham.cshtml" />
-    <Content Include="Views\TaoPhieuKham\SuaDoiPhieuKham.cshtml" />
-    <Content Include="Views\TaoPhieuKham\TaoPhieuKham.cshtml" />
-    <Content Include="Views\TaoPhieuTiemChung\PhieuTiemChung.cshtml" />
-    <Content Include="Views\TaoPhieuTiemChung\SuaDoiPhieuTiemChung.cshtml" />
-    <Content Include="Views\TaoPhieuTiemChung\TaoPhieuTiemChung.cshtml" />
     <Content Include="Views\ChiTietPhieuTiem\Create.cshtml" />
-    <Content Include="Views\LichTiemChung\Edit.cshtml" />
     <Content Include="Views\ThongTinThaiKy\Create.cshtml" />
-    <Content Include="Views\LichTiemChung\Create.cshtml" />
+    <Content Include="Views\TaoPhieuKham\ChiTietPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\PhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\SuaDoiChiTietPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\SuaDoiPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\TaoChiTietPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuKham\TaoPhieuKham.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\ChiTietPhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\PhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\SuaDoiChiTietPhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\SuaDoiPhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\TaoChiTietPhieuTiemChung.cshtml" />
+    <Content Include="Views\TaoPhieuTiemChung\TaoPhieuTiemChung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

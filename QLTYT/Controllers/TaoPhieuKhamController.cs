@@ -85,7 +85,7 @@ namespace QLTYT.Controllers
       phieu.IdNhanVien = pk.IdNhanVien;
       phieu.IdPhong = pk.IdPhong;
       phieu.IdBenhNhan = pk.IdBenhNhan;
-      phieu.IdThongTinThaiKy = pk.IdThongTinThaiKy;      
+      phieu.IdThongTinThaiKy = pk.IdThongTinThaiKy;
       context.SubmitChanges();
 
       return RedirectToAction("PhieuKham");
@@ -95,6 +95,74 @@ namespace QLTYT.Controllers
     {
       PhieuKham phieu = context.PhieuKhams.FirstOrDefault(x => x.IdSoPhieu == id);
       context.PhieuKhams.DeleteOnSubmit(phieu);
+      context.SubmitChanges();
+      return RedirectToAction("PhieuKham");
+    }
+    [HttpGet]
+    public ActionResult ChiTietPhieuKham(int id)
+    {
+      var list = new MutipleData2();
+      list.phieuKhams = context.PhieuKhams.Where(p => p.IdSoPhieu == id).ToList();
+      list.chiTietKhams = context.ChiTietKhams.ToList();
+      list.nhanViens = context.NhanViens.ToList();
+      list.phongs = context.Phongs.ToList();
+      list.benhNhans = context.BenhNhans.Join(
+                          context.GiaDinhs,
+                          bn => bn.IdGiaDinh,
+                          gd => gd.IdGiaDinh,
+                          (bn, gd) => new {
+                            BenhNhan = bn,
+                            GiaDinh = gd
+                          })
+                      .Select(x => x.BenhNhan)
+                      .ToList();
+      list.thongTinThaiKies = context.ThongTinThaiKies.ToList();
+
+      return View(list);
+    }
+
+    public ActionResult TaoChiTietPhieuKham()
+    {
+      var list = new MutipleData2();
+      //list.chiTietKhams = db.ChiTietKhams.Include("PhieuKham").ToList();
+      list.chiTietKhams = context.ChiTietKhams.ToList();
+
+      return View(list);
+    }
+    [HttpPost]
+    public ActionResult TaoChiTietPhieuKham(ChiTietKham ctk)
+    {
+      context.ChiTietKhams.InsertOnSubmit(ctk);
+      context.SubmitChanges();
+
+
+      return RedirectToAction("PhieuKham");
+    }
+    public ActionResult SuaDoiChiTietPhieuKham(int id)
+    {
+      var list = new MutipleData2();
+      list.chiTietKhams = context.ChiTietKhams.Where(p => p.IdChiTietKham == id).ToList();
+      return View(list);
+    }
+    [HttpPost]
+    public ActionResult SuaDoiChiTietPhieuKham(ChiTietKham ctk)
+    {
+      ChiTietKham chitiet = context.ChiTietKhams.FirstOrDefault(x => x.IdChiTietKham == ctk.IdChiTietKham);
+      chitiet.IdChiTietKham = ctk.IdChiTietKham;
+      chitiet.IdSoPhieu = ctk.IdSoPhieu;
+      chitiet.ChuanDoan = ctk.ChuanDoan;
+      chitiet.PhuongPhap = ctk.PhuongPhap;
+      chitiet.SoLan = ctk.SoLan;
+      chitiet.GhiChu = ctk.GhiChu;
+      context.SubmitChanges();
+      return RedirectToAction("PhieuKham");
+    }
+
+    [HttpPost]
+    public ActionResult XoaChiTietPhieuKham(int id)
+    {
+      ChiTietKham ctk = context.ChiTietKhams.FirstOrDefault(x => x.IdChiTietKham == id);
+      context.ChiTietKhams.DeleteOnSubmit(ctk);
       context.SubmitChanges();
       return RedirectToAction("PhieuKham");
     }

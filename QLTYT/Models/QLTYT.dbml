@@ -18,7 +18,6 @@
       <Column Name="DonGia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="SoLo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="VacXin_ChiTietTiemChung" Member="ChiTietTiemChungs" ThisKey="IdVacXin" OtherKey="IdVacXin" Type="ChiTietTiemChung" />
-      <Association Name="VacXin_LichTiemChung" Member="LichTiemChungs" ThisKey="IdVacXin" OtherKey="IdVacXin" Type="LichTiemChung" />
       <Association Name="Benh_VacXin" Member="Benh" ThisKey="IdBenh" OtherKey="IdBenh" Type="Benh" IsForeignKey="true" />
     </Type>
   </Table>
@@ -37,6 +36,7 @@
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="ChieuCao" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CanNang" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BenhNen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="BenhNhan_PhieuKham" Member="PhieuKhams" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="PhieuKham" />
       <Association Name="BenhNhan_PhieuTiemChung" Member="PhieuTiemChungs" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="PhieuTiemChung" />
       <Association Name="BenhNhan_TTTK_Me" Member="TTTK_Mes" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="TTTK_Me" />
@@ -52,13 +52,23 @@
       <Column Name="CanhBao" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ChiTietKham" Member="ChiTietKhams">
+    <Type Name="ChiTietKham">
+      <Column Name="IdChiTietKham" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdSoPhieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ChuanDoan" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="PhuongPhap" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SoLan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="PhieuKham_ChiTietKham" Member="PhieuKham" ThisKey="IdSoPhieu" OtherKey="IdSoPhieu" Type="PhieuKham" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ChiTietTiemChung" Member="ChiTietTiemChungs">
     <Type Name="ChiTietTiemChung">
       <Column Name="IdChiTietTiemChung" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IdSoPhieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdPhanUng" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdVacXin" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoLo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DiaDiem" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -110,16 +120,6 @@
       <Column Name="SDT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="GiaDinh_BenhNhan" Member="BenhNhans" ThisKey="IdGiaDinh" OtherKey="IdGiaDinh" Type="BenhNhan" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LichTiemChung" Member="LichTiemChungs">
-    <Type Name="LichTiemChung">
-      <Column Name="IdLichTiemChung" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IdVacXin" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NgayTiem" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="VacXin_LichTiemChung" Member="VacXin" ThisKey="IdVacXin" OtherKey="IdVacXin" Type="VacXin" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LoaiPhong" Member="LoaiPhongs">
@@ -186,6 +186,7 @@
       <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IdThongTinThaiKy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Association Name="PhieuKham_ChiTietKham" Member="ChiTietKhams" ThisKey="IdSoPhieu" OtherKey="IdSoPhieu" Type="ChiTietKham" />
       <Association Name="BenhNhan_PhieuKham" Member="BenhNhan" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="BenhNhan" IsForeignKey="true" />
       <Association Name="NhanVien_PhieuKham" Member="NhanVien" ThisKey="IdNhanVien" OtherKey="IdNhanVien" Type="NhanVien" IsForeignKey="true" />
       <Association Name="Phong_PhieuKham" Member="Phong" ThisKey="IdPhong" OtherKey="IdPhong" Type="Phong" IsForeignKey="true" />
@@ -263,25 +264,10 @@
       <Column Name="ChieuDaiThaiNhi" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CanNangThaiNhi" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="NgayDuKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="BenhNhan_TTTK_Me" Member="BenhNhan" ThisKey="IdBenhNhan" OtherKey="IdBenhNhan" Type="BenhNhan" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.SP_ALLBN" Method="SP_ALLBN">
-    <ElementType Name="SP_ALLBNResult">
-      <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TenNhom" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="CCCD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="BHYT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SDT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ChieuCao" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CanNang" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.SP_BMI" Method="SP_BMI">
     <ElementType Name="SP_BMIResult">
       <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -298,6 +284,46 @@
       <Column Name="[Quan hệ]" Member="Quan_hệ" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ListIdCTC" Method="SP_ListIdCTC">
+    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_ListIdCTCResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdBenh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ListDaTiem" Method="SP_ListDaTiem">
+    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_ListDaTiemResult">
+      <Column Name="IdVacXin" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sl" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NearstDay" Method="SP_NearstDay">
+    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdVacXin" Parameter="idVacXin" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_NearstDayResult">
+      <Column Name="ngay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_ALLBN" Method="SP_ALLBN">
+    <ElementType Name="SP_ALLBNResult">
+      <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TenNhom" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CCCD" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BHYT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="NgaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ChieuCao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CanNang" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="BenhNen" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.SP_thaiky" Method="SP_thaiky">
     <ElementType Name="SP_thaikyResult">
       <Column Name="IdBenhNhan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -307,23 +333,7 @@
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="[Cân nặng thai nhi]" Member="Cân_nặng_thai_nhi" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="[Chiều dài thai nhi]" Member="Chiều_dài_thai_nhi" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_ListDaTiem" Method="SP_ListDaTiem">
-    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Id" Parameter="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_ListDaTiemResult">
-      <Column Name="IdChiTietTiemChung" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="slg" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ngay" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.SP_ListIdCTC" Method="SP_ListIdCTC">
-    <Parameter Name="IdBenhNhan" Parameter="idBenhNhan" Type="System.Int32" DbType="Int" />
-    <ElementType Name="SP_ListIdCTCResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IdBenh" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoLan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayDuKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

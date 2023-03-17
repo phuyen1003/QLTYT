@@ -1,8 +1,6 @@
 ﻿@model QLTYT.ViewModel.MutipleData2
-@{
-    ViewBag.Title = "PhieuTiemChung";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "PhieuTiemChung";
+        Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <link href="~/Content/Admin.css" rel="stylesheet">
 <link rel="stylesheet" href="~/css/themify-icons/themify-icons.css">
@@ -55,6 +53,7 @@
 
         <th></th>
         <th></th>
+        <th></th>
 
 
 
@@ -86,7 +85,9 @@
     @Html.DisplayFor(modelItem => item.NgayTao)
   </td>
 
-
+  <td>
+    @Html.ActionLink(" ", "ChiTietPhieuTiemChung", new { id = item.IdSoPhieu }, new { @class = "far fa-eye" })
+  </td>
   <td>
     @Html.ActionLink(" ", "SuaDoiPhieuTiemChung", new { id = item.IdSoPhieu }, new { @class = "far fa-edit" })
   </td>
@@ -99,7 +100,8 @@
       <i class="fas fa-trash-alt"></i>
     </a>
   </td>
-</tr>}
+</tr>
+}
 
   </table>
 

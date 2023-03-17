@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<QLTYT.Models.SP_ALLBNResult>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -10,128 +10,135 @@
 <link href="~/Content/Admin.css" rel="stylesheet">
 <div class="table-title">
 
-    <h2> QUẢN LÝ THÔNG TIN BỆNH NHÂN</h2>
-    <Br>
-    @using (Html.BeginForm("Upload", "BenhNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <input type="file" name="file" />
-        <input type="submit" value="Thêm bằng file" />
-    }
-    <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
-            title="Thêm ">
+  <h2> QUẢN LÝ THÔNG TIN BỆNH NHÂN</h2>
+  <Br>
+  @using (Html.BeginForm("Upload", "BenhNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+  {
+    <input type="file" name="file" />
+    <input type="submit" value="Thêm bằng file" />
+  }
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Thêm ">
 
-        <span?>
-            @Html.ActionLink("Thêm", "Create")
-        </span?>
+    <span?>
+      @Html.ActionLink("Thêm", "Create")
+    </span?>
 
-    </button>
-
-
-
-
-    <table class="table-responsive text-nowrap table-bordered" id="myTable">
-        <thead>
-            <tr class="ex">
-
-                <th>
-                    @Html.DisplayName("ID")
-                </th>
-                <th>
-                    @Html.DisplayName("Nhóm bệnh nhân")
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.IdGiaDinh)
-                    </th>*@
-                <th>
-                    @Html.DisplayName("Họ & Tên")
-                </th>
-                <th>
-                    @Html.DisplayName("CCCD")
-                </th>
-                <th>
-                    @Html.DisplayName("BHYT")
-                </th>
-                <th>
-                    @Html.DisplayName("Giới tính")
-                </th>
-                <th>
-                    @Html.DisplayName("Ngày sinh")
-                </th>
-                <th>
-                    @Html.DisplayName("SĐT")
-                </th>
-                <th>
-                    @Html.DisplayName("Mail")
-                </th>
-                <th>
-                    @Html.DisplayName("Địa chỉ")
-                </th>
-                <th>
-                    @Html.DisplayName("Chiều cao")
-                </th>
-                <th>
-                    @Html.DisplayName("Cân nặng")
-                </th>
-                <th></th>
-                <th></th>
+  </button>
 
 
 
-            </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdBenhNhan)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenNhom)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.IdGiaDinh)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HoTen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CCCD)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.BHYT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GioiTinh)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NgaySinh)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SDT)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ChieuCao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CanNang)
-                    </td>
-                    <td>
-                        @Html.ActionLink(" ", "Edit", new { id = item.IdBenhNhan }, new { @class = "far fa-edit" })
-                    </td>
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
 
-                    <td>
-                        @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt" })
-                    </td>
-                </tr>
-            }
+        <th>
+          @Html.DisplayName("ID")
+        </th>
+        <th>
+          @Html.DisplayName("Nhóm bệnh nhân")
+        </th>
+        @*<th>
+              @Html.DisplayNameFor(model => model.IdGiaDinh)
+          </th>*@
+        <th>
+          @Html.DisplayName("Họ & Tên")
+        </th>
+        <th>
+          @Html.DisplayName("CCCD")
+        </th>
+        <th>
+          @Html.DisplayName("BHYT")
+        </th>
+        <th>
+          @Html.DisplayName("Giới tính")
+        </th>
+        <th>
+          @Html.DisplayName("Ngày sinh")
+        </th>
+        <th>
+          @Html.DisplayName("SĐT")
+        </th>
+        <th>
+          @Html.DisplayName("Mail")
+        </th>
+        <th>
+          @Html.DisplayName("Địa chỉ")
+        </th>
+        <th>
+          @Html.DisplayName("Chiều cao")
+        </th>
+        <th>
+          @Html.DisplayName("Cân nặng")
+        </th>
+        <th>
+          @Html.DisplayName("Bệnh Nền")
+        </th>
 
-    </table>
+        <th></th>
+        <th></th>
+
+
+
+      </tr>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.IdBenhNhan)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.TenNhom)
+          </td>
+          @*<td>
+                @Html.DisplayFor(modelItem => item.IdGiaDinh)
+            </td>*@
+          <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CCCD)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.BHYT)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Email)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.ChieuCao)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CanNang)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.BenhNen)
+          </td>
+          <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IdBenhNhan }, new { @class = "far fa-edit" })
+          </td>
+
+          <td>
+            @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt" })
+          </td>
+        </tr>
+      }
+
+  </table>
 </div>
 
 

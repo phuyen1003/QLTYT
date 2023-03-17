@@ -16,7 +16,7 @@
           title="Thêm ">
 
     <span?>
-      @Html.ActionLink("Tạo mới", "ViewCreate")
+      @Html.ActionLink("Tạo mới", "Create")
     </span?>
 
   </button>
@@ -107,7 +107,6 @@
 
           <td>
             @Html.ActionLink(" ", "Edit", new { id = item.IdNhanVien }, new { @class = "far fa-edit" }) |
-            @Html.ActionLink(" ", "Details", new { id = item.IdNhanVien }, new { @class = "fas fa-eye" }) |
             @Html.ActionLink(" ", "Delete", new { id = item.IdNhanVien }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
           </td>
         </tr>
