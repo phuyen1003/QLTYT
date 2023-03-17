@@ -8,6 +8,7 @@ using QLTYT.ViewModel;
 
 namespace QLTYT.Controllers
 {
+
   [Authorize]
   public class TaoPhieuKhamController : Controller
   {
@@ -37,6 +38,8 @@ namespace QLTYT.Controllers
       list.thongTinThaiKies = context.ThongTinThaiKies.ToList();
       return View(list);
     }
+
+    [Authorize(Users = "anh,quy,yen")]
     public ActionResult TaoPhieuKham()
     {
       var list = new MutipleData2();
@@ -58,6 +61,7 @@ namespace QLTYT.Controllers
 
       return View(list);
     }
+
     [HttpPost]
     public ActionResult TaoPhieuKham(PhieuKham pk)
     {
@@ -66,6 +70,8 @@ namespace QLTYT.Controllers
       context.SubmitChanges();
       return RedirectToAction("PhieuKham");
     }
+
+
     [HttpGet]
     public ActionResult SuaDoiPhieuKham(int id)
     {
@@ -79,6 +85,8 @@ namespace QLTYT.Controllers
       list.thongTinThaiKies = context.ThongTinThaiKies.ToList();
       return View(list);
     }
+
+
     [HttpPost]
     public ActionResult SuaDoiPhieuKham(PhieuKham pk)
     {
