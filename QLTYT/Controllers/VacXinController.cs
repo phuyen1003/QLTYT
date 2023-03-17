@@ -9,6 +9,7 @@ using QLTYT.ViewModel;
 
 namespace QLTYT.Controllers
 {
+  [Authorize]
   public class VacXinController : Controller
   {
     private QLTYTDataContext context = new QLTYTDataContext();

@@ -8,6 +8,18 @@
 <link href="~/Content/Admin.css" rel="stylesheet">
 <div class="table-title">
 
+
+  @if (TempData["ThongBao"] != null)
+  {
+    <script type="text/javascript" charset="utf-8">
+                        window.onload = function () {
+                            alert("@Html.Raw(@TempData["ThongBao"])");
+                    };
+    </script>
+  }
+
+
+
   <h2>THÔNG TIN THAI KỲ CỦA MẸ BẦU CỦA TRẠM </h2>
   <br />
   <br />
@@ -52,8 +64,10 @@
         </th>
 
 
-
-
+        <th>
+          @Html.DisplayName("Ngày dự khám")
+        </th>
+        <th>Gửi mail</th>
       </tr>
 
       @foreach (var item in Model)
@@ -66,7 +80,7 @@
             @Html.DisplayFor(modelItem => item.HoTen)
           </td>
           <td>
-            @Html.DisplayFor(modelItem => item.NgaySinh)
+            @Html.DisplayFor(modelItem => item.Ngày_sinh)
           </td>
           @*<td>
                 @Html.DisplayFor(modelItem => item.CanNang)
@@ -86,15 +100,16 @@
           <td>
             @Html.DisplayFor(modelItem => item.GhiChu)
           </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Ngày_dự_khám)
+          </td>
 
+          <td>
+            @Html.ActionLink("Gửi ", "SendEmails", new { @class = "fas fa-paper-plane" })
+          </td>
 
         </tr>
       }
 
   </table>
 </div>
-
-
-
-
-

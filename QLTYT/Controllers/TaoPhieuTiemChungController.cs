@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace QLTYT.Controllers
 {
+  [Authorize]
   public class TaoPhieuTiemChungController : Controller
   {
     // GET: TaoPhieuTiemChung

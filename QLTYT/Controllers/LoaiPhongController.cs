@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace QLTYT.Controllers
 {
+  [Authorize]
   public class LoaiPhongController : Controller
   {
     private QLTYTDataContext context = new QLTYTDataContext();

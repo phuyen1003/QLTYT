@@ -521,6 +521,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="imagesNV\anhthe2.jpg" />
     <Content Include="imagesNV\NV000001.jpg" />
     <Content Include="imagesNV\NV000002.jpg" />
     <Content Include="imagesNV\NV000003.jpg" />

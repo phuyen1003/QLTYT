@@ -8,6 +8,7 @@ using QLTYT.ViewModel;
 
 namespace QLTYT.Controllers
 {
+  [Authorize]
   public class TaoPhieuKhamController : Controller
   {
     private QLTYTDataContext context = new QLTYTDataContext();

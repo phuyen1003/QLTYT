@@ -11,7 +11,6 @@ using System.Web.Security;
 namespace QLTYT.Controllers
 {
 
-
   public class HomeController : Controller
   {
     [Authorize]

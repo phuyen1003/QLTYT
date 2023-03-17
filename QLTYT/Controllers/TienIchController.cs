@@ -2,12 +2,14 @@
 using QLTYT.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace QLTYT.Controllers
 {
+  [Authorize]
   public class TienIchController : Controller
   {
     // GET: TienIch
@@ -17,7 +19,7 @@ namespace QLTYT.Controllers
     }
 
     //chưa test
-    public string TBChichNgua()
+    public ActionResult TBChichNgua()
     {
       QLTYTDataContext context = new QLTYTDataContext();
       List<BenhNhan> listbn = context.BenhNhans.ToList();
@@ -46,17 +48,43 @@ namespace QLTYT.Controllers
                   {
                     string slg = (datiem.sl + 1).ToString();
                     var nearstDay = context.SP_NearstDay(bn.IdBenhNhan, datiem.IdVacXin);
+
                     if(nearstDay!= null)
                     {
-                      string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/TBChichNgua.html"));
-                      var benh = context.Benhs.FirstOrDefault(bb => bb.IdBenh == ctc.IdBenh);
-                      content = content.Replace("{{TenPH}}", gd.TenChuHo);
-                      content = content.Replace("{{TenTre}}", bn.HoTen);
-                      content = content.Replace("{{TenKyTiem}}", benh.TenBenh);
-                      content = content.Replace("{{LanThu}}", slg);
-                      content = content.Replace("{{NgayTiem}}", "Các ngày trong tuần");
-                      var toGmail = gd.Email;
-                      new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm chủng", content);
+                     foreach(var near in nearstDay) { 
+                        if(DateTime.Now >= (near.NgayTao?.AddMonths((int)near.thang))?.AddDays(-1))
+                        {
+                          if (DateTime.Now <= near.NgayTao?.AddMonths((int)near.thang))
+                          {
+                            string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/TBChichNgua.html"));
+                            var benh = context.Benhs.FirstOrDefault(bb => bb.IdBenh == ctc.IdBenh);
+                            var ngay = near.NgayTao?.AddMonths((int)near.thang).ToString("dd-MM-yyyy");
+
+                            //  var ngayy = ngay.ToString("dd/MM/yyyy");
+                            content = content.Replace("{{TenPH}}", gd.TenChuHo);
+                            content = content.Replace("{{TenTre}}", bn.HoTen);
+                            content = content.Replace("{{TenKyTiem}}", benh.TenBenh);
+                            content = content.Replace("{{LanThu}}", slg);
+                            content = content.Replace("{{NgayTiem}}", ngay);
+                            var toGmail = gd.Email;
+                            new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm phòng", content);
+                          }
+                          else
+                          {
+                            string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/template/TBChichNgua.html"));
+                            var benh = context.Benhs.FirstOrDefault(bb => bb.IdBenh == ctc.IdBenh);
+                            //  var ngayy = ngay.ToString("dd/MM/yyyy");
+                            content = content.Replace("{{TenPH}}", gd.TenChuHo);
+                            content = content.Replace("{{TenTre}}", bn.HoTen);
+                            content = content.Replace("{{TenKyTiem}}", benh.TenBenh);
+                            content = content.Replace("{{LanThu}}", slg);
+                            content = content.Replace("{{NgayTiem}}", "Các ngày trong tuần");
+                            var toGmail = gd.Email;
+                            new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm phòng", content);
+                          }
+                        }
+              
+                      }
                     }                  
                   }
                 }
@@ -72,18 +100,15 @@ namespace QLTYT.Controllers
                 content = content.Replace("{{LanThu}}", "đầu tiên");
                 content = content.Replace("{{NgayTiem}}", "Các ngày trong tuần");
                 var toGmail = gd.Email;
-                new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm chủng", content);
+                new MailHelper().SendMail(toGmail, "Thông báo đến kỳ tiêm phòng", content);
               }
             }
 
           }
-
-
-
-
         }
-      }
-      return "Thành công!";
+        TempData["ThongBao"] = "Gửi mail thành công!";
+      }    
+      return RedirectToAction("Index","Home");
 
     }
 

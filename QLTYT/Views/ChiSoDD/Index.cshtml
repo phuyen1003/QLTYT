@@ -1,87 +1,79 @@
 ﻿@model IEnumerable<QLTYT.Models.SP_BMIResult>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
 <link href="~/Content/Admin.css" rel="stylesheet">
 <div class="table-title">
 
-    <h2>  CHỈ SỐ BMI CỦA TRẺ EM TỪ 5-18 TUỔI CỦA TRẠM Y TẾ </h2>
-    <Br>
-    <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
-            title="Xuất">
+  <h2>  CHỈ SỐ BMI CỦA TRẺ EM TỪ 5-18 TUỔI CỦA TRẠM Y TẾ </h2>
+  <Br>
+  <button class="nv btn " type="button" data-toggle="tooltip" data-placement="top"
+          title="Xuất">
 
-        <span?>
-            @Html.ActionLink("Xuất file ", "ExportToExcel")
-        </span?>
+    <span?>
+      @Html.ActionLink("Xuất file ", "ExportToExcel")
+    </span?>
 
-    </button>
-    <br />
-
-    
-        <table class="table-responsive text-nowrap table-bordered" id="myTable">
-            <thead>
-                <tr class="ex">
-                    @*<th>
-                        @Html.DisplayName("ID")
-                    </th>*@
-
-                    <th>
-                        @Html.DisplayName("Họ & tên")
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Tuổi)
-                    </th>
-                    <th>
-                        @Html.DisplayName("BMI của bé (kg/m2)")
-                    </th>
-
-                    <th>
-                        @Html.DisplayName("Cảnh báo")
-                    </th>
+  </button>
+  <br />
 
 
+  <table class="table-responsive text-nowrap table-bordered" id="myTable">
+    <thead>
+      <tr class="ex">
+        @*<th>
+              @Html.DisplayName("ID")
+          </th>*@
+
+        <th>
+          @Html.DisplayName("Họ & tên")
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Tuổi)
+        </th>
+        <th>
+          @Html.DisplayName("BMI của bé (kg/m2)")
+        </th>
+
+        <th>
+          @Html.DisplayName("Cảnh báo")
+        </th>
 
 
-                </tr>
+        <th>Gửi mail</th>
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.IdBenhNhan)
-                        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.HoTen)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tuổi)
-                        </td>
+      </tr>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BMI_của_trẻ_em)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CanhBao)
-                        </td>
+      @foreach (var item in Model)
+      {
+<tr>
+  @*<td>
+        @Html.DisplayFor(modelItem => item.IdBenhNhan)
+    </td>*@
+  <td>
+    @Html.DisplayFor(modelItem => item.HoTen)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.Tuổi)
+  </td>
 
-                        @*<td>
-            @Html.ActionLink(" ", "Edit", new { id = item.IdBenhNhan }, new { @class = "far fa-edit" })
-        </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.BMI_của_trẻ_em)
+  </td>
+  <td>
+    @Html.DisplayFor(modelItem => item.CanhBao)
+  </td>
 
-        <td>
-            @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt" })
-        </td>*@
-                    </tr>
-                }
+  <td>
+    @Html.ActionLink(" ", "Edit", new { id = item.IdBenhNhan }, new { @class = "far fa-edit" })
+  </td>
 
-        </table>
-    </div>
+  <td>
+    @Html.ActionLink("Gửi ", "SendEmail", new { @class = "fas fa-trash-alt" })
+  </td>
+</tr>}
 
-
-
-
-
+  </table>
+</div>
