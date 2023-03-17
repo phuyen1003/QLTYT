@@ -61,8 +61,7 @@
       <div class="form-group">
         CCCD
         <div class="col-md-10">
-          @Html.EditorFor(model => model.CCCD, new { htmlAttributes = new { @class = "form-control" } })
-          @Html.ValidationMessageFor(model => model.CCCD, "", new { @class = "text-danger" })
+          <input name="CCCD" type="text" maxlength="12" class="cccd-input input-text qty text form-control" onkeypress="return isCCCDNumber(event)">
         </div>
       </div>
 
@@ -100,15 +99,14 @@
       <div class="form-group">
         SĐT
         <div class="col-md-10">
-          @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-          @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+          <input name="SDT" type="text" class="quantity-input input-text qty text form-control" onkeypress="return isNumberKey(event)">
         </div>
       </div>
 
       <div class="form-group">
         Mail
         <div class="col-md-10">
-          @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
           @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
       </div>
@@ -159,3 +157,29 @@
     </div>
   }
 </div>
+
+<script>
+    $(document).ready(function () {
+      $('.quantity-input').bind("cut copy paste drag drop", function (e) {
+        e.preventDefault();
+      });
+
+      $('.cccd-input').bind("cut copy paste drag drop", function (e) {
+        e.preventDefault();
+      });
+    });
+    function isNumberKey(e) {
+      var charCode = (e.which) ? e.which : e.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 43)
+        return false;
+      return true;
+    }
+
+    function isCCCDNumber(e) {
+      var charCode = (e.which) ? e.which : e.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57) /*&& charCode != 43*/)
+        return false;
+      return true;
+    }
+
+</script>

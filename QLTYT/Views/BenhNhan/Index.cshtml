@@ -133,7 +133,7 @@
           </td>
 
           <td>
-            @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt" })
+            @Html.ActionLink(" ", "Delete", new { id = item.IdBenhNhan }, new { @class = "fas fa-trash-alt", onclick = "return confirm('Bạn muốn xoá đối tượng này?')" })
           </td>
         </tr>
       }

@@ -51,6 +51,7 @@ namespace QLTYT.Controllers
                 .Select(x => x.BenhNhan);
       return View(list);
     }
+
     [HttpPost]
     public ActionResult TaoPhieuTiemChung(PhieuTiemChung ptc)
     {
@@ -59,6 +60,7 @@ namespace QLTYT.Controllers
       context.SubmitChanges();
       return RedirectToAction("PhieuTiemChung");
     }
+
     [HttpGet]
     public ActionResult SuaDoiPhieuTiemChung(int id)
     {
